@@ -1,16 +1,14 @@
 #pragma once
 #include "Position.h"
+#include "Color.cpp"
+#include <vector>
 
-enum Color
-{
-	black = 0,
-	white = 1,
-};
+using namespace std;
 
 class Figure
 {
 public:
-	virtual Position* GetPossibleMoves(Position) = 0;
+	virtual vector<Position> GetPossibleMoves(Position) = 0;
 private:
 	Color color;
 };

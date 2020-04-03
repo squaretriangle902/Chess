@@ -124,7 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ChessBoard.cpp" />
-    <ClCompile Include="Class.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Pawn.cpp" />
@@ -133,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChessBoard.h" />
-    <ClInclude Include="Class.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Pawn.h" />

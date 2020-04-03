@@ -1,5 +1,4 @@
 #pragma once
-#include "ChessBoardSquare.h"
 #include <vector>
 
 using namespace std;
