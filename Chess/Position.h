@@ -1,7 +1,7 @@
 #pragma once
 struct Position
 {
-	Position(int vertical, int hrizontal)
+	Position(int vertical, int horizontal)
 	{
 		this->vertical = vertical;
 		this->horizontal = horizontal;

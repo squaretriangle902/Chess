@@ -129,7 +129,7 @@
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Position.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Chess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChessBoard.h" />

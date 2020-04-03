@@ -8,7 +8,11 @@ using namespace std;
 class Figure
 {
 public:
-	virtual vector<Position> GetPossibleMoves(Position) = 0;
+	virtual vector<Position> GetMoves(Position) = 0;
+	Color GetColor()
+	{
+		return this->color;
+	}
 private:
 	Color color;
 };
