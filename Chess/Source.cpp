@@ -76,6 +76,9 @@ int main()
     //return 0;
     //    ChessBoard chessBoard = ChessBoard();
     //Function(x);
+    // new keyword
+
+
     int c = 10;
     int& d = c;
     int* f = &c;
