@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "Piece.h"
+#include "Bishop.h"
+#include "TypeChecker.cpp"
 
 using namespace std;
 
@@ -19,6 +21,7 @@ public:
 		
 	}
 
+
 	int GetSize()
 	{
 		return this->size;
@@ -27,6 +30,21 @@ public:
 	Piece*& GetPiecePtr(Position position)
 	{
 		return chessBoard[position.horizontal][position.vertical];
+	}
+
+	vector<Position> GetBishopPossibleMoves(Position position, Bishop* bishop)
+	{
+		vector<Position> bishopMoves;
+		vector<Position> possibleMoves;
+		for (int i = 0; i < 8; i++)
+		{
+			bishopMoves = bishop->GetMoves(position, this->size, static_cast<Direction>(i));
+			int j = 0;
+			while (j < bishopMoves.size() && GetPiecePtr(bishopMoves.at(j)) == NULL)
+			{
+				possibleMoves.push_back(bishopMoves.at(j));
+			}
+		}
 	}
 
 	vector<Position> GetPossibleMoves(Position position)
@@ -47,6 +65,7 @@ public:
 		if (currentPiecePtr == NULL)
 		{
 			currentPiecePtr = newPiecePtr;
+			currentPiecePtr->SetChessBoard(&(this->chessBoard));
 		}
 	}
 
@@ -70,12 +89,12 @@ private:
 		}
 	}
 
-	void OutOfBorderRestricting(std::vector<Position>& possibleMovesVector, 
+	void OverflowRestriction(std::vector<Position>& possibleMovesVector, 
 		int& i, 
 		std::vector<Position>::iterator& iterator)
 	{
-		if (possibleMovesVector.at(i).horizontal > size ||
-			possibleMovesVector.at(i).vertical > size ||
+		if (possibleMovesVector.at(i).horizontal > size - 1 ||
+			possibleMovesVector.at(i).vertical > size - 1 ||
 			possibleMovesVector.at(i).horizontal < 0 ||
 			possibleMovesVector.at(i).vertical < 0)
 		{
@@ -86,10 +105,10 @@ private:
 
 	void RestrictIllegalMoves(vector<Position>& possibleMovesVector, Piece* piece)
 	{
-		vector<Position>::iterator iterator = possibleMovesVector.begin();
+		vector<Position>::iterator iterator = possibleMovesVector.begin();//need refactoring
 		for (int i = 0; i < possibleMovesVector.size(); i++)
 		{
-			OutOfBorderRestricting(possibleMovesVector, i, iterator);
+			OverflowRestriction(possibleMovesVector, i, iterator);
 		}
 		for (int i = 0; i < possibleMovesVector.size(); i++)
 		{
@@ -99,7 +118,7 @@ private:
 
 	Piece*** CreateChessBoard(int size)
 	{
-		Piece*** chessBoard = new Piece * *[size];
+		Piece*** chessBoard = new Piece** [size];
 		for (int i = 0; i < size; i++)
 		{
 			chessBoard[i] = new Piece * [size];

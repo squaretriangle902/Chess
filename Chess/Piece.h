@@ -8,17 +8,26 @@ using namespace std;
 class Piece
 {
 public:
-	Piece(Color color)
+	Piece(Color color, Piece**** chessBoard)
 	{
 		this->color = color;
+		this->chessBoard = chessBoard;
 	}
+
 	virtual vector<Position> GetMoves(Position) = 0;
+
 	Color GetColor()
 	{
 		return this->color;
 	}
+
+	void SetChessBoard(Piece**** chessBoard)
+	{
+		this->chessBoard = chessBoard;
+	}
+
 protected:
 	Color color;
-	bool jumps;
+	Piece**** chessBoard;
 };
 
