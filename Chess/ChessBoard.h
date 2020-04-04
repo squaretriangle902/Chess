@@ -36,7 +36,7 @@ public:
 		if (piecePtr)
 		{
 			possibleMovesVector = piecePtr->GetMoves(position);
-			RestrictFriendlyTaking(possibleMovesVector, piecePtr);
+			RestrictIllegalMoves(possibleMovesVector, piecePtr);
 		}
 		return possibleMovesVector;
 	}
@@ -54,19 +54,46 @@ private:
 	Piece*** chessBoard;
 	int size;
 
-	void RestrictFriendlyTaking(vector<Position>& possibleMovesVector, Piece* figure)
+	void RestrictFriendlyTaking(std::vector<Position>& possibleMovesVector, 
+		int& i, 
+		Piece* piece, 
+		std::vector<Position>::iterator& iterator)
+	{
+		Piece* anotherPiece = GetPiecePtr(possibleMovesVector.at(i));
+		if (anotherPiece)
+		{
+			if (anotherPiece->GetColor() == piece->GetColor())
+			{
+				possibleMovesVector.erase(iterator + i);
+				i--;
+			}
+		}
+	}
+
+	void OutOfBorderRestricting(std::vector<Position>& possibleMovesVector, 
+		int& i, 
+		std::vector<Position>::iterator& iterator)
+	{
+		if (possibleMovesVector.at(i).horizontal > size ||
+			possibleMovesVector.at(i).vertical > size ||
+			possibleMovesVector.at(i).horizontal < 0 ||
+			possibleMovesVector.at(i).vertical < 0)
+		{
+			possibleMovesVector.erase(iterator + i);
+			i--;
+		}
+	}
+
+	void RestrictIllegalMoves(vector<Position>& possibleMovesVector, Piece* piece)
 	{
 		vector<Position>::iterator iterator = possibleMovesVector.begin();
 		for (int i = 0; i < possibleMovesVector.size(); i++)
 		{
-			Piece* anotherFigure = GetPiecePtr(possibleMovesVector.at(i));
-			if (anotherFigure)
-			{
-				if (anotherFigure->GetColor() == figure->GetColor())
-				{
-					possibleMovesVector.erase(iterator + i);
-				}
-			}
+			OutOfBorderRestricting(possibleMovesVector, i, iterator);
+		}
+		for (int i = 0; i < possibleMovesVector.size(); i++)
+		{
+			RestrictFriendlyTaking(possibleMovesVector, i, piece, iterator);
 		}
 	}
 

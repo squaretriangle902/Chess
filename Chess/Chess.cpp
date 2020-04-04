@@ -34,10 +34,10 @@ int main()
 	Knight* blackKnight1Ptr = new Knight(black);
 	Knight* blackKnight2Ptr = new Knight(black);
 	Knight* whiteKnight1Ptr = new Knight(white);
-	chessBoard.SetPiecePtr(Position(3, 3), blackKnight1Ptr);
-	chessBoard.SetPiecePtr(Position(4, 5), blackKnight2Ptr);
+	chessBoard.SetPiecePtr(Position(0, 0), blackKnight1Ptr);
+	chessBoard.SetPiecePtr(Position(2, 1), blackKnight2Ptr);
 	chessBoard.SetPiecePtr(Position(5, 4), whiteKnight1Ptr);
 	VisualizeChessBoard(chessBoard);
-	vector<Position> possibleMovesVector = chessBoard.GetPossibleMoves(Position(3, 3));
+	vector<Position> possibleMovesVector = chessBoard.GetPossibleMoves(Position(0, 0));
 	system("pause");
 }
