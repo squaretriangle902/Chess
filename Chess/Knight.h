@@ -1,8 +1,14 @@
 #pragma once
-#include "Figure.h"
+#include "Piece.h"
 
-class Knight : public Figure
+class Knight : public Piece
 {
+public:
+	Knight(Color color) : Piece(color)
+	{
+		this->jumps = true;
+	}
+
 	vector<Position> GetMoves(Position startingPosition)
 	{
 		vector<Position> pssiblePositionVector;

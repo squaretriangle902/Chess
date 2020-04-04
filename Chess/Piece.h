@@ -5,15 +5,20 @@
 
 using namespace std;
 
-class Figure
+class Piece
 {
 public:
+	Piece(Color color)
+	{
+		this->color = color;
+	}
 	virtual vector<Position> GetMoves(Position) = 0;
 	Color GetColor()
 	{
 		return this->color;
 	}
-private:
+protected:
 	Color color;
+	bool jumps;
 };
 

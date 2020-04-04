@@ -1,6 +1,6 @@
 #pragma once
 #include "Figure.h"
-class Pawn : public Figure
+class Pawn : public Piece
 {
 
 };

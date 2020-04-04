@@ -125,7 +125,7 @@
   <ItemGroup>
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Position.cpp" />
@@ -133,7 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChessBoard.h" />
-    <ClInclude Include="Figure.h" />
+    <ClInclude Include="Piece.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Position.h" />

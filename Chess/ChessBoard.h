@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "Figure.h"
+#include "Piece.h"
 
 using namespace std;
 
@@ -24,52 +24,63 @@ public:
 		return this->size;
 	}
 
-	Figure* GetFigure(Position position)
+	Piece*& GetPiecePtr(Position position)
 	{
 		return chessBoard[position.horizontal][position.vertical];
 	}
 
-	void SelectSquare(Position position)
+	vector<Position> GetPossibleMoves(Position position)
 	{
-		Figure* figure = chessBoard[position.horizontal][position.vertical];
-		if (figure)
+		Piece* piecePtr = GetPiecePtr(position);
+		vector<Position> possibleMovesVector;
+		if (piecePtr)
 		{
-			vector<Position> possibleMovesVector = figure->GetMoves(position);
-			RestrictFriendlyEating(possibleMovesVector, figure);
+			possibleMovesVector = piecePtr->GetMoves(position);
+			RestrictFriendlyTaking(possibleMovesVector, piecePtr);
 		}
+		return possibleMovesVector;
+	}
 
+	void SetPiecePtr(Position position, Piece* newPiecePtr)
+	{
+		Piece*& currentPiecePtr = this->GetPiecePtr(position);
+		if (currentPiecePtr == NULL)
+		{
+			currentPiecePtr = newPiecePtr;
+		}
 	}
 
 private:
-	Figure*** chessBoard;
+	Piece*** chessBoard;
 	int size;
 
-	void RestrictFriendlyEating(vector<Position>& possibleMovesVector, Figure* figure)
+	void RestrictFriendlyTaking(vector<Position>& possibleMovesVector, Piece* figure)
 	{
 		vector<Position>::iterator iterator = possibleMovesVector.begin();
 		for (int i = 0; i < possibleMovesVector.size(); i++)
 		{
-			if (
-				chessBoard
-				[possibleMovesVector.at(i).horizontal]
-			[possibleMovesVector.at(i).vertical]->GetColor() == figure->GetColor())
+			Piece* anotherFigure = GetPiecePtr(possibleMovesVector.at(i));
+			if (anotherFigure)
 			{
-				possibleMovesVector.erase(iterator + i);
+				if (anotherFigure->GetColor() == figure->GetColor())
+				{
+					possibleMovesVector.erase(iterator + i);
+				}
 			}
 		}
 	}
 
-	Figure*** CreateChessBoard(int size)
+	Piece*** CreateChessBoard(int size)
 	{
-		Figure*** chessBoard = new Figure * *[size];
+		Piece*** chessBoard = new Piece * *[size];
 		for (int i = 0; i < size; i++)
 		{
-			chessBoard[i] = new Figure * [size];
+			chessBoard[i] = new Piece * [size];
 		}
 		return chessBoard;
 	}
 
-	void FillWithNull(Figure***& chessBoard, int size)
+	void FillWithNull(Piece***& chessBoard, int size)
 	{
 		for (int i = 0; i < size; i++)
 		{
