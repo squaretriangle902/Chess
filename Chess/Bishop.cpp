@@ -12,8 +12,8 @@ bool Bishop::IsDirectionFree(Direction direction, vector<Direction> BlockedDirec
 		{
 			return false;
 		}
-		return true;
 	}
+	return true;
 }
 
 void Bishop::CheckPositionOnDirection(Position startingPosition, 
@@ -52,11 +52,11 @@ vector<Position> Bishop::GetPossibleMoves(Position startingPosition)
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector, 
 			possibleMovesVector, rightUp, 1, 1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, rightDown, -1, 1);
+			possibleMovesVector, rightDown, 1, -1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
 			possibleMovesVector, leftDown, -1, -1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, leftUp, 1, -1);
+			possibleMovesVector, leftUp, -1, 1);
 	}
 
 	return possibleMovesVector;

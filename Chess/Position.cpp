@@ -2,8 +2,8 @@
 
 Position::Position(int horizontal, int vertical)
 {
-	this->horizontal = vertical;
-	this->vertical = horizontal;
+	this->horizontal = horizontal;
+	this->vertical = vertical;
 }
 
 Position::Position()
