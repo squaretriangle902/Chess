@@ -5,52 +5,16 @@
 class Bishop : public Piece
 {
 public:
-	Bishop(Color color) : Piece(color)
-	{
-		this->jumps = false;
-	}
-
-	vector<Position> GetMoves(Position startingPosition, int chessBoardSize, 
-		Direction direction)
-	{
-		vector<Position> positionsVector;
-		if (rightUp)
-		{
-			for (int i = 1; i < chessBoardSize; i++)
-			{
-				positionsVector.push_back(
-					Position(startingPosition.horizontal + i, 
-						startingPosition.vertical + i));
-			}
-		}
-		if (rightDown)
-		{
-			for (int i = 1; i < chessBoardSize; i++)
-			{
-				positionsVector.push_back(
-					Position(startingPosition.horizontal + i, 
-						startingPosition.vertical - i));
-			}
-		}
-		if (leftDown)
-		{
-			for (int i = 1; i < chessBoardSize; i++)
-			{
-				positionsVector.push_back(
-					Position(startingPosition.horizontal - i, 
-						startingPosition.vertical + i));
-			}
-		}
-		if (rightUp)
-		{
-			for (int i = 1; i < chessBoardSize; i++)
-			{
-				positionsVector.push_back(
-					Position(startingPosition.horizontal - i, 
-						startingPosition.vertical - i));
-			}
-		}
-		return positionsVector;
-	}
+	Bishop(Color color, ChessBoard* chessBoardPtr);
+	void CheckPositionOnDirection(Position startingPosition, 
+		int i, 
+		std::vector<Direction>& BlockedDirectionsVector, 
+		std::vector<Position>& possibleMovesVector,
+		Direction direction,
+		int verticalOffset,
+		int horizontalOffset);
+	vector<Position> GetPossibleMoves(Position startingPosition);
+private:
+	bool IsDirectionFree(Direction direction, vector<Direction> BlockedDirectionsVector);
 };
 

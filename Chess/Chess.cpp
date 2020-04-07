@@ -4,12 +4,13 @@
 #include "ChessBoard.h"
 #include "Piece.h"
 #include "Knight.h"
+#include "Bishop.h"
 
 using namespace std;
 
 void VisualizeChessBoard(ChessBoard chessBoard)
 {
-	for (int i = 0; i < chessBoard.GetSize(); i++)
+	for (int i = chessBoard.GetSize() - 1; i >=0; i--)
 	{
 		for (int j = 0; j < chessBoard.GetSize(); j++)
 		{
@@ -29,15 +30,21 @@ void VisualizeChessBoard(ChessBoard chessBoard)
 
 int main() 
 {
-	ChessBoard chessBoard = ChessBoard();
+	ChessBoard chessBoard = ChessBoard(8);
+	ChessBoard* chessBoardPtr = &chessBoard;
 	VisualizeChessBoard(chessBoard);
-	Knight* blackKnight1Ptr = new Knight(black);
-	Knight* blackKnight2Ptr = new Knight(black);
-	Knight* whiteKnight1Ptr = new Knight(white);
-	chessBoard.SetPiecePtr(Position(0, 0), blackKnight1Ptr);
-	chessBoard.SetPiecePtr(Position(2, 1), blackKnight2Ptr);
-	chessBoard.SetPiecePtr(Position(5, 4), whiteKnight1Ptr);
+	Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+	Bishop* whiteBishop1 = new Bishop(white, chessBoardPtr);
+	Bishop* whiteBishop2 = new Bishop(white, chessBoardPtr);
+	Bishop* blackBishop1 = new Bishop(black, chessBoardPtr);
+	chessBoard.SetPiecePtr(3, 3, whiteBishop);
 	VisualizeChessBoard(chessBoard);
-	vector<Position> possibleMovesVector = chessBoard.GetPossibleMoves(Position(0, 0));
+	chessBoard.SetPiecePtr(0, 6, whiteBishop1);
+	VisualizeChessBoard(chessBoard);
+	chessBoard.SetPiecePtr(5, 5, whiteBishop2);
+	VisualizeChessBoard(chessBoard);
+	chessBoard.SetPiecePtr(6, 0, blackBishop1);
+	VisualizeChessBoard(chessBoard);
+	vector<Position> v = whiteBishop->GetPossibleMoves(Position(3, 3));
 	system("pause");
 }
