@@ -1,5 +1,1 @@
-enum Color
-{
-	black = 0,
-	white = 1,
-};
+#include "Color.h"

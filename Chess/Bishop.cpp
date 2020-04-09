@@ -1,3 +1,4 @@
+#pragma once
 #include "Bishop.h"
 
 Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
@@ -27,7 +28,6 @@ void Bishop::CheckPositionOnDirection(Position startingPosition,
 	Position movePosition =
 		Position(startingPosition.vertical + i*verticalOffset, 
 			startingPosition.horizontal + i*horizontalOffset);
-	bool isEnemy;
 	if (IsDirectionFree(direction, blockedDirectionsVector) && this->IsMoveValid(movePosition))
 	{
 		possibleMovesVector.push_back(movePosition);

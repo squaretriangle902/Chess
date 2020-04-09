@@ -27,9 +27,6 @@
     <ClCompile Include="Knight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Chess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,10 +36,10 @@
     <ClCompile Include="Bishop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Direction.cpp">
+    <ClCompile Include="TypeChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TypeChecker.cpp">
+    <ClCompile Include="Rook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,6 +60,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bishop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

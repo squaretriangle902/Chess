@@ -2,10 +2,10 @@
 #include "Piece.h"
 #include "Direction.h"
 
-class Bishop : public Piece
+class Rook : public Piece
 {
 public:
-	Bishop(Color color, ChessBoard* chessBoardPtr);
+	Rook(Color color, ChessBoard* chessBoardPtr);
 	vector<Position> GetPossibleMoves(Position startingPosition);
 private:
 	void CheckPositionOnDirection(Position startingPosition,

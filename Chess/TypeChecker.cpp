@@ -1,3 +1,4 @@
+#pragma once
 template <class DstType, class SrcType>
 bool IsType(const SrcType* src)
 {

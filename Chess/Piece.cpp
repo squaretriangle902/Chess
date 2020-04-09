@@ -1,5 +1,5 @@
+#pragma once
 #include "Piece.h"
-#include "ChessBoard.h"
 
 Piece::Piece(Color color, ChessBoard* chessBoardPtr)
 {
@@ -40,7 +40,6 @@ bool Piece::IsMoveValid(Position position)
 //		i--;
 //	}
 //}
-
 
 //void RestrictFriendlyTaking(std::vector<Position>& possibleMovesVector, 
 //	int& i, 

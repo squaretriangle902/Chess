@@ -1,10 +1,13 @@
+#pragma once
 #include "Knight.h"
 
 Knight::Knight(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
 {
 }
 
-void Knight::PushMove(Position& position, int horizontalOffset, int verticalOffset, std::vector<Position>& possibleMovesVector)
+void Knight::TryPushMove(Position& position, 
+	int horizontalOffset, int verticalOffset, 
+	std::vector<Position>& possibleMovesVector)
 {
 	Position movePosition =
 		Position(position.horizontal + horizontalOffset, position.vertical + verticalOffset);
@@ -17,17 +20,16 @@ void Knight::PushMove(Position& position, int horizontalOffset, int verticalOffs
 vector<Position> Knight::GetPossibleMoves(Position position)
 {
 	vector<Position> possibleMovesVector;
-	PushMove(position, 1, 2, possibleMovesVector);
-	PushMove(position, 2, 1, possibleMovesVector);
-	PushMove(position, 2, -1, possibleMovesVector);
-	PushMove(position, 1, -2, possibleMovesVector);
-	PushMove(position, -1, -2, possibleMovesVector);
-	PushMove(position, -2, -1, possibleMovesVector);
-	PushMove(position, -2, 1, possibleMovesVector);
-	PushMove(position, -1, 2, possibleMovesVector);
+	TryPushMove(position, 1, 2, possibleMovesVector);
+	TryPushMove(position, 2, 1, possibleMovesVector);
+	TryPushMove(position, 2, -1, possibleMovesVector);
+	TryPushMove(position, 1, -2, possibleMovesVector);
+	TryPushMove(position, -1, -2, possibleMovesVector);
+	TryPushMove(position, -2, -1, possibleMovesVector);
+	TryPushMove(position, -2, 1, possibleMovesVector);
+	TryPushMove(position, -1, 2, possibleMovesVector);
 	return possibleMovesVector;
 }
-
 
 //vector<Position> GetMoves(Position startingPosition)
 //{

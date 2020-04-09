@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "Piece.h"
-#include "TypeChecker.cpp"
 
 using namespace std;
 
@@ -25,4 +24,3 @@ private:
 	Piece*** CreateChessBoard(int size);
 	void FillWithNull(Piece***& chessBoard, int size);
 };
-

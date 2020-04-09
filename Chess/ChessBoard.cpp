@@ -1,3 +1,4 @@
+#pragma once
 #include "ChessBoard.h"
 
 ChessBoard::ChessBoard(int size = 8)
@@ -66,7 +67,6 @@ void ChessBoard::FillWithNull(Piece***& chessBoard, int size)
 	}
 }
 
-
 //vector<Position> GetBishopPossibleMoves(Position position, Bishop* bishop)
 //{
 //	vector<Position> bishopMoves;
@@ -93,7 +93,6 @@ void ChessBoard::FillWithNull(Piece***& chessBoard, int size)
 //	}
 //	return possibleMovesVector;
 //}
-
 
 	//void RestrictIllegalMoves(vector<Position>& possibleMovesVector, Piece* piece)
 	//{

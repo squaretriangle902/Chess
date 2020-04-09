@@ -1,8 +1,8 @@
 #pragma once
 #include "Position.h"
-#include "Color.cpp"
-#include <vector>
+#include "Color.h"
 #include "ChessBoard.h"
+#include <vector>
 
 using namespace std;
 
