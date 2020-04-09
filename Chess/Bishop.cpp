@@ -26,8 +26,8 @@ void Bishop::CheckPositionOnDirection(Position startingPosition,
 	int horizontalOffset)
 {
 	Position movePosition =
-		Position(startingPosition.vertical + i*verticalOffset, 
-			startingPosition.horizontal + i*horizontalOffset);
+		Position(startingPosition.horizontal + i*horizontalOffset, 
+			startingPosition.vertical + i*verticalOffset);
 	if (IsDirectionFree(direction, blockedDirectionsVector) && this->IsMoveValid(movePosition))
 	{
 		possibleMovesVector.push_back(movePosition);

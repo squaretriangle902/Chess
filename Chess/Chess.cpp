@@ -64,8 +64,16 @@ int main()
 	//VisualizeChessBoard(chessBoardPtr);
 	//vector<Position> v = whitePawn->GetPossibleMoves(Position(0, 1));
 	ChessBoard* chessBoardPtr = new ChessBoard(8);
-	Pawn* pawn = new Pawn(white, chessBoardPtr);
-	bool a = pawn->GetColor() == Color::white;
+	Pawn* whitePawn = new Pawn(white, chessBoardPtr);
+	Pawn* blackPawn = new Pawn(black, chessBoardPtr);
+	chessBoardPtr->SetPiecePtr(Position(0, 1), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(3, 2), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(5, 1), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(5, 3), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(1, 2), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(4, 4), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(6, 4), blackPawn);
+	vector<Position> possibleMovesVector = whitePawn->GetPossibleMoves(Position(3, 2));
 	system("pause");
 }
 

@@ -36,7 +36,6 @@ void Rook::CheckPositionOnDirection(Position startingPosition,
 	Position movePosition =
 		Position(startingPosition.vertical + i * verticalOffset,
 			startingPosition.horizontal + i * horizontalOffset);
-	bool isEnemy;
 	if (IsDirectionFree(direction, blockedDirectionsVector) && this->IsMoveValid(movePosition))
 	{
 		possibleMovesVector.push_back(movePosition);

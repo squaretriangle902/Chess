@@ -8,6 +8,6 @@ public:
 	vector<Position> GetPossibleMoves(Position position);
 	void TryPushTaking(Position& position, int horizontalOffset, int verticalOffset, std::vector<Position>& possibleMovesVector);
 private:
-	void TryPushMove(Position& position, int horizontalOffset,
+	void TryPushMove(Position position, int horizontalOffset,
 		std::vector<Position>& possibleMovesVector);
 };

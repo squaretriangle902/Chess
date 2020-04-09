@@ -45,11 +45,13 @@ void Pawn::TryPushTaking(Position& position,
 	}
 }
 
-void Pawn::TryPushMove(Position& position, int horizontalOffset,
+void Pawn::TryPushMove(Position position, int verticalOffset,
 	std::vector<Position>& possibleMovesVector)
 {
+	int size = this->chessBoardPtr->GetSize();
+	bool inBorders = (position.vertical < size) && (position.vertical >= 0);
 	Position movePosition =
-		Position(position.horizontal + horizontalOffset, position.vertical);
+		Position(position.horizontal, position.vertical + verticalOffset);
 	if (movePosition.horizontal < this->chessBoardPtr->GetSize() && 
 		!this->chessBoardPtr->GetPiecePtr(movePosition))
 	{
