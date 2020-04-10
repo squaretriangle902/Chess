@@ -11,7 +11,7 @@ class ChessBoard;
 class Piece
 {
 public:
-	Piece(Color color, ChessBoard* chessBoard);
+	Piece(Color color, ChessBoard* chessBoardPtr);
 	Color GetColor();
 	virtual vector<Position> GetPossibleMoves(Position) = 0;
 	bool IsMoveValid(Position position);

@@ -18,19 +18,19 @@ int ChessBoard::GetSize()
 	return this->size;
 }
 
-Piece*& ChessBoard::GetPiecePtr(Position position)
+Piece* ChessBoard::GetPiecePtr(Position position)
 {
 	return chessBoard[position.horizontal][position.vertical];
 }
 
-Piece*& ChessBoard::GetPiecePtr(int horizontal, int vertical)
+Piece* ChessBoard::GetPiecePtr(int horizontal, int vertical)
 {
 	return chessBoard[horizontal][vertical];
 }
 
 void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 {
-	Piece*& currentPiecePtr = this->GetPiecePtr(position);
+	Piece*& currentPiecePtr = this->GetPiecePtrRef(position);
 	if (currentPiecePtr == NULL)
 	{
 		currentPiecePtr = newPiecePtr;
@@ -39,7 +39,7 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 
 void ChessBoard::SetPiecePtr(int horizontal, int vertical, Piece* newPiecePtr)
 {
-	Piece*& currentPiecePtr = this->GetPiecePtr(horizontal, vertical);
+	Piece*& currentPiecePtr = this->GetPiecePtrRef(horizontal, vertical);
 	if (currentPiecePtr == NULL)
 	{
 		currentPiecePtr = newPiecePtr;
@@ -65,6 +65,16 @@ void ChessBoard::FillWithNull(Piece***& chessBoard, int size)
 			chessBoard[i][j] = NULL;
 		}
 	}
+}
+
+Piece*& ChessBoard::GetPiecePtrRef(Position position)
+{
+	return chessBoard[position.horizontal][position.vertical];
+}
+
+Piece*& ChessBoard::GetPiecePtrRef(int horizontal, int vertical)
+{
+	return chessBoard[horizontal][vertical];
 }
 
 //vector<Position> GetBishopPossibleMoves(Position position, Bishop* bishop)

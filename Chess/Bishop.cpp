@@ -1,45 +1,9 @@
 #pragma once
 #include "Bishop.h"
 
-Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
+Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) : 
+	LongRangePiece(color, chessBoardPtr)
 {
-}
-
-bool Bishop::IsDirectionFree(Direction direction, vector<Direction> BlockedDirectionsVector)
-{
-	for (int i = 0; i < BlockedDirectionsVector.size(); i++)
-	{
-		if (direction == BlockedDirectionsVector.at(i))
-		{
-			return false;
-		}
-	}
-	return true;
-}
-
-void Bishop::CheckPositionOnDirection(Position startingPosition, 
-	int i, 
-	std::vector<Direction>& blockedDirectionsVector, 
-	std::vector<Position>& possibleMovesVector,
-	Direction direction,
-	int horizontalOffset,
-	int verticalOffset)
-{
-	Position movePosition =
-		Position(startingPosition.horizontal + i*horizontalOffset, 
-			startingPosition.vertical + i*verticalOffset);
-	if (IsDirectionFree(direction, blockedDirectionsVector) && this->IsMoveValid(movePosition))
-	{
-		possibleMovesVector.push_back(movePosition);
-		if (this->chessBoardPtr->GetPiecePtr(movePosition))
-		{
-			blockedDirectionsVector.push_back(direction);
-		}
-	}
-	else if(IsDirectionFree(direction, blockedDirectionsVector))
-	{
-		blockedDirectionsVector.push_back(direction);
-	}
 }
 
 vector<Position> Bishop::GetPossibleMoves(Position startingPosition)

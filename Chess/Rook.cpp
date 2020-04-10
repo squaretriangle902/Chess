@@ -1,7 +1,8 @@
 #pragma once
 #include "Rook.h"
 
-Rook::Rook(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
+Rook::Rook(Color color, ChessBoard* chessBoardPtr) : 
+	LongRangePiece(color, chessBoardPtr)
 {
 }
 
@@ -23,41 +24,4 @@ vector<Position> Rook::GetPossibleMoves(Position startingPosition)
 	}
 
 	return possibleMovesVector;
-}
-
-void Rook::CheckPositionOnDirection(Position startingPosition,
-	int i,
-	std::vector<Direction>& blockedDirectionsVector,
-	std::vector<Position>& possibleMovesVector,
-	Direction direction,
-	int verticalOffset,
-	int horizontalOffset)
-{
-	Position movePosition =
-		Position(startingPosition.vertical + i * verticalOffset,
-			startingPosition.horizontal + i * horizontalOffset);
-	if (IsDirectionFree(direction, blockedDirectionsVector) && this->IsMoveValid(movePosition))
-	{
-		possibleMovesVector.push_back(movePosition);
-		if (this->chessBoardPtr->GetPiecePtr(movePosition))
-		{
-			blockedDirectionsVector.push_back(direction);
-		}
-	}
-	else if (IsDirectionFree(direction, blockedDirectionsVector))
-	{
-		blockedDirectionsVector.push_back(direction);
-	}
-}
-
-bool Rook::IsDirectionFree(Direction direction, vector<Direction> BlockedDirectionsVector)
-{
-	for (int i = 0; i < BlockedDirectionsVector.size(); i++)
-	{
-		if (direction == BlockedDirectionsVector.at(i))
-		{
-			return false;
-		}
-	}
-	return true;
 }

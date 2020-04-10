@@ -5,7 +5,7 @@ Knight::Knight(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoard
 {
 }
 
-void Knight::TryPushMove(Position& position, 
+void Knight::CheckStep(Position& position, 
 	int horizontalOffset, int verticalOffset, 
 	std::vector<Position>& possibleMovesVector)
 {
@@ -20,14 +20,14 @@ void Knight::TryPushMove(Position& position,
 vector<Position> Knight::GetPossibleMoves(Position position)
 {
 	vector<Position> possibleMovesVector;
-	TryPushMove(position, 1, 2, possibleMovesVector);
-	TryPushMove(position, 2, 1, possibleMovesVector);
-	TryPushMove(position, 2, -1, possibleMovesVector);
-	TryPushMove(position, 1, -2, possibleMovesVector);
-	TryPushMove(position, -1, -2, possibleMovesVector);
-	TryPushMove(position, -2, -1, possibleMovesVector);
-	TryPushMove(position, -2, 1, possibleMovesVector);
-	TryPushMove(position, -1, 2, possibleMovesVector);
+	CheckStep(position, 1, 2, possibleMovesVector);
+	CheckStep(position, 2, 1, possibleMovesVector);
+	CheckStep(position, 2, -1, possibleMovesVector);
+	CheckStep(position, 1, -2, possibleMovesVector);
+	CheckStep(position, -1, -2, possibleMovesVector);
+	CheckStep(position, -2, -1, possibleMovesVector);
+	CheckStep(position, -2, 1, possibleMovesVector);
+	CheckStep(position, -1, 2, possibleMovesVector);
 	return possibleMovesVector;
 }
 

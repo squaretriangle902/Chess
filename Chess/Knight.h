@@ -7,7 +7,7 @@ public:
 	Knight(Color color, ChessBoard* chessBoardPtr);
 	vector<Position> GetPossibleMoves(Position position);
 private:
-	void TryPushMove(Position& position,
+	void CheckStep(Position& position,
 		int horizontalOffset, int verticalOffset,
 		vector<Position>& possibleMovesVector);
 };

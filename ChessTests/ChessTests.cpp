@@ -22,6 +22,8 @@
 #include "Common.h"
 #include "Queen.cpp"
 #include "Queen.h"
+#include "LongRangePiece.h"
+#include "LongRangePiece.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

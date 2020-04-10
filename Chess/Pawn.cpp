@@ -15,23 +15,23 @@ vector<Position> Pawn::GetPossibleMoves(Position position)
 	{
 	case white:
 		movePushed = false;
-		TryPushMove(position, 1, possibleMovesVector, movePushed);
-		TryPushJump(position, 2, possibleMovesVector, movePushed, 1);
-		TryPushTaking(position, 1, 1, possibleMovesVector);
-		TryPushTaking(position, -1, 1, possibleMovesVector);
+		CheckStep(position, 1, possibleMovesVector, movePushed);
+		CheckJump(position, 2, possibleMovesVector, movePushed, 1);
+		CheckTaking(position, 1, 1, possibleMovesVector);
+		CheckTaking(position, -1, 1, possibleMovesVector);
 		break;
 	case black:
 		movePushed = false;
-		TryPushMove(position, -1, possibleMovesVector, movePushed);
-		TryPushJump(position, -2, possibleMovesVector, movePushed, size - 2);
-		TryPushTaking(position, 1, -1, possibleMovesVector);
-		TryPushTaking(position, -1, -1, possibleMovesVector);
+		CheckStep(position, -1, possibleMovesVector, movePushed);
+		CheckJump(position, -2, possibleMovesVector, movePushed, size - 2);
+		CheckTaking(position, 1, -1, possibleMovesVector);
+		CheckTaking(position, -1, -1, possibleMovesVector);
 		break;
 	}
 	return possibleMovesVector;
 }
 
-void Pawn::TryPushTaking(Position& position, 
+void Pawn::CheckTaking(Position& position, 
 	int horizontalOffset, int verticalOffset, 
 	vector<Position>& possibleMovesVector)
 {
@@ -43,7 +43,7 @@ void Pawn::TryPushTaking(Position& position,
 	}
 }
 
-void Pawn::TryPushMove(Position position, int verticalOffset,
+void Pawn::CheckStep(Position position, int verticalOffset,
 	std::vector<Position>& possibleMovesVector, bool& movePushed)
 {
 	Position movePosition = Position(position.horizontal, position.vertical + verticalOffset);
@@ -54,7 +54,7 @@ void Pawn::TryPushMove(Position position, int verticalOffset,
 	}
 }
 
-void Pawn::TryPushJump(Position position, int verticalOffset,
+void Pawn::CheckJump(Position position, int verticalOffset,
 	std::vector<Position>& possibleMovesVector, bool movePushed, int necessaryVertical)
 {
 	Position movePosition = Position(position.horizontal, position.vertical + verticalOffset);
