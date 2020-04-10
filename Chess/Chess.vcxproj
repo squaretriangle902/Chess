@@ -127,11 +127,13 @@
   <ItemGroup>
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
+    <ClCompile Include="LongRangePiece.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="TypeChecker.cpp" />
   </ItemGroup>
@@ -140,11 +142,13 @@
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Direction.h" />
+    <ClInclude Include="LongRangePiece.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Pieces.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
