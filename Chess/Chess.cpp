@@ -66,14 +66,20 @@ int main()
 	ChessBoard* chessBoardPtr = new ChessBoard(8);
 	Pawn* whitePawn = new Pawn(white, chessBoardPtr);
 	Pawn* blackPawn = new Pawn(black, chessBoardPtr);
-	chessBoardPtr->SetPiecePtr(Position(0, 1), whitePawn);
-	chessBoardPtr->SetPiecePtr(Position(3, 2), whitePawn);
-	chessBoardPtr->SetPiecePtr(Position(5, 1), whitePawn);
-	chessBoardPtr->SetPiecePtr(Position(5, 3), whitePawn);
-	chessBoardPtr->SetPiecePtr(Position(1, 2), blackPawn);
-	chessBoardPtr->SetPiecePtr(Position(4, 4), blackPawn);
-	chessBoardPtr->SetPiecePtr(Position(6, 4), blackPawn);
-	vector<Position> possibleMovesVector = whitePawn->GetPossibleMoves(Position(3, 2));
+	chessBoardPtr->SetPiecePtr(Position(1, 3), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(2, 6), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(4, 6), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(5, 6), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(6, 6), whitePawn);
+	chessBoardPtr->SetPiecePtr(Position(0, 2), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(1, 5), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(2, 2), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(3, 5), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(4, 3), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(5, 4), blackPawn);
+	chessBoardPtr->SetPiecePtr(Position(6, 5), blackPawn);
+	vector<Position> possibleMovesVector = blackPawn->GetPossibleMoves(Position(5, 6));
+
 	system("pause");
 }
 
