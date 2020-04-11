@@ -23,6 +23,4 @@ private:
 
 	Piece*** CreateChessBoard(int size);
 	void FillWithNull(Piece***& chessBoard, int size);
-	Piece*& GetPiecePtrRef(Position position);
-	Piece*& GetPiecePtrRef(int horizontal, int vertical);
 };

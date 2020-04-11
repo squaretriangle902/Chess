@@ -7,9 +7,9 @@ LongRangePiece::LongRangePiece(Color color, ChessBoard* chessBoardPtr) :
 
 void LongRangePiece::CheckPositionOnDirection(Position startingPosition,
 	int i, 
-	std::vector<Direction>& blockedDirectionsVector, 
+	std::vector<Direction::Direction>& blockedDirectionsVector,
 	std::vector<Position>& possibleMovesVector, 
-	Direction direction, 
+	Direction::Direction direction,
 	int horizontalOffset,
 	int verticalOffset)
 {
@@ -30,7 +30,8 @@ void LongRangePiece::CheckPositionOnDirection(Position startingPosition,
 	}
 }
 
-bool LongRangePiece::IsDirectionFree(Direction direction, vector<Direction> blockedDirectionsVector)
+bool LongRangePiece::IsDirectionFree(Direction::Direction direction, 
+	vector<Direction::Direction> blockedDirectionsVector)
 {
 	for (int i = 0; i < blockedDirectionsVector.size(); i++)
 	{
