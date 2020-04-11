@@ -17,7 +17,7 @@ vector<Position> Queen::GetPossibleMoves(Position startingPosition)
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
 			possibleMovesVector, Direction::rightUp, 1, 1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Direction::right1, 1, 0);
+			possibleMovesVector, Direction::right, 1, 0);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
 			possibleMovesVector, Direction::rightDown, 1, -1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
@@ -25,7 +25,7 @@ vector<Position> Queen::GetPossibleMoves(Position startingPosition)
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
 			possibleMovesVector, Direction::leftDown, -1, -1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Direction::left1, -1, 0);
+			possibleMovesVector, Direction::left, -1, 0);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
 			possibleMovesVector, Direction::leftUp, -1, 1);
 	}

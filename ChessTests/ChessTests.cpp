@@ -1,29 +1,10 @@
 #pragma once
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "Bishop.cpp"
-#include "ChessBoard.cpp"
-#include "Piece.cpp"
-#include "Knight.cpp"
-#include "Pawn.cpp"
-#include "Position.cpp"
-#include "Chess.cpp"
-#include "Rook.cpp"
-#include "Bishop.h"
+
 #include "ChessBoard.h"
-#include "Color.h"
-#include "Direction.h"
-#include "Piece.h"
-#include "Knight.h"
-#include "Pawn.h"
 #include "Pieces.h"
-#include "Position.h"
-#include "Rook.h"
 #include "Common.h"
-#include "Queen.cpp"
-#include "Queen.h"
-#include "LongRangePiece.h"
-#include "LongRangePiece.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

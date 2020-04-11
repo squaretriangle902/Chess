@@ -16,11 +16,11 @@ vector<Position> Rook::GetPossibleMoves(Position startingPosition)
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
 			possibleMovesVector, Direction::up, 0, 1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Direction::right1, 1, 0);
+			possibleMovesVector, Direction::right, 1, 0);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
 			possibleMovesVector, Direction::down, 0, -1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Direction::left1, -1, 0);
+			possibleMovesVector, Direction::left, -1, 0);
 	}
 
 	return possibleMovesVector;
