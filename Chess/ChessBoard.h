@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "Piece.h"
+#include <string>
+#include <map>
 
 using namespace std;
 
@@ -14,7 +16,6 @@ public:
 	Piece* GetPiecePtr(Position position);
 	Piece* GetPiecePtr(int horizontal, int vertical);
 	void SetPiecePtr(Position position, Piece* newPiecePtr);
-
 	void SetPiecePtr(int horizontal, int vertical, Piece* newPiecePtr);
 
 private:

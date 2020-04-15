@@ -3,6 +3,7 @@
 Queen::Queen(Color color, ChessBoard* chessBoardPtr) :
 	LongRangePiece(color, chessBoardPtr)
 {
+	this->type = queen;
 }
 
 vector<Position> Queen::GetPossibleMoves(Position startingPosition)

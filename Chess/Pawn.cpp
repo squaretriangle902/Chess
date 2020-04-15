@@ -3,6 +3,7 @@
 
 Pawn::Pawn(Color color, ChessBoard* chessBoard) : Piece(color, chessBoard)
 {
+	this->type = pawn;
 }
 
 

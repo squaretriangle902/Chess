@@ -3,6 +3,7 @@
 
 Knight::Knight(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
 {
+	this->type = knight;
 }
 
 void Knight::CheckStep(Position& position, 

@@ -4,6 +4,7 @@
 Rook::Rook(Color color, ChessBoard* chessBoardPtr) : 
 	LongRangePiece(color, chessBoardPtr)
 {
+	this->type = rook;
 }
 
 vector<Position> Rook::GetPossibleMoves(Position startingPosition)

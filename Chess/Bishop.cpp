@@ -4,6 +4,7 @@
 Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) : 
 	LongRangePiece(color, chessBoardPtr)
 {
+	this->type = bishop;
 }
 
 vector<Position> Bishop::GetPossibleMoves(Position startingPosition)

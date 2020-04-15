@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
+    <ClCompile Include="King.cpp" />
     <ClCompile Include="LongRangePiece.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Knight.cpp" />
@@ -135,18 +136,19 @@
     <ClCompile Include="Chess.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
-    <ClCompile Include="TypeChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Direction.h" />
+    <ClInclude Include="King.h" />
     <ClInclude Include="LongRangePiece.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Pieces.h" />
+    <ClInclude Include="PieceType.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />

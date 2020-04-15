@@ -36,9 +36,6 @@
     <ClCompile Include="Bishop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TypeChecker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LongRangePiece.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="King.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LongRangePiece.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="King.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PieceType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

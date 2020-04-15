@@ -6,16 +6,16 @@ LongRangePiece::LongRangePiece(Color color, ChessBoard* chessBoardPtr) :
 }
 
 void LongRangePiece::CheckPositionOnDirection(Position startingPosition,
-	int i, 
+	int distance, 
 	std::vector<Direction::Direction>& blockedDirectionsVector,
 	std::vector<Position>& possibleMovesVector, 
 	Direction::Direction direction,
 	int horizontalOffset,
-	int verticalOffset)
+	int verticalOffset)//remove either offsets or direction
 {
 	Position movePosition =
-		Position(startingPosition.horizontal + i * horizontalOffset,
-			startingPosition.vertical + i * verticalOffset);
+		Position(startingPosition.horizontal + distance * horizontalOffset,
+			startingPosition.vertical + distance * verticalOffset);
 	if (IsDirectionFree(direction, blockedDirectionsVector) && this->IsMoveValid(movePosition))
 	{
 		possibleMovesVector.push_back(movePosition);

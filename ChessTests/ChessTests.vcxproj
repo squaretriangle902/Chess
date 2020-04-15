@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\squar\source\repos\Chess\ChessTests\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>C:\Users\squar\source\repos\Chess\Chess\x64\Debug\ChessBoard;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Piece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Pawn;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Knight;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\LongRangePiece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Bishop;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Rook;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Queen;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\squar\source\repos\Chess\Chess\x64\Debug\ChessBoard;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Piece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Pawn;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Knight;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\LongRangePiece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Bishop;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Rook;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Queen;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\King;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -155,6 +155,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\squar\source\repos\Chess\Chess\x64\Debug\King;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

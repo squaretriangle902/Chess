@@ -5,11 +5,17 @@ Piece::Piece(Color color, ChessBoard* chessBoardPtr)
 {
 	this->color = color;
 	this->chessBoardPtr = chessBoardPtr;
+	this->type = noType;
 }
 
 Color Piece::GetColor()
 {
 	return this->color;
+}
+
+PieceType Piece::GetType()
+{
+	return this->type;
 }
 
 bool Piece::IsMoveValid(Position position)

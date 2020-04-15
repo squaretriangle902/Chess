@@ -526,26 +526,291 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(5, 7), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(5, 5), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(1, 1), blackQueen);
-		std::vector<Position> possibleMovesVector;
-		possibleMovesVector.push_back(Position(1, 6));
-		possibleMovesVector.push_back(Position(2, 6));
-		possibleMovesVector.push_back(Position(2, 5));
-		possibleMovesVector.push_back(Position(2, 4));
-		possibleMovesVector.push_back(Position(1, 4));
-		possibleMovesVector.push_back(Position(0, 4));
-		possibleMovesVector.push_back(Position(0, 5));
-		possibleMovesVector.push_back(Position(0, 6));
-		possibleMovesVector.push_back(Position(1, 7));
-		possibleMovesVector.push_back(Position(3, 5));
-		possibleMovesVector.push_back(Position(3, 3));
-		possibleMovesVector.push_back(Position(1, 3));
-		possibleMovesVector.push_back(Position(4, 5));
-		possibleMovesVector.push_back(Position(4, 2));
-		possibleMovesVector.push_back(Position(1, 2));
-		possibleMovesVector.push_back(Position(5, 1));
-		possibleMovesVector.push_back(Position(1, 1));
-		possibleMovesVector.push_back(Position(6, 0));
-		Assert::IsTrue(AreEqual(possibleMovesVector, whiteQueen->GetPossibleMoves(Position(1, 5))));
+		std::vector<Position> expectedMovesVector;
+		expectedMovesVector.push_back(Position(1, 6));
+		expectedMovesVector.push_back(Position(2, 6));
+		expectedMovesVector.push_back(Position(2, 5));
+		expectedMovesVector.push_back(Position(2, 4));
+		expectedMovesVector.push_back(Position(1, 4));
+		expectedMovesVector.push_back(Position(0, 4));
+		expectedMovesVector.push_back(Position(0, 5));
+		expectedMovesVector.push_back(Position(0, 6));
+		expectedMovesVector.push_back(Position(1, 7));
+		expectedMovesVector.push_back(Position(3, 5));
+		expectedMovesVector.push_back(Position(3, 3));
+		expectedMovesVector.push_back(Position(1, 3));
+		expectedMovesVector.push_back(Position(4, 5));
+		expectedMovesVector.push_back(Position(4, 2));
+		expectedMovesVector.push_back(Position(1, 2));
+		expectedMovesVector.push_back(Position(5, 1));
+		expectedMovesVector.push_back(Position(1, 1));
+		expectedMovesVector.push_back(Position(6, 0));
+		Assert::IsTrue(AreEqual(expectedMovesVector, whiteQueen->GetPossibleMoves(Position(1, 5))));
+	}
+};
+
+TEST_CLASS(GetTypeTests)
+{
+public:
+
+	TEST_METHOD(WhitePawnTest)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Pawn* whitePawn = new Pawn(white, chessBoardPtr);
+		Assert::IsTrue(whitePawn->GetType() == pawn);
+	}
+
+	TEST_METHOD(WhiteKnightTest)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Knight* whiteKnight = new Knight(white, chessBoardPtr);
+		Assert::IsTrue(whiteKnight->GetType() == knight);
+	}
+
+};
+
+TEST_CLASS(KingTests)
+{
+public:
+
+	TEST_METHOD(LongRangeCheckTest1)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 4), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest2)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 4), whiteRook);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest3)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 4), whiteBishop);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest4)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest5)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteRook);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest6)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest7)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 2), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest8)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 2), whiteRook);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest9)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 2), whiteBishop);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest10)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 0), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest11)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 0), whiteRook);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest12)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 0), whiteBishop);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest13)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 0), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest14)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 0), whiteRook);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest15)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 0), whiteBishop);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest16)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest17)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteRook);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest18)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteBishop);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest19)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 2), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest20)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 2), whiteRook);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest21)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 2), whiteBishop);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest22)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 4), whiteQueen);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest23)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Rook* whiteRook = new Rook(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 4), whiteRook);
+		Assert::IsFalse(blackKing->IsCheck(Position(2, 2)));
+	}
+
+	TEST_METHOD(LongRangeCheckTest24)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), blackKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 4), whiteBishop);
+		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
 	}
 };
 
