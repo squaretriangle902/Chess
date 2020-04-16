@@ -11,8 +11,7 @@ protected:
 		int i,
 		std::vector<Chess::Direction>& blockedDirectionsVector,
 		std::vector<Position>& possibleMovesVector,
-		Chess::Direction direction,
-		Position offset);
+		Chess::Direction direction);
 	bool IsDirectionFree(Chess::Direction direction, 
 		vector<Chess::Direction> blockedDirectionsVector);
 };

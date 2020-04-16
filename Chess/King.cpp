@@ -5,25 +5,22 @@ King::King(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
 	this->type = king;
 }
 
-void King::CheckMove(Position startingPosition, 
-	int horizontalOffset, int verticalOffset, vector<Position>& possibleMovesVector)
+void King::CheckMove(Position startingPosition, Chess::Direction direction,
+	vector<Position>& possibleMovesVector)
 {
-	Position movePosition = Position(startingPosition.horizontal + horizontalOffset,
-		startingPosition.vertical + verticalOffset);
+	Position movePosition = startingPosition + Position(direction);
 	if (IsMoveValid(movePosition))
 	{
 		possibleMovesVector.push_back(movePosition);
 	}
 }
 
-bool King::CheckOnDirection(Position& startPosition, bool endCondition, Position direction,
+bool King::CheckOnDirection(Position startPosition, Chess::Direction direction, 
 	PieceType expectingType)
 {
-	for (startPosition.horizontal += direction.horizontal,
-		startPosition.vertical += direction.vertical;
-		IsMoveValid(startPosition);// replace
-		startPosition.horizontal += direction.horizontal, 
-		startPosition.vertical += direction.vertical)
+	for (startPosition += Position(direction); 
+		this->chessBoardPtr->InBorders(startPosition);
+		startPosition += Position(direction))
 	{
 		Piece* piecePtr = this->chessBoardPtr->GetPiecePtr(startPosition);
 		if (piecePtr == NULL)
@@ -45,67 +42,42 @@ bool King::CheckOnDirection(Position& startPosition, bool endCondition, Position
 
 bool King::IsCheck(Position startingPosition)
 {
-	if (IsPawnCheck(startingPosition) || 
+	return IsPawnCheck(startingPosition) ||
 		IsKnightCheck(startingPosition) ||
-		IsLongRangeCheck(startingPosition))
-	{
-		return true;
-	}
-	return false;
+		IsLongRangeCheck(startingPosition);
 }
 
-bool King::IsLongRangeCheck(Position startingPosition)
+bool King::IsLongRangeCheck(Position startPosition)
 {
-	int size = this->chessBoardPtr->GetSize();
-	Position startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.vertical < size, Position(0, 1), rook))
+	if (CheckOnDirection(startPosition, Chess::up, rook))
 	{
 		return true;
 	}
-	startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.horizontal < size &&
-		startPositionCopy.vertical < size, Position(1, 1), bishop))
+	if (CheckOnDirection(startPosition, Chess::rightUp, bishop))
 	{
 		return true;
 	}
-	startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.horizontal < size, Position(1, 0), rook))
+	if (CheckOnDirection(startPosition, Chess::right, rook))
 	{
 		return true;
 	}
-	startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.horizontal < size &&
-		startPositionCopy.vertical > 0, Position(1, -1), bishop))
+	if (CheckOnDirection(startPosition, Chess::rightDown, bishop))
 	{
 		return true;
 	}
-	startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.vertical > 0, Position(0, -1), rook))
+	if (CheckOnDirection(startPosition, Chess::down, rook))
 	{
 		return true;
 	}
-	startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.horizontal > 0 &&
-		startPositionCopy.vertical > 0, Position(-1, -1), bishop))
+	if (CheckOnDirection(startPosition, Chess::leftDown, bishop))
 	{
 		return true;
 	}
-	startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.horizontal > 0, Position(-1, 0), rook))
+	if (CheckOnDirection(startPosition, Chess::left, rook))
 	{
 		return true;
 	}
-	startPositionCopy = Position(startingPosition.horizontal,
-		startingPosition.vertical);
-	if (CheckOnDirection(startPositionCopy, startPositionCopy.horizontal > 0 &&
-		startPositionCopy.vertical < size, Position(-1, 1), bishop))
+	if (CheckOnDirection(startPosition, Chess::leftUp, bishop))
 	{
 		return true;
 	}
@@ -115,19 +87,17 @@ bool King::IsLongRangeCheck(Position startingPosition)
 
 bool King::IsCheckOnOffset(Position startingPosition, Position positionOffset, PieceType pieceType)
 {
-	Position piecePositon = Position(startingPosition.horizontal + positionOffset.horizontal,
-		startingPosition.vertical + positionOffset.vertical);
-	//IsMoveValid replace with inBorders
-	if (!IsMoveValid(piecePositon))
+	Position piecePositon = startingPosition + positionOffset;
+	Piece* piecePtr = this->chessBoardPtr->GetPiecePtr(piecePositon);
+	if (!this->chessBoardPtr->InBorders(piecePositon))
 	{
 		return false;
 	}
-	if (this->chessBoardPtr->GetPiecePtr(piecePositon) == NULL)
+	if (piecePtr == NULL)
 	{
 		return false;
 	}
-	else if (this->chessBoardPtr->GetPiecePtr(piecePositon)->GetColor() != this->color
-		&& this->chessBoardPtr->GetPiecePtr(piecePositon)->GetType() == pieceType)
+	else if (piecePtr->GetColor() != this->color && piecePtr->GetType() == pieceType)
 	{
 		return true;
 	}
@@ -136,18 +106,14 @@ bool King::IsCheckOnOffset(Position startingPosition, Position positionOffset, P
 
 bool King::IsKnightCheck(Position startingPosition)
 {
-	if (IsCheckOnOffset(startingPosition, Position(1, 2), knight) ||
+	return IsCheckOnOffset(startingPosition, Position(1, 2), knight) || 
 		IsCheckOnOffset(startingPosition, Position(2, 1), knight) ||
 		IsCheckOnOffset(startingPosition, Position(2, -1), knight) ||
 		IsCheckOnOffset(startingPosition, Position(1, -2), knight) ||
 		IsCheckOnOffset(startingPosition, Position(-1, -2), knight) ||
 		IsCheckOnOffset(startingPosition, Position(-2, -1), knight) ||
 		IsCheckOnOffset(startingPosition, Position(-2, 1), knight) ||
-		IsCheckOnOffset(startingPosition, Position(-1, 2), knight))
-	{
-		return true;
-	}
-	return false;
+		IsCheckOnOffset(startingPosition, Position(-1, 2), knight);
 }
 
 bool King::IsPawnCheck(Position startingPosition)
@@ -164,13 +130,13 @@ bool King::IsPawnCheck(Position startingPosition)
 vector<Position> King::GetPossibleMoves(Position startingPosition)
 {
 	vector<Position> possibleMovesVector;
-	CheckMove(startingPosition, 0, 1, possibleMovesVector);
-	CheckMove(startingPosition, 1, 1, possibleMovesVector);
-	CheckMove(startingPosition, 1, 0, possibleMovesVector);
-	CheckMove(startingPosition, 1, -1, possibleMovesVector);
-	CheckMove(startingPosition, 0, -1, possibleMovesVector);
-	CheckMove(startingPosition, -1, -1, possibleMovesVector);
-	CheckMove(startingPosition, -1, 0, possibleMovesVector);
-	CheckMove(startingPosition, -1, 1, possibleMovesVector);
+	CheckMove(startingPosition, Chess::up, possibleMovesVector);
+	CheckMove(startingPosition, Chess::rightUp, possibleMovesVector);
+	CheckMove(startingPosition, Chess::right, possibleMovesVector);
+	CheckMove(startingPosition, Chess::rightDown, possibleMovesVector);
+	CheckMove(startingPosition, Chess::down, possibleMovesVector);
+	CheckMove(startingPosition, Chess::leftDown, possibleMovesVector);
+	CheckMove(startingPosition, Chess::left, possibleMovesVector);
+	CheckMove(startingPosition, Chess::leftUp, possibleMovesVector);
 	return possibleMovesVector;
 }

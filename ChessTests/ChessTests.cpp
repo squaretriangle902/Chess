@@ -526,25 +526,24 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(5, 7), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(5, 5), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(1, 1), blackQueen);
-		std::vector<Position> expectedMovesVector;
-		expectedMovesVector.push_back(Position(1, 6));
-		expectedMovesVector.push_back(Position(2, 6));
-		expectedMovesVector.push_back(Position(2, 5));
-		expectedMovesVector.push_back(Position(2, 4));
-		expectedMovesVector.push_back(Position(1, 4));
-		expectedMovesVector.push_back(Position(0, 4));
-		expectedMovesVector.push_back(Position(0, 5));
-		expectedMovesVector.push_back(Position(0, 6));
-		expectedMovesVector.push_back(Position(1, 7));
-		expectedMovesVector.push_back(Position(3, 5));
-		expectedMovesVector.push_back(Position(3, 3));
-		expectedMovesVector.push_back(Position(1, 3));
-		expectedMovesVector.push_back(Position(4, 5));
-		expectedMovesVector.push_back(Position(4, 2));
-		expectedMovesVector.push_back(Position(1, 2));
-		expectedMovesVector.push_back(Position(5, 1));
-		expectedMovesVector.push_back(Position(1, 1));
-		expectedMovesVector.push_back(Position(6, 0));
+		std::vector<Position> expectedMovesVector{Position(1, 6), 
+			Position(2, 6),
+			Position(2, 5),
+			Position(2, 4),
+			Position(1, 4),
+			Position(0, 4),
+			Position(0, 5),
+			Position(0, 6),
+			Position(1, 7),
+			Position(3, 5),
+			Position(3, 3),
+			Position(1, 3),
+			Position(4, 5),
+			Position(4, 2),
+			Position(1, 2),
+			Position(5, 1),
+			Position(1, 1),
+			Position(6, 0)};
 		Assert::IsTrue(AreEqual(expectedMovesVector, whiteQueen->GetPossibleMoves(Position(1, 5))));
 	}
 };
@@ -898,6 +897,3 @@ public:
 	}
 
 };
-
-//1: (1, 5) (3, 7) (5, 5) 0 : (1, 1)
-//(1, 5) -- (1, 6) (2, 6) (2, 5) (2, 4) (1, 4) (0, 4) (0, 5) (0, 6) (1, 7) (3, 5) (3, 3) (1, 3) (4, 5) (4, 2) (1, 2) (5, 1) (1, 1) (6, 0)

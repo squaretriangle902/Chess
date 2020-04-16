@@ -15,13 +15,13 @@ vector<Position> Rook::GetPossibleMoves(Position startingPosition)
 	for (int i = 1; i < chessBoardPtr->GetSize(); i++)
 	{
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::up, Position(0, 1));
+			possibleMovesVector, Chess::up);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::right, Position(1, 0));
+			possibleMovesVector, Chess::right);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::down, Position(0, -1));
+			possibleMovesVector, Chess::down);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::left, Position(-1, 0));
+			possibleMovesVector, Chess::left);
 	}
 
 	return possibleMovesVector;

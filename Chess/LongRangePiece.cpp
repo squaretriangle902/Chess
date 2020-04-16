@@ -9,10 +9,9 @@ void LongRangePiece::CheckPositionOnDirection(Position startPosition,
 	int distance, 
 	std::vector<Chess::Direction>& blockedDirectionsVector,
 	std::vector<Position>& possibleMovesVector, 
-	Chess::Direction direction,
-	Position offset)//remove either offsets or direction
+	Chess::Direction direction)
 {
-	Position movePosition = startPosition + distance * offset;
+	Position movePosition = startPosition + distance * Position(direction);
 	if (IsDirectionFree(direction, blockedDirectionsVector) && this->IsMoveValid(movePosition))
 	{
 		possibleMovesVector.push_back(movePosition);

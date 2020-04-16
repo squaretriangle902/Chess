@@ -7,6 +7,51 @@ Position::Position(int horizontal, int vertical)
 	this->vertical = vertical;
 }
 
+Position::Position(Chess::Direction direction)
+{
+	switch (direction)
+	{
+	case Chess::up:
+		this->horizontal = 0;
+		this->vertical = 1;
+		break;
+	case Chess::rightUp:
+		this->horizontal = 1;
+		this->vertical = 1;
+		break;
+	case Chess::right:
+		this->horizontal = 1;
+		this->vertical = 0;
+		break;
+	case Chess::rightDown:
+		this->horizontal = 1;
+		this->vertical = -1;
+		break;
+	case Chess::down:
+		this->horizontal = 0;
+		this->vertical = -1;
+		break;
+	case Chess::leftDown:
+		this->horizontal = -1;
+		this->vertical = -1;
+		break;
+	case Chess::left:
+		this->horizontal = -1;
+		this->vertical = 0;
+		break;
+	case Chess::leftUp:
+		this->horizontal = -1;
+		this->vertical = 1;
+		break;
+	}
+}
+
+Position::Position(const Position& position)
+{
+	this->horizontal = position.horizontal;
+	this->vertical = position.vertical;
+}
+
 Position::Position()
 {
 	this->horizontal = 0;
@@ -25,9 +70,9 @@ Position operator+(Position position1, Position position2)
 		position1.vertical += position2.vertical);
 }
 
-Position operator+=(Position position1, Position position2)
+void operator+=(Position& position1, Position position2)
 {
-	return position1 + position2;
+	position1 = position1 + position2;
 }
 
 Position operator*(int coefficient, Position position)

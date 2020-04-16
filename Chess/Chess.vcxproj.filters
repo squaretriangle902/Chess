@@ -92,5 +92,8 @@
     <ClInclude Include="PieceType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Chess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

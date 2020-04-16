@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
+    <ClInclude Include="Chess.h" />
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Direction.h" />

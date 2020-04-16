@@ -3,12 +3,20 @@
 #include <iostream>
 #include "ChessBoard.h"
 #include "Pieces.h"
+#include "Chess.h"
 
 using namespace std;
 
 int main()
 {
-	Position position1 = Position(1,2);
-	Position position2 = Position(2,3);
-	position1 += position2;
+	int i = 6;
+	int j = 5;
+	NewFunction(i, j);
+	Position position = Position(1, 1);
+	position += Position(2, 2);
+}
+
+void NewFunction(int& i, int j)
+{
+	i = j + 6;
 }
