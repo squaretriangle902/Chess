@@ -29,3 +29,8 @@ Position operator+=(Position position1, Position position2)
 {
 	return position1 + position2;
 }
+
+Position operator*(int coefficient, Position position)
+{
+	return Position(coefficient * position.horizontal, coefficient * position.vertical);
+}

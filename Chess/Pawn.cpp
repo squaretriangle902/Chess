@@ -10,57 +10,57 @@ Pawn::Pawn(Color color, ChessBoard* chessBoard) : Piece(color, chessBoard)
 vector<Position> Pawn::GetPossibleMoves(Position position)
 {
 	vector<Position> possibleMovesVector;
-	int size = this->chessBoardPtr->GetSize();
-	bool movePushed;
 	switch (this->color)
 	{
 	case white:
-		movePushed = false;
-		IsMovePossible(position, 1, possibleMovesVector, movePushed);
-		CheckJump(position, 2, possibleMovesVector, movePushed, 1);
-		CheckTaking(position, 1, 1, possibleMovesVector);
-		CheckTaking(position, -1, 1, possibleMovesVector);
+		if (IsMovePossible(position, 1, possibleMovesVector))
+		{
+			CheckJump(position, 2, possibleMovesVector, 1);
+		}
+		CheckTaking(position, Position(1, 1), possibleMovesVector);
+		CheckTaking(position, Position(-1, 1), possibleMovesVector);
 		break;
 	case black:
-		movePushed = false;
-		IsMovePossible(position, -1, possibleMovesVector, movePushed);
-		CheckJump(position, -2, possibleMovesVector, movePushed, size - 2);
-		CheckTaking(position, 1, -1, possibleMovesVector);
-		CheckTaking(position, -1, -1, possibleMovesVector);
+		if (IsMovePossible(position, -1, possibleMovesVector))
+		{
+			CheckJump(position, -2, possibleMovesVector, this->chessBoardPtr->GetSize() - 2);
+		}
+		CheckTaking(position, Position(1, -1), possibleMovesVector);
+		CheckTaking(position, Position(-1, -1), possibleMovesVector);
 		break;
 	}
 	return possibleMovesVector;
 }
 
-void Pawn::CheckTaking(Position& position, 
-	int horizontalOffset, int verticalOffset, 
+void Pawn::CheckTaking(Position startPosition, Position offset, 
 	vector<Position>& possibleMovesVector)
 {
-	Position takingPosition = Position(position.horizontal + horizontalOffset,
-		position.vertical + verticalOffset);
+	Position takingPosition = startPosition + offset;
 	if (this->IsMoveValid(takingPosition) && this->chessBoardPtr->GetPiecePtr(takingPosition))
 	{
 		possibleMovesVector.push_back(takingPosition);
 	}
 }
 
-void Pawn::IsMovePossible(Position position, int verticalOffset,
-	std::vector<Position>& possibleMovesVector, bool& movePushed)
+bool Pawn::IsMovePossible(Position startPosition, int verticalOffset,
+	std::vector<Position>& possibleMovesVector)
 {
-	Position movePosition = Position(position.horizontal, position.vertical + verticalOffset);
-	if (IsMoveValid(movePosition) && this->chessBoardPtr->GetPiecePtr(movePosition) == NULL)
+	Position movePosition = startPosition + Position(0, verticalOffset);
+	if (this->chessBoardPtr->InBorders(movePosition) && 
+		this->chessBoardPtr->GetPiecePtr(movePosition) == NULL)
 	{
 		possibleMovesVector.push_back(movePosition);
-		movePushed = true;
+		return true;
 	}
+	return false;
 }
 
-void Pawn::CheckJump(Position position, int verticalOffset,
-	std::vector<Position>& possibleMovesVector, bool movePushed, int necessaryVertical)
+void Pawn::CheckJump(Position startPosition, int verticalOffset,
+	std::vector<Position>& possibleMovesVector, int necessaryVertical)
 {
-	Position movePosition = Position(position.horizontal, position.vertical + verticalOffset);
-	if (IsMoveValid(movePosition) && this->chessBoardPtr->GetPiecePtr(movePosition) == NULL &&
-		position.vertical == necessaryVertical && movePushed)
+	Position movePosition = startPosition + Position(0, verticalOffset);
+	if (startPosition.vertical == necessaryVertical &&
+		this->chessBoardPtr->GetPiecePtr(movePosition) == NULL)
 	{
 		possibleMovesVector.push_back(movePosition);
 	}

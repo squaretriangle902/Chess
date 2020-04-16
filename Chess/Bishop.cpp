@@ -14,13 +14,13 @@ vector<Position> Bishop::GetPossibleMoves(Position startingPosition)
 	for (int i = 1; i < chessBoardPtr->GetSize(); i++)
 	{
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector, 
-			possibleMovesVector, Chess::rightUp, 1, 1);
+			possibleMovesVector, Chess::rightUp, Position(1, 1));
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::rightDown, 1, -1);
+			possibleMovesVector, Chess::rightDown, Position(1, -1));
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::leftDown, -1, -1);
+			possibleMovesVector, Chess::leftDown, Position(-1, -1));
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::leftUp, -1, 1);
+			possibleMovesVector, Chess::leftUp, Position(-1, 1));
 	}
 	return possibleMovesVector;
 }
