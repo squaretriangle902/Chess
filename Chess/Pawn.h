@@ -7,7 +7,7 @@ public:
 	Pawn(Color color, ChessBoard* chessBoard);
 	vector<Position> GetPossibleMoves(Position position);
 private:
-	void CheckStep(Position position, int horizontalOffset,
+	void IsMovePossible(Position position, int horizontalOffset,
 		std::vector<Position>& possibleMovesVector, bool& movePushed);
 	void CheckJump(Position position, int verticalOffset,
 		std::vector<Position>& possibleMovesVector, bool movePushed, int necessaryVertical);

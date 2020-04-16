@@ -1,7 +1,7 @@
 #pragma once
 #include "Piece.h"
 
-Piece::Piece(Color color, ChessBoard* chessBoardPtr)
+Piece::Piece(Color color, ChessBoard* chessBoardPtr = NULL)
 {
 	this->color = color;
 	this->chessBoardPtr = chessBoardPtr;
@@ -31,6 +31,11 @@ bool Piece::IsMoveValid(Position position)
 	Piece* piecePtr = this->chessBoardPtr->GetPiecePtr(position);
 	return !piecePtr || piecePtr->color != this->color;
 
+}
+
+void Piece::SetChessBoardPtr(ChessBoard* chessBoardPtr)
+{
+	this->chessBoardPtr = chessBoardPtr;
 }
 
 //void OverflowRestriction(std::vector<Position>& possibleMovesVector, 

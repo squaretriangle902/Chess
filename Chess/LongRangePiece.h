@@ -9,12 +9,12 @@ public:
 protected:
 	void CheckPositionOnDirection(Position startingPosition,
 		int i,
-		std::vector<Direction::Direction>& blockedDirectionsVector,
+		std::vector<Chess::Direction>& blockedDirectionsVector,
 		std::vector<Position>& possibleMovesVector,
-		Direction::Direction direction,
+		Chess::Direction direction,
 		int verticalOffset,
 		int horizontalOffset);
-	bool IsDirectionFree(Direction::Direction direction, 
-		vector<Direction::Direction> blockedDirectionsVector);
+	bool IsDirectionFree(Chess::Direction direction, 
+		vector<Chess::Direction> blockedDirectionsVector);
 };
 

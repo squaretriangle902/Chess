@@ -30,26 +30,30 @@ Piece* ChessBoard::GetPiecePtr(int horizontal, int vertical)
 
 void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 {
-	if (chessBoard[position.horizontal][position.vertical] == NULL)
-	{
-		chessBoard[position.horizontal][position.vertical] = newPiecePtr;
-	}
+	chessBoard[position.horizontal][position.vertical] = newPiecePtr;
+	newPiecePtr->SetChessBoardPtr(this);
 }
 
 void ChessBoard::SetPiecePtr(int horizontal, int vertical, Piece* newPiecePtr)
 {
-	if (chessBoard[horizontal][vertical] == NULL)
-	{
-		chessBoard[horizontal][vertical] = newPiecePtr;
-	}
+	chessBoard[horizontal][vertical] = newPiecePtr;
+	newPiecePtr->SetChessBoardPtr(this);
+}
+
+bool ChessBoard::InBorders(Position position)
+{
+	return (position.horizontal < size) && 
+		(position.horizontal >= 0) &&
+		(position.vertical < size) &&
+		(position.vertical >= 0);
 }
 
 Piece*** ChessBoard::CreateChessBoard(int size)
 {
-	Piece*** chessBoard = new Piece * *[size];
+	Piece*** chessBoard = new Piece** [size];
 	for (int i = 0; i < size; i++)
 	{
-		chessBoard[i] = new Piece * [size];
+		chessBoard[i] = new Piece* [size];
 	}
 	return chessBoard;
 }
@@ -64,43 +68,3 @@ void ChessBoard::FillWithNull(Piece***& chessBoard, int size)
 		}
 	}
 }
-
-//vector<Position> GetBishopPossibleMoves(Position position, Bishop* bishop)
-//{
-//	vector<Position> bishopMoves;
-//	vector<Position> possibleMoves;
-//	for (int i = 0; i < 8; i++)
-//	{
-//		bishopMoves = bishop->GetMoves(position, this->size, static_cast<Direction>(i));
-//		int j = 0;
-//		while (j < bishopMoves.size() && GetPiecePtr(bishopMoves.at(j)) == NULL)
-//		{
-//			possibleMoves.push_back(bishopMoves.at(j));
-//		}
-//	}
-//}
-
-//vector<Position> GetPossibleMoves(Position position)
-//{
-//	Piece* piecePtr = GetPiecePtr(position);
-//	vector<Position> possibleMovesVector;
-//	if (piecePtr)
-//	{
-//		possibleMovesVector = piecePtr->GetMoves(position);
-//		RestrictIllegalMoves(possibleMovesVector, piecePtr);
-//	}
-//	return possibleMovesVector;
-//}
-
-	//void RestrictIllegalMoves(vector<Position>& possibleMovesVector, Piece* piece)
-	//{
-	//	vector<Position>::iterator iterator = possibleMovesVector.begin();//need refactoring
-	//	for (int i = 0; i < possibleMovesVector.size(); i++)
-	//	{
-	//		OverflowRestriction(possibleMovesVector, i, iterator);
-	//	}
-	//	for (int i = 0; i < possibleMovesVector.size(); i++)
-	//	{
-	//		RestrictFriendlyTaking(possibleMovesVector, i, piece, iterator);
-	//	}
-	//}

@@ -812,6 +812,91 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(0, 4), whiteBishop);
 		Assert::IsTrue(blackKing->IsCheck(Position(2, 2)));
 	}
+
+	void KnightCheckTestCaseTrue(Position kingPositon, Position knightPositon)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Knight* whiteKnight = new Knight(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(kingPositon, blackKing);
+		chessBoardPtr->SetPiecePtr(knightPositon, whiteKnight);
+		Assert::IsTrue(blackKing->IsCheck(kingPositon));
+	}
+
+	TEST_METHOD(KnightCheckTest1)
+	{
+		KnightCheckTestCaseTrue(Position(3,3), Position(4, 5));
+	}
+
+	TEST_METHOD(KnightCheckTest2)
+	{
+		KnightCheckTestCaseTrue(Position(3, 3), Position(5, 4));
+	}
+
+	TEST_METHOD(KnightCheckTest3)
+	{
+		KnightCheckTestCaseTrue(Position(3, 3), Position(5, 2));
+	}
+
+	TEST_METHOD(KnightCheckTest4)
+	{
+		KnightCheckTestCaseTrue(Position(3, 3), Position(4, 1));
+	}
+
+	TEST_METHOD(KnightCheckTest5)
+	{
+		KnightCheckTestCaseTrue(Position(3, 3), Position(2, 1));
+	}
+
+	TEST_METHOD(KnightCheckTest6)
+	{
+		KnightCheckTestCaseTrue(Position(3, 3), Position(1, 2));
+	}
+
+	TEST_METHOD(KnightCheckTest7)
+	{
+		KnightCheckTestCaseTrue(Position(3, 3), Position(1, 4));
+	}
+
+	TEST_METHOD(KnightCheckTest8)
+	{
+		KnightCheckTestCaseTrue(Position(3, 3), Position(2, 5));
+	}
+
+	void KnightCheckTestCaseFalse(Position kingPositon, Position knightPositon)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Knight* whiteKnight = new Knight(white, chessBoardPtr);
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(kingPositon, blackKing);
+		chessBoardPtr->SetPiecePtr(knightPositon, whiteKnight);
+		Assert::IsFalse(blackKing->IsCheck(kingPositon));
+	}
+
+	TEST_METHOD(KnightCheckTest9)
+	{
+		KnightCheckTestCaseFalse(Position(3, 3), Position(1, 1));
+	}
+
+	TEST_METHOD(KnightCheckTest10)
+	{
+		KnightCheckTestCaseFalse(Position(3, 3), Position(1, 5));
+	}
+
+	TEST_METHOD(KnightCheckTest11)
+	{
+		KnightCheckTestCaseFalse(Position(3, 3), Position(2, 3));
+	}
+
+	TEST_METHOD(KnightCheckTest12)
+	{
+		KnightCheckTestCaseFalse(Position(3, 3), Position(5, 1));
+	}
+	TEST_METHOD(KnightCheckTest13)
+	{
+		KnightCheckTestCaseFalse(Position(3, 3), Position(5, 5));
+	}
+
 };
 
 //1: (1, 5) (3, 7) (5, 5) 0 : (1, 1)

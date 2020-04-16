@@ -18,3 +18,14 @@ bool operator==(Position position1, Position position2)
 	return position1.horizontal == position2.horizontal && 
 		position1.vertical == position2.vertical;
 }
+
+Position operator+(Position position1, Position position2)
+{
+	return Position(position1.horizontal + position2.horizontal,
+		position1.vertical += position2.vertical);
+}
+
+Position operator+=(Position position1, Position position2)
+{
+	return position1 + position2;
+}

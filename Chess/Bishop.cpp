@@ -9,20 +9,18 @@ Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) :
 
 vector<Position> Bishop::GetPossibleMoves(Position startingPosition)
 {
-	vector<Direction::Direction> BlockedDirectionsVector;
+	vector<Chess::Direction> BlockedDirectionsVector;
 	vector<Position> possibleMovesVector;
-
 	for (int i = 1; i < chessBoardPtr->GetSize(); i++)
 	{
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector, 
-			possibleMovesVector, Direction::rightUp, 1, 1);
+			possibleMovesVector, Chess::rightUp, 1, 1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Direction::rightDown, 1, -1);
+			possibleMovesVector, Chess::rightDown, 1, -1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Direction::leftDown, -1, -1);
+			possibleMovesVector, Chess::leftDown, -1, -1);
 		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Direction::leftUp, -1, 1);
+			possibleMovesVector, Chess::leftUp, -1, 1);
 	}
-
 	return possibleMovesVector;
 }

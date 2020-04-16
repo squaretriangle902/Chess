@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Direction
+namespace Chess
 {
 	enum Direction
 	{

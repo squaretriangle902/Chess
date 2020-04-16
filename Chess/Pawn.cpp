@@ -16,14 +16,14 @@ vector<Position> Pawn::GetPossibleMoves(Position position)
 	{
 	case white:
 		movePushed = false;
-		CheckStep(position, 1, possibleMovesVector, movePushed);
+		IsMovePossible(position, 1, possibleMovesVector, movePushed);
 		CheckJump(position, 2, possibleMovesVector, movePushed, 1);
 		CheckTaking(position, 1, 1, possibleMovesVector);
 		CheckTaking(position, -1, 1, possibleMovesVector);
 		break;
 	case black:
 		movePushed = false;
-		CheckStep(position, -1, possibleMovesVector, movePushed);
+		IsMovePossible(position, -1, possibleMovesVector, movePushed);
 		CheckJump(position, -2, possibleMovesVector, movePushed, size - 2);
 		CheckTaking(position, 1, -1, possibleMovesVector);
 		CheckTaking(position, -1, -1, possibleMovesVector);
@@ -44,7 +44,7 @@ void Pawn::CheckTaking(Position& position,
 	}
 }
 
-void Pawn::CheckStep(Position position, int verticalOffset,
+void Pawn::IsMovePossible(Position position, int verticalOffset,
 	std::vector<Position>& possibleMovesVector, bool& movePushed)
 {
 	Position movePosition = Position(position.horizontal, position.vertical + verticalOffset);

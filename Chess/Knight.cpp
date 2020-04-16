@@ -6,12 +6,10 @@ Knight::Knight(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoard
 	this->type = knight;
 }
 
-void Knight::CheckStep(Position& position, 
-	int horizontalOffset, int verticalOffset, 
+void Knight::IsMovePossible(Position startPosition, Position offset, 
 	std::vector<Position>& possibleMovesVector)
 {
-	Position movePosition =
-		Position(position.horizontal + horizontalOffset, position.vertical + verticalOffset);
+	Position movePosition = startPosition + offset;
 	if (this->IsMoveValid(movePosition))
 	{
 		possibleMovesVector.push_back(movePosition);
@@ -21,35 +19,13 @@ void Knight::CheckStep(Position& position,
 vector<Position> Knight::GetPossibleMoves(Position position)
 {
 	vector<Position> possibleMovesVector;
-	CheckStep(position, 1, 2, possibleMovesVector);
-	CheckStep(position, 2, 1, possibleMovesVector);
-	CheckStep(position, 2, -1, possibleMovesVector);
-	CheckStep(position, 1, -2, possibleMovesVector);
-	CheckStep(position, -1, -2, possibleMovesVector);
-	CheckStep(position, -2, -1, possibleMovesVector);
-	CheckStep(position, -2, 1, possibleMovesVector);
-	CheckStep(position, -1, 2, possibleMovesVector);
+	IsMovePossible(position, Position(1, 2), possibleMovesVector);
+	IsMovePossible(position, Position(2, 1), possibleMovesVector);
+	IsMovePossible(position, Position(2, -1), possibleMovesVector);
+	IsMovePossible(position, Position(1, -2), possibleMovesVector);
+	IsMovePossible(position, Position(-1, -2), possibleMovesVector);
+	IsMovePossible(position, Position(-2, -1), possibleMovesVector);
+	IsMovePossible(position, Position(-2, 1), possibleMovesVector);
+	IsMovePossible(position, Position(-1, 2), possibleMovesVector);
 	return possibleMovesVector;
 }
-
-//vector<Position> GetMoves(Position startingPosition)
-//{
-//	vector<Position> positionsVector;
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal + 1, startingPosition.vertical + 2));
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal + 2, startingPosition.vertical + 1));
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal + 2, startingPosition.vertical - 1));
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal + 1, startingPosition.vertical - 2));
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal - 1, startingPosition.vertical - 2));
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal - 2, startingPosition.vertical - 1));
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal - 2, startingPosition.vertical + 1));
-//	positionsVector.push_back(
-//		Position(startingPosition.horizontal - 1, startingPosition.vertical + 2));
-//	return positionsVector;
-//}

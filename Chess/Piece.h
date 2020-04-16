@@ -17,6 +17,7 @@ public:
 	PieceType GetType();
 	virtual vector<Position> GetPossibleMoves(Position) = 0;
 	bool IsMoveValid(Position position);
+	void SetChessBoardPtr(ChessBoard* chessBoardPtr);
 
 protected:
 	PieceType type;
