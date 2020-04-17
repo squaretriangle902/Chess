@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\squar\source\repos\Chess\ChessTests\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>C:\Users\squar\source\repos\Chess\Chess\x64\Debug\ChessBoard;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Piece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Pawn;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Knight;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\LongRangePiece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Bishop;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Rook;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Queen;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\King;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\squar\source\repos\Chess\Chess\x64\Debug\ChessBoard;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Position;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Piece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Pawn;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Knight;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\LongRangePiece;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Bishop;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Rook;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\Queen;C:\Users\squar\source\repos\Chess\Chess\x64\Debug\King;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -159,16 +159,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ChessTests.cpp" />
+    <ClCompile Include="BishopTests.cpp" />
+    <ClCompile Include="ChessBoardTests.cpp" />
+    <ClCompile Include="VectorComparsion.cpp" />
+    <ClCompile Include="KingTests.cpp" />
+    <ClCompile Include="PawnTests.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PieceTests.cpp" />
+    <ClCompile Include="QueenTests.cpp" />
+    <ClCompile Include="VectorCmparsionTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h" />
+    <ClInclude Include="VectorComparsion.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

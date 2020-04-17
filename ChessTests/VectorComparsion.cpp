@@ -1,9 +1,5 @@
-#pragma once
-#include "Position.h"
-#include "Position.cpp"
-#include <vector>
-
-using namespace std;
+#include "pch.h"
+#include "VectorComparsion.h"
 
 bool IncludedInVector(Position position, vector<Position> vector)
 {
@@ -17,7 +13,7 @@ bool IncludedInVector(Position position, vector<Position> vector)
 	return false;
 }
 
-bool AreEqual(vector<Position> vector1, vector<Position> vector2)
+bool CompareVector(vector<Position> vector1, vector<Position> vector2)
 {
 	if (vector1.size() != vector2.size())
 	{

@@ -11,12 +11,12 @@ int main()
 {
 	int i = 6;
 	int j = 5;
-	NewFunction(i, j);
+	GetSizeTest(i, j);
 	Position position = Position(1, 1);
 	position += Position(2, 2);
 }
 
-void NewFunction(int& i, int j)
+void GetSizeTest(int& i, int j)
 {
 	i = j + 6;
 }

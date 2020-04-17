@@ -1,1 +1,1 @@
-void NewFunction(int& i, int j);
+void GetSizeTest(int& i, int j);
