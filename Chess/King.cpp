@@ -49,39 +49,14 @@ bool King::IsCheck(Position startingPosition)
 
 bool King::IsLongRangeCheck(Position startPosition)
 {
-	if (CheckOnDirection(startPosition, Chess::up, rook))
-	{
-		return true;
-	}
-	if (CheckOnDirection(startPosition, Chess::rightUp, bishop))
-	{
-		return true;
-	}
-	if (CheckOnDirection(startPosition, Chess::right, rook))
-	{
-		return true;
-	}
-	if (CheckOnDirection(startPosition, Chess::rightDown, bishop))
-	{
-		return true;
-	}
-	if (CheckOnDirection(startPosition, Chess::down, rook))
-	{
-		return true;
-	}
-	if (CheckOnDirection(startPosition, Chess::leftDown, bishop))
-	{
-		return true;
-	}
-	if (CheckOnDirection(startPosition, Chess::left, rook))
-	{
-		return true;
-	}
-	if (CheckOnDirection(startPosition, Chess::leftUp, bishop))
-	{
-		return true;
-	}
-	return false;
+	return CheckOnDirection(startPosition, Chess::up, rook) ||
+		CheckOnDirection(startPosition, Chess::rightUp, bishop) ||
+		CheckOnDirection(startPosition, Chess::right, rook) ||
+		CheckOnDirection(startPosition, Chess::rightDown, bishop) ||
+		CheckOnDirection(startPosition, Chess::down, rook) ||
+		CheckOnDirection(startPosition, Chess::leftDown, bishop) ||
+		CheckOnDirection(startPosition, Chess::left, rook) ||
+		CheckOnDirection(startPosition, Chess::leftUp, bishop);
 }
 
 
@@ -89,19 +64,8 @@ bool King::IsCheckOnOffset(Position startingPosition, Position positionOffset, P
 {
 	Position piecePositon = startingPosition + positionOffset;
 	Piece* piecePtr = this->chessBoardPtr->GetPiecePtr(piecePositon);
-	if (!this->chessBoardPtr->InBorders(piecePositon))
-	{
-		return false;
-	}
-	if (piecePtr == NULL)
-	{
-		return false;
-	}
-	else if (piecePtr->GetColor() != this->color && piecePtr->GetType() == pieceType)
-	{
-		return true;
-	}
-	return false;
+	return this->chessBoardPtr->InBorders(piecePositon) && piecePtr != NULL &&
+		piecePtr->GetColor() != this->color && piecePtr->GetType() == pieceType;
 }
 
 bool King::IsKnightCheck(Position startingPosition)
@@ -119,12 +83,8 @@ bool King::IsKnightCheck(Position startingPosition)
 bool King::IsPawnCheck(Position startingPosition)
 {
 	int orientation = this->color == white ? 1 : -1;
-	if (IsCheckOnOffset(startingPosition, Position(1, orientation), pawn) ||
-		IsCheckOnOffset(startingPosition, Position(-1, orientation), pawn))
-	{
-		return true;
-	}
-	return false;
+	return IsCheckOnOffset(startingPosition, Position(1, orientation), pawn) ||
+		IsCheckOnOffset(startingPosition, Position(-1, orientation), pawn);
 }
 
 vector<Position> King::GetPossibleMoves(Position startingPosition)

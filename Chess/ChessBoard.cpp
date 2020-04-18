@@ -1,10 +1,14 @@
 #pragma once
 #include "ChessBoard.h"
+#include "King.h"
 
-ChessBoard::ChessBoard(int size = 8)
+ChessBoard::ChessBoard(int size, Color turn)
 {
 	this->chessBoard = CreateChessBoard(size);
 	this->size = size;
+	this->turn = turn;
+	this->blackKingPosition = NULL;
+	this->whiteKingPosition = NULL;
 	FillWithNull(this->chessBoard, this->size);/* this method cleans chess board
 											   because default constructor must
 											   return clean chess board. But I need
@@ -32,12 +36,42 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 {
 	chessBoard[position.horizontal][position.vertical] = newPiecePtr;
 	newPiecePtr->SetChessBoardPtr(this);
+	if (newPiecePtr == NULL && newPiecePtr->GetType() != king)
+	{
+		return;
+	}
+	switch (newPiecePtr->GetColor())
+	{
+	case white:
+		whiteKingPosition = &position;
+		break;
+	case black:
+		blackKingPosition = &position;
+		break;
+	default:
+		break;
+	}
 }
 
 void ChessBoard::SetPiecePtr(int horizontal, int vertical, Piece* newPiecePtr)
 {
 	chessBoard[horizontal][vertical] = newPiecePtr;
 	newPiecePtr->SetChessBoardPtr(this);
+	if (newPiecePtr == NULL && newPiecePtr->GetType() != king)
+	{
+		return;
+	}
+	switch (newPiecePtr->GetColor())
+	{
+	case white:
+		whiteKingPosition = new Position(horizontal, vertical);
+		break;
+	case black:
+		blackKingPosition = new Position(horizontal, vertical);
+		break;
+	default:
+		break;
+	}
 }
 
 bool ChessBoard::InBorders(Position position)
@@ -46,6 +80,56 @@ bool ChessBoard::InBorders(Position position)
 		(position.horizontal >= 0) &&
 		(position.vertical < size) &&
 		(position.vertical >= 0);
+}
+
+//bool ChessBoard::TryMove(Position startPosition, Position endPoisiton)
+//{
+//	Piece* startPiecePtr = this->GetPiecePtr(startPosition);
+//	Piece* endPiecePtr = this->GetPiecePtr(endPoisiton);
+//	King* kingPtr;
+//	Position* kingPosition;
+//	switch (this->turn)
+//	{
+//	case black:
+//		kingPtr = new King(black, this);
+//		kingPosition = blackKingPosition;
+//		break;
+//	case white:
+//		kingPtr = new King(white, this);
+//		kingPosition = whiteKingPosition;
+//		break;
+//	default:
+//		break;
+//	}
+//	if (startPiecePtr == NULL)
+//	{
+//		return false;
+//	}
+//	if (startPiecePtr->GetColor() == this->turn &&
+//		IncludedInVector(endPoisiton, startPiecePtr->GetPossibleMoves(startPosition)))
+//	{
+//		this->SetPiecePtr(startPosition, NULL);
+//		this->SetPiecePtr(endPoisiton, startPiecePtr);
+//	}
+//	if (kingPtr->IsCheck(*kingPosition))
+//	{
+//		this->SetPiecePtr(startPosition, startPiecePtr);
+//		this->SetPiecePtr(endPoisiton, endPiecePtr);
+//		return false;
+//	}
+//	return true;
+//}
+
+bool ChessBoard::IncludedInVector(Position position, vector<Position> vector)
+{
+	for (int i = 0; i < vector.size(); i++)
+	{
+		if (vector.at(i) == position)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 Piece*** ChessBoard::CreateChessBoard(int size)
@@ -68,3 +152,5 @@ void ChessBoard::FillWithNull(Piece***& chessBoard, int size)
 		}
 	}
 }
+
+

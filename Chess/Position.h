@@ -12,6 +12,7 @@ struct Position
 	friend void operator += (Position& position1, Position position2);
 	friend Position operator * (int coefficient, Position position);
 
+
 	int horizontal;
 	int vertical;
 };

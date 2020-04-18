@@ -7,7 +7,7 @@ Pawn::Pawn(Color color, ChessBoard* chessBoard) : Piece(color, chessBoard)
 }
 
 
-vector<Position> Pawn::GetPossibleMoves(Position position)
+vector<Position> Pawn::GetPossibleMoves(Position position)//TODO: make case one lined
 {
 	vector<Position> possibleMovesVector;
 	switch (this->color)
