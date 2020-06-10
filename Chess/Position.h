@@ -3,7 +3,7 @@
 
 struct Position
 {
-	Position(int horizontal, int vertical);
+	Position(int vertical, int horizontal);
 	Position(Chess::Direction direction);
 	Position(const Position& position);
 	Position();
@@ -12,7 +12,6 @@ struct Position
 	friend void operator += (Position& position1, Position position2);
 	friend Position operator * (int coefficient, Position position);
 
-
-	int horizontal;
 	int vertical;
+	int horizontal;
 };

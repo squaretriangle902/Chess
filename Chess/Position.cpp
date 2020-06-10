@@ -1,10 +1,10 @@
 #pragma once
 #include "Position.h"
 
-Position::Position(int horizontal, int vertical)
+Position::Position(int vertical, int horizontal)
 {
-	this->horizontal = horizontal;
 	this->vertical = vertical;
+	this->horizontal = horizontal;
 }
 
 Position::Position(Chess::Direction direction)
@@ -12,50 +12,50 @@ Position::Position(Chess::Direction direction)
 	switch (direction)
 	{
 	case Chess::up:
-		this->horizontal = 0;
-		this->vertical = 1;
+		this->vertical    = 0;
+		this->horizontal =  1;
 		break;
 	case Chess::rightUp:
-		this->horizontal = 1;
 		this->vertical = 1;
+		this->horizontal = 1;
 		break;
 	case Chess::right:
-		this->horizontal = 1;
-		this->vertical = 0;
+		this->vertical = 1;
+		this->horizontal = 0;
 		break;
 	case Chess::rightDown:
-		this->horizontal = 1;
-		this->vertical = -1;
+		this->vertical = 1;
+		this->horizontal = -1;
 		break;
 	case Chess::down:
-		this->horizontal = 0;
-		this->vertical = -1;
+		this->vertical = 0;
+		this->horizontal = -1;
 		break;
 	case Chess::leftDown:
-		this->horizontal = -1;
 		this->vertical = -1;
+		this->horizontal = -1;
 		break;
 	case Chess::left:
-		this->horizontal = -1;
-		this->vertical = 0;
+		this->vertical = -1;
+		this->horizontal = 0;
 		break;
 	case Chess::leftUp:
-		this->horizontal = -1;
-		this->vertical = 1;
+		this->vertical = -1;
+		this->horizontal = 1;
 		break;
 	}
 }
 
 Position::Position(const Position& position)
 {
-	this->horizontal = position.horizontal;
 	this->vertical = position.vertical;
+	this->horizontal = position.horizontal;
 }
 
 Position::Position()
 {
-	this->horizontal = 0;
 	this->vertical = 0;
+	this->horizontal = 0;
 }
 
 bool operator==(Position position1, Position position2)
@@ -66,8 +66,8 @@ bool operator==(Position position1, Position position2)
 
 Position operator+(Position position1, Position position2)
 {
-	return Position(position1.horizontal + position2.horizontal,
-		position1.vertical += position2.vertical);
+	return Position(position1.vertical += position2.vertical,
+		position1.horizontal + position2.horizontal);
 }
 
 void operator+=(Position& position1, Position position2)

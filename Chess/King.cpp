@@ -15,7 +15,7 @@ void King::CheckMove(Position startingPosition, Chess::Direction direction,
 	}
 }
 
-bool King::CheckOnDirection(Position startPosition, Chess::Direction direction, 
+bool King::IsCheckOnDirection(Position startPosition, Chess::Direction direction, 
 	PieceType expectingType)
 {
 	for (startPosition += Position(direction); 
@@ -49,14 +49,14 @@ bool King::IsCheck(Position startingPosition)
 
 bool King::IsLongRangeCheck(Position startPosition)
 {
-	return CheckOnDirection(startPosition, Chess::up, rook) ||
-		CheckOnDirection(startPosition, Chess::rightUp, bishop) ||
-		CheckOnDirection(startPosition, Chess::right, rook) ||
-		CheckOnDirection(startPosition, Chess::rightDown, bishop) ||
-		CheckOnDirection(startPosition, Chess::down, rook) ||
-		CheckOnDirection(startPosition, Chess::leftDown, bishop) ||
-		CheckOnDirection(startPosition, Chess::left, rook) ||
-		CheckOnDirection(startPosition, Chess::leftUp, bishop);
+	return IsCheckOnDirection(startPosition, Chess::up, rook) ||
+		IsCheckOnDirection(startPosition, Chess::rightUp, bishop) ||
+		IsCheckOnDirection(startPosition, Chess::right, rook) ||
+		IsCheckOnDirection(startPosition, Chess::rightDown, bishop) ||
+		IsCheckOnDirection(startPosition, Chess::down, rook) ||
+		IsCheckOnDirection(startPosition, Chess::leftDown, bishop) ||
+		IsCheckOnDirection(startPosition, Chess::left, rook) ||
+		IsCheckOnDirection(startPosition, Chess::leftUp, bishop);
 }
 
 

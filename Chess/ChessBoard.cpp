@@ -24,17 +24,17 @@ int ChessBoard::GetSize()
 
 Piece* ChessBoard::GetPiecePtr(Position position)
 {
-	return chessBoard[position.horizontal][position.vertical];
+	return chessBoard[position.vertical][position.horizontal];
 }
 
-Piece* ChessBoard::GetPiecePtr(int horizontal, int vertical)
+Piece* ChessBoard::GetPiecePtr(int vertical, int horizontal)
 {
-	return chessBoard[horizontal][vertical];
+	return chessBoard[vertical][horizontal];
 }
 
 void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 {
-	chessBoard[position.horizontal][position.vertical] = newPiecePtr;
+	chessBoard[position.vertical][position.horizontal] = newPiecePtr;
 	newPiecePtr->SetChessBoardPtr(this);
 	if (newPiecePtr == NULL && newPiecePtr->GetType() != king)
 	{
@@ -53,9 +53,9 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 	}
 }
 
-void ChessBoard::SetPiecePtr(int horizontal, int vertical, Piece* newPiecePtr)
+void ChessBoard::SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr)
 {
-	chessBoard[horizontal][vertical] = newPiecePtr;
+	chessBoard[vertical][horizontal] = newPiecePtr;
 	newPiecePtr->SetChessBoardPtr(this);
 	if (newPiecePtr == NULL && newPiecePtr->GetType() != king)
 	{
@@ -64,10 +64,10 @@ void ChessBoard::SetPiecePtr(int horizontal, int vertical, Piece* newPiecePtr)
 	switch (newPiecePtr->GetColor())
 	{
 	case white:
-		whiteKingPosition = new Position(horizontal, vertical);
+		whiteKingPosition = new Position(vertical, horizontal);
 		break;
 	case black:
-		blackKingPosition = new Position(horizontal, vertical);
+		blackKingPosition = new Position(vertical, horizontal);
 		break;
 	default:
 		break;

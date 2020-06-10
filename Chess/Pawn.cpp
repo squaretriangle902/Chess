@@ -15,7 +15,7 @@ vector<Position> Pawn::GetPossibleMoves(Position position)//TODO: make case one 
 	case white:
 		if (IsMovePossible(position, 1, possibleMovesVector))
 		{
-			CheckJump(position, 2, possibleMovesVector, 1);
+			CheckLongMove(position, 2, possibleMovesVector, 1);
 		}
 		CheckTaking(position, Position(1, 1), possibleMovesVector);
 		CheckTaking(position, Position(-1, 1), possibleMovesVector);
@@ -23,7 +23,7 @@ vector<Position> Pawn::GetPossibleMoves(Position position)//TODO: make case one 
 	case black:
 		if (IsMovePossible(position, -1, possibleMovesVector))
 		{
-			CheckJump(position, -2, possibleMovesVector, this->chessBoardPtr->GetSize() - 2);
+			CheckLongMove(position, -2, possibleMovesVector, this->chessBoardPtr->GetSize() - 2);
 		}
 		CheckTaking(position, Position(1, -1), possibleMovesVector);
 		CheckTaking(position, Position(-1, -1), possibleMovesVector);
@@ -42,10 +42,10 @@ void Pawn::CheckTaking(Position startPosition, Position offset,
 	}
 }
 
-bool Pawn::IsMovePossible(Position startPosition, int verticalOffset,
+bool Pawn::IsMovePossible(Position startPosition, int horizontalOffset,
 	std::vector<Position>& possibleMovesVector)
 {
-	Position movePosition = startPosition + Position(0, verticalOffset);
+	Position movePosition = startPosition + Position(0, horizontalOffset);
 	if (this->chessBoardPtr->InBorders(movePosition) && 
 		this->chessBoardPtr->GetPiecePtr(movePosition) == NULL)
 	{
@@ -55,11 +55,11 @@ bool Pawn::IsMovePossible(Position startPosition, int verticalOffset,
 	return false;
 }
 
-void Pawn::CheckJump(Position startPosition, int verticalOffset,
-	std::vector<Position>& possibleMovesVector, int necessaryVertical)
+void Pawn::CheckLongMove(Position startPosition, int horizontalOffset,
+	std::vector<Position>& possibleMovesVector, int necessaryHorizontal)
 {
-	Position movePosition = startPosition + Position(0, verticalOffset);
-	if (startPosition.vertical == necessaryVertical &&
+	Position movePosition = startPosition + Position(0, horizontalOffset);
+	if (startPosition.horizontal == necessaryHorizontal &&
 		this->chessBoardPtr->GetPiecePtr(movePosition) == NULL)
 	{
 		possibleMovesVector.push_back(movePosition);

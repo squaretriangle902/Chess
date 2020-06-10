@@ -9,8 +9,8 @@ public:
 private:
 	bool IsMovePossible(Position position, int horizontalOffset,
 		std::vector<Position>& possibleMovesVector);
-	void CheckJump(Position position, int verticalOffset,
-		std::vector<Position>& possibleMovesVector, int necessaryVertical);
+	void CheckLongMove(Position position, int horizontalOffset,
+		std::vector<Position>& possibleMovesVector, int necessaryHorizntal);
 	void CheckTaking(Position startPosition, Position offset, 
 		std::vector<Position>& possibleMovesVector);
 };

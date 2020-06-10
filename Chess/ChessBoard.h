@@ -12,11 +12,10 @@ public:
 	ChessBoard(int size = 8, Color color = white);
 	int GetSize();
 	Piece* GetPiecePtr(Position position);
-	Piece* GetPiecePtr(int horizontal, int vertical);
+	Piece* GetPiecePtr(int vertical, int horizontal);
 	void SetPiecePtr(Position position, Piece* newPiecePtr);
-	void SetPiecePtr(int horizontal, int vertical, Piece* newPiecePtr);
+	void SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr);
 	bool InBorders(Position position);
-	bool TryMove(Position startPosition, Position endPoisiton);
 	Position* GetKingPosition(Color color);
 
 private:

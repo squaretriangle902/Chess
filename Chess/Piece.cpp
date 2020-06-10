@@ -38,8 +38,8 @@ bool Piece::IsPin(Position position)
 Chess::Direction Piece::FromPieceToKingDirection(Position piecePosition, 
 	Position kingPosition)
 {
-	if (piecePosition.horizontal - kingPosition.horizontal ==
-		piecePosition.vertical - kingPosition.vertical)
+	if (piecePosition.vertical - kingPosition.vertical ==
+		piecePosition.horizontal - kingPosition.horizontal)
 	{
 		return Chess::rightUp;
 	}
