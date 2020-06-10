@@ -82,6 +82,19 @@ bool ChessBoard::InBorders(Position position)
 		(position.vertical >= 0);
 }
 
+Position* ChessBoard::GetKingPosition(Color color)
+{
+	switch (color)
+	{
+	case black:
+		return this->blackKingPosition;
+		break;
+	case white:
+		return this->whiteKingPosition;
+		break;
+	}
+}
+
 //bool ChessBoard::TryMove(Position startPosition, Position endPoisiton)
 //{
 //	Piece* startPiecePtr = this->GetPiecePtr(startPosition);

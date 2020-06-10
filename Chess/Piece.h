@@ -20,6 +20,9 @@ public:
 	void SetChessBoardPtr(ChessBoard* chessBoardPtr);
 
 protected:
+	bool IsPin(Position position);
+	Chess::Direction FromPieceToKingDirection(Position piecePosition, 
+			Position kingPosition);
 	PieceType type;
 	Color color;
 	ChessBoard* chessBoardPtr;

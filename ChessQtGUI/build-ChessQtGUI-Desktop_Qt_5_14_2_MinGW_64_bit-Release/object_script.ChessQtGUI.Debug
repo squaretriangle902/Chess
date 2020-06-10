@@ -1,0 +1,16 @@
+debug/Bishop.o
+debug/ChessBoard.o
+debug/Color.o
+debug/Direction.o
+debug/King.o
+debug/Knight.o
+debug/LongRangePiece.o
+debug/Pawn.o
+debug/Piece.o
+debug/Position.o
+debug/Queen.o
+debug/Rook.o
+debug/main.o
+debug/chessqtgui.o
+debug/qrc_resources.o
+debug/moc_chessqtgui.o

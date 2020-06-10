@@ -1,7 +1,7 @@
 #pragma once
 #include "Bishop.h"
 
-Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) : 
+Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) :
 	LongRangePiece(color, chessBoardPtr)
 {
 	this->type = bishop;

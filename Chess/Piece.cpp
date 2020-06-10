@@ -25,8 +25,25 @@ bool Piece::IsMoveValid(Position position)
 		return false;
 	}
 	Piece* piecePtr = this->chessBoardPtr->GetPiecePtr(position);
-	return !piecePtr || piecePtr->color != this->color;
+	return piecePtr == NULL || piecePtr->color != this->color;
 
+}
+
+bool Piece::IsPin(Position position)
+{
+	Position* kingPosition = this->chessBoardPtr->GetKingPosition(this->color);
+	return false;
+}
+
+Chess::Direction Piece::FromPieceToKingDirection(Position piecePosition, 
+	Position kingPosition)
+{
+	if (piecePosition.horizontal - kingPosition.horizontal ==
+		piecePosition.vertical - kingPosition.vertical)
+	{
+		return Chess::rightUp;
+	}
+	return Chess::Direction();
 }
 
 void Piece::SetChessBoardPtr(ChessBoard* chessBoardPtr)

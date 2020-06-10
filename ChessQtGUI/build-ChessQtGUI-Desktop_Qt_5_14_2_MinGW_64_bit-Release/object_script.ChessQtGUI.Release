@@ -1,0 +1,16 @@
+release/Bishop.o
+release/ChessBoard.o
+release/Color.o
+release/Direction.o
+release/King.o
+release/Knight.o
+release/LongRangePiece.o
+release/Pawn.o
+release/Piece.o
+release/Position.o
+release/Queen.o
+release/Rook.o
+release/main.o
+release/chessqtgui.o
+release/qrc_resources.o
+release/moc_chessqtgui.o

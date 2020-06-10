@@ -135,10 +135,10 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
-    <ClInclude Include="Chess.h" />
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Direction.h" />
