@@ -1,5 +1,7 @@
 #pragma once
 
+class MyClass;
+
 namespace Chess
 {
 	enum Direction
@@ -13,4 +15,6 @@ namespace Chess
 		left = 6,
 		leftUp = 7,
 	};
+
+	Direction& operator++(Direction& direction, int number);
 }

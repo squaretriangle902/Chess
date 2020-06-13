@@ -29,21 +29,100 @@ bool Piece::IsMoveValid(Position position)
 
 }
 
-bool Piece::IsPin(Position position)
+bool Piece::IsPinned(Position piecePosition)
 {
-	Position* kingPosition = this->chessBoardPtr->GetKingPosition(this->color);
+	Position* kingPositionPtr = this->chessBoardPtr->GetKingPosition(this->color);
+	if (kingPositionPtr == NULL)
+	{
+		return false;
+	}
+	Chess::Direction fromPieceToKingDirection;
+	TryGetDirectionFromPieceToKing(fromPieceToKingDirection,
+		piecePosition,
+		*kingPositionPtr) &&
+		IsDirectionFromPieceToKingClear(fromPieceToKingDirection,
+			piecePosition,
+			*kingPositionPtr) &&
+		IsPinningPiece(fromPieceToKingDirection, 
+			piecePosition, 
+			PinningPieceType(fromPieceToKingDirection));
+
+}
+
+bool Piece::TryGetDirection(Chess::Direction& direction, Position position)
+{
+	for (Chess::Direction i = Chess::up; i < Chess::leftUp; i++)
+	{
+		if (position == Position(i))
+		{
+			direction = i;
+			return true;
+		}
+	}
 	return false;
 }
 
-Chess::Direction Piece::FromPieceToKingDirection(Position piecePosition, 
-	Position kingPosition)
+bool Piece::TryGetDirectionFromPieceToKing(Chess::Direction& direction,
+	Position piecePosition, Position kingPosition)
 {
-	if (piecePosition.vertical - kingPosition.vertical ==
-		piecePosition.horizontal - kingPosition.horizontal)
+	Position difference = kingPosition - piecePosition;
+	difference.Reduce();
+	return TryGetDirection(direction, difference);
+}
+
+bool Piece::IsDirectionFromPieceToKingClear(Chess::Direction direction, 
+	Position piecePosition, Position kingPosition)
+{
+	for (Position currentPosition = piecePosition + Position(direction);
+		currentPosition != kingPosition; 
+		currentPosition += Position(direction))
 	{
-		return Chess::rightUp;
+		if (this->chessBoardPtr->GetPiecePtr(currentPosition) != NULL)
+		{
+			return false;
+		}
 	}
-	return Chess::Direction();
+	return true;
+}
+
+bool Piece::IsPinningPiece(Chess::Direction direction, Position piecePosition,
+	PieceType pinningPieceType)
+{
+	for (Position currentPosition = piecePosition - Position(direction); 
+		this->chessBoardPtr->InBorders(currentPosition);
+		currentPosition -= Position(direction))
+	{
+		Piece* currentPiecePtr = this->chessBoardPtr->GetPiecePtr(currentPosition);
+		if (currentPiecePtr == NULL)
+		{
+			continue;
+		}
+		if (currentPiecePtr->GetColor() == this->color)
+		{
+			return false;
+		}
+		if (currentPiecePtr->GetType() == queen ||
+			currentPiecePtr->GetType() == pinningPieceType)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+PieceType Piece::PinningPieceType(Chess::Direction direction)
+{
+	if (direction == Chess::up ||
+		direction == Chess::right ||
+		direction == Chess::left || 
+		direction == Chess::down)
+	{
+		return rook;
+	}
+	else
+	{
+		return bishop;
+	}
 }
 
 void Piece::SetChessBoardPtr(ChessBoard* chessBoardPtr)

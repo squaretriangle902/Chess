@@ -102,4 +102,53 @@ public:
 	{
 		InBorderTest(Position(8, -1), 8, false);
 	}
+
+	TEST_METHOD(GetPiecePtrTestCase_1)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard();
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
+		Assert::IsNull(chessBoardPtr->GetKingPosition(white));
+	}
+
+	TEST_METHOD(GetPiecePtrTestCase_2)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard();
+		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), blackBishop);
+		Assert::IsNull(chessBoardPtr->GetKingPosition(black));
+	}
+
+	TEST_METHOD(GetPiecePtrTestCase_3)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard();
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), blackKing);
+		Assert::IsNull(chessBoardPtr->GetKingPosition(white));
+	}
+
+	TEST_METHOD(GetPiecePtrTestCase_4)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard();
+		King* blackKing = new King(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), blackKing);
+		Assert::IsNotNull(chessBoardPtr->GetKingPosition(black));
+	}
+
+	TEST_METHOD(GetPiecePtrTestCase_5)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard();
+		King* whiteKing = new King(white, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteKing);
+		Assert::IsNull(chessBoardPtr->GetKingPosition(black));
+	}
+
+	TEST_METHOD(GetPiecePtrTestCase_6)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard();
+		King* whiteKing = new King(white, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteKing);
+		Assert::IsNotNull(chessBoardPtr->GetKingPosition(white));
+	}
+
 };

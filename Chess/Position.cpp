@@ -12,8 +12,8 @@ Position::Position(Chess::Direction direction)
 	switch (direction)
 	{
 	case Chess::up:
-		this->vertical    = 0;
-		this->horizontal =  1;
+		this->vertical = 0;
+		this->horizontal = 1;
 		break;
 	case Chess::rightUp:
 		this->vertical = 1;
@@ -58,21 +58,44 @@ Position::Position()
 	this->horizontal = 0;
 }
 
+void Position::Reduce()
+{
+	int gcd = GCD(this->vertical, this->horizontal);
+	this->vertical = this->vertical / gcd;
+	this->horizontal = this->horizontal / gcd;
+}
+
 bool operator==(Position position1, Position position2)
 {
-	return position1.horizontal == position2.horizontal && 
+	return position1.horizontal == position2.horizontal &&
 		position1.vertical == position2.vertical;
+}
+
+bool operator!=(Position position1, Position position2)
+{
+	return !(position1 == position2);
 }
 
 Position operator+(Position position1, Position position2)
 {
-	return Position(position1.vertical += position2.vertical,
+	return Position(position1.vertical + position2.vertical,
 		position1.horizontal + position2.horizontal);
+}
+
+Position operator-(Position position1, Position position2)
+{
+	return Position(position1.vertical - position2.vertical,
+		position1.horizontal - position2.horizontal);
 }
 
 void operator+=(Position& position1, Position position2)
 {
 	position1 = position1 + position2;
+}
+
+void operator-=(Position& position1, Position position2)
+{
+	position1 = position1 - position2;
 }
 
 Position operator*(int coefficient, Position position)

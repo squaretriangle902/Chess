@@ -36,7 +36,7 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 {
 	chessBoard[position.vertical][position.horizontal] = newPiecePtr;
 	newPiecePtr->SetChessBoardPtr(this);
-	if (newPiecePtr == NULL && newPiecePtr->GetType() != king)
+	if (newPiecePtr == NULL || newPiecePtr->GetType() != king)
 	{
 		return;
 	}
@@ -57,7 +57,7 @@ void ChessBoard::SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr)
 {
 	chessBoard[vertical][horizontal] = newPiecePtr;
 	newPiecePtr->SetChessBoardPtr(this);
-	if (newPiecePtr == NULL && newPiecePtr->GetType() != king)
+	if (newPiecePtr == NULL || newPiecePtr->GetType() != king)
 	{
 		return;
 	}
