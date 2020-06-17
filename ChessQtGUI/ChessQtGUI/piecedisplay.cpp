@@ -1,36 +1,32 @@
 #include "piecedisplay.h"
 #include <QImage>
 
-PieceDisplay::PieceDisplay(int horizontal, int vertical, ChessBoard* chessBoard, QGraphicsScene* scene)
+PieceDisplay::PieceDisplay(int vertical, int horizontal, int size, Color color, PieceType type)
 {
     setFlag(ItemIsMovable);
-    this->horizontal = horizontal;
     this->vertical = vertical;
-    this->chessBoard = chessBoard;
-    this->scene = scene;
+    this->horizontal = horizontal;
+    this->size = size;
+    this->color = color;
+    this->type = type;
 }
 
 QRectF PieceDisplay::boundingRect() const
 {
-    return QRectF(50, 50, 50, 50);
+    return QRectF(vertical * size, 8 * size -  horizontal * size, size, size);
 }
 
 void PieceDisplay::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QRectF rect = boundingRect();
-    QImage image("C:/Users/squar/source/repos/Chess/ChessQtGUI/Images/WhitePieces/Queen");
-    painter->drawImage(rect, image);
+    QRectF rectangle = boundingRect();
+    painter->drawImage(rectangle, PieceImage());
 }
 
 void PieceDisplay::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
     QGraphicsItem::mouseReleaseEvent(event);
-    this->pos();
-    if(this->x() > 350)
-    {
-        this->setPos(0,0);
-    }
+    this->setPos(0,0);
 }
 
 void PieceDisplay::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -38,4 +34,40 @@ void PieceDisplay::mousePressEvent(QGraphicsSceneMouseEvent *event)
     update();
     //this->chessBoard->PieceIsSelected(vertical, horizontal, chessBoard, scene);
     QGraphicsItem::mouseReleaseEvent(event);
+}
+
+QImage PieceDisplay::PieceImage()
+{
+    QString path = "C:/Users/squar/source/repos/Chess/ChessQtGUI/Images";
+    switch (this->color)
+    {
+    case white:
+        path += "/WhitePieces";
+        break;
+    case black:
+        path += "/BlackPieces";
+        break;
+    }
+    switch (this->type)
+    {
+    case pawn:
+        path += "/Pawn";
+        break;
+    case knight:
+        path += "/Knight";
+        break;
+    case bishop:
+        path += "/bishop";
+        break;
+    case rook:
+        path += "/Rook";
+        break;
+    case queen:
+        path += "/Queen";
+        break;
+    case king:
+        path += "/King";
+        break;
+    }
+    return QImage(path);
 }

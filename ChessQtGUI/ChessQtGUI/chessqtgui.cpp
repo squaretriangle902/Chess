@@ -7,36 +7,60 @@ ChessQtGUI::ChessQtGUI(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::ChessQtGUI)
 {
-    ChessBoard* chessBoard = new ChessBoard();
+    chessBoard = new ChessBoard(8, white);
+
     Queen* whiteQueen = new Queen(white, chessBoard);
-    chessBoard->SetPiecePtr(Position(1,1), whiteQueen);
+    Queen* blackQueen = new Queen(black, chessBoard);
+
+    King* whiteKing = new King(white, chessBoard);
+    King* blackKing = new King(black, chessBoard);
+
+    Knight* whiteKnight = new Knight(white, chessBoard);
+    Knight* blackKnight = new Knight(black, chessBoard);
+
+    Pawn* whitePawn = new Pawn(white, chessBoard);
+    Pawn* blackPawn = new Pawn(black, chessBoard);
+
+    Rook* whiteRook = new Rook(white, chessBoard);
+    Rook* blackRook = new Rook(black, chessBoard);
+
+    Bishop* whiteBishop = new Bishop(white, chessBoard);
+    Bishop* blackBishop = new Bishop(black, chessBoard);
+
+
+    chessBoard->SetPiecePtr(Position(0,0), whiteKing);
+    chessBoard->SetPiecePtr(Position(1,0), whiteQueen);
+    chessBoard->SetPiecePtr(Position(2,0), whiteRook);
+    chessBoard->SetPiecePtr(Position(3,0), whiteBishop);
+    chessBoard->SetPiecePtr(Position(4,0), whiteKnight);
+    chessBoard->SetPiecePtr(Position(5,0), whitePawn);
+
+    chessBoard->SetPiecePtr(Position(0,1), blackKing);
+    chessBoard->SetPiecePtr(Position(1,1), blackQueen);
+    chessBoard->SetPiecePtr(Position(2,1), blackRook);
+    chessBoard->SetPiecePtr(Position(3,1), blackBishop);
+    chessBoard->SetPiecePtr(Position(4,1), blackKnight);
+    chessBoard->SetPiecePtr(Position(5,1), blackPawn);
+
     ui->setupUi(this);
-    int squareSize = 50;
     scene = new QGraphicsScene(0,0,400,400, ui->graphicsView);
     ui->graphicsView->setScene(scene);
-    chessBoardSquare = new ChessBoardSquareDisplay();
-    QPen pen(QColor(0,0,0));
-    QBrush brounBrush(QColor(110,0,0));
-    QBrush biegeBrush(QColor(245,245,220));
-    QBrush blackBrush(QColor(0,0,0));
-    scene->addRect(-25, -25, 450, 450, pen, blackBrush);
-    for (int i = 0; i < 8; i++)
-    {
-        for (int j = 0; j < 8; j++)
-        {
-            if ((i + j) % 2 == 0)
-            {
-                scene->addRect(i * squareSize, j * squareSize, squareSize, squareSize, pen, biegeBrush);
-            }
-            else
-            {
-                scene->addRect(i * squareSize, j * squareSize, squareSize, squareSize, pen, brounBrush);
-            }
-        }
-    }
-    PieceDisplay *pieceDisplay = new PieceDisplay(0, 0, chessBoard, scene);
-    scene->addItem(pieceDisplay);
-    SelectPiece(chessBoard, 1, 1, scene);
+//    for (int i = 0; i < 8; i++)
+//    {
+//        for (int j = 0; j < 8; j++)
+//        {
+//            ChessBoardSquareDisplay* chessBoardSquareDisplay = new ChessBoardSquareDisplay(i,j,50);
+//            scene->addItem(chessBoardSquareDisplay);
+//        }
+//    }
+   MakeChessBoardDisplay(8, 400);
+   ShowChessBoard();
+   ShowPieces();
+   //PieceDisplay* pieceDisplay = new PieceDisplay(2, 5, 50, queen);
+   //scene->addItem(new PieceDisplay(2, 5, 50, queen));
+   //scene->addItem(pieceDisplay);
+   //SelectPiece(Position(0,1));
+
 }
 
 ChessQtGUI::~ChessQtGUI()
@@ -44,21 +68,49 @@ ChessQtGUI::~ChessQtGUI()
     delete ui;
 }
 
-void ChessQtGUI::SelectPiece(ChessBoard *chessBoard, int vertical, int horizontal, QGraphicsScene *scene)
+//void ChessQtGUI::SelectPiece(Position position)
+//{
+//    Piece* piecePtr = chessBoard->GetPiecePtr(position);
+//    vector<Position> possibleMovesVector = piecePtr->GetPossibleMoves(position);
+//    for (int i = 0; i < possibleMovesVector.size(); i++)
+//    {
+//        chessBoardDisplay.at(possibleMovesVector.at(i))->Select();
+//    }
+//}
+
+void ChessQtGUI::MakeChessBoardDisplay(int chessBoardSize, int displaySize)
 {
-    Piece* piecePtr = chessBoard->GetPiecePtr(Position(vertical, horizontal));
-    vector<Position> positionVector = piecePtr->GetPossibleMoves(Position(vertical, horizontal));
-    QPen pen(QColor(0,0,0));
-    QBrush redBrush(QColor(255,0,0));
-    for (int i = 0; i < positionVector.size(); i++)
+    for (int i = 0; i < 8; i++)
     {
-        Position position = positionVector.at(i);
-        scene->addRect(50 * position.vertical,
-                       50 * position.horizontal,
-                       50,
-                       50,
-                       pen,
-                       redBrush);
+        for (int j = 0; j < chessBoardSize; j++)
+        {
+            chessBoardDisplay[Position(i,j)] =
+                    new ChessBoardSquareDisplay(i, j, displaySize / chessBoardSize);
+        }
     }
 }
+
+void ChessQtGUI::ShowChessBoard()
+{
+    for (auto it = chessBoardDisplay.begin(); it != chessBoardDisplay.end(); ++it)
+    {
+         scene->addItem(it->second);
+    }
+}
+
+void ChessQtGUI::ShowPieces()
+{
+    for (int i = 0; i < chessBoard->GetSize(); i++)
+    {
+        for (int j = 0; j < chessBoard->GetSize(); j++)
+        {
+            Piece* piecePtr = chessBoard->GetPiecePtr(i, j);
+            if(piecePtr != NULL)
+            {
+                scene->addItem(new PieceDisplay(i, j, 50, piecePtr->GetColor(), piecePtr->GetType()));
+            }
+        }
+    }
+}
+
 

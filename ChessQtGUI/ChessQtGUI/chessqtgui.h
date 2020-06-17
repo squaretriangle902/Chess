@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtCore>
 #include <QtGui>
+#include <map>
 #include "chessboardsquaredisplay.h"
 #include "piecedisplay.h"
 #include "../../Chess/Pieces.h"
@@ -21,12 +22,15 @@ class ChessQtGUI : public QMainWindow
 public:
     ChessQtGUI(QWidget *parent = nullptr);
     ~ChessQtGUI();
-    void SelectPiece(ChessBoard* chessBoard, int vertical, int horizontal, QGraphicsScene *scene);
+    void MakeChessBoardDisplay(int chessBoardSize, int displaySize);
+    void ShowChessBoard();
+    void ShowPieces();
 
 private:
     Ui::ChessQtGUI *ui;
     QGraphicsScene *scene;
-    ChessBoardSquareDisplay *chessBoardSquare;
+    ChessBoard* chessBoard;
+    map <Position, ChessBoardSquareDisplay*> chessBoardDisplay;
 
 };
 #endif // CHESSQTGUI_H

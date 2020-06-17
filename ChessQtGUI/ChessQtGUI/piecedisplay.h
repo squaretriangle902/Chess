@@ -3,22 +3,25 @@
 
 #include <QPainter>
 #include <QGraphicsItem>
-#include "..\..\Chess\ChessBoard.h"
+#include "..\..\Chess\PieceType.h"
+#include "..\..\Chess\Color.h"
 
 class PieceDisplay : public QGraphicsItem
 {
 public:
-    PieceDisplay(int horizontal, int vertical, ChessBoard* chessBoard, QGraphicsScene* scene);
+    PieceDisplay(int vertical, int horizontal, int size, Color color, PieceType type);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-private:
-    int horizontal;
+    QImage PieceImage();
+
     int vertical;
-    ChessBoard* chessBoard;
-    QGraphicsScene* scene;
+    int horizontal;
+    int size;
+    Color color;
+    PieceType type;
 
 };
 

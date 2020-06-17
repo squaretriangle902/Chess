@@ -9,7 +9,9 @@ release/Pawn.o
 release/Piece.o
 release/Position.o
 release/Queen.o
+release/GCD.o
 release/Rook.o
+release/ChessBoardDisplay.o
 release/chessboardsquaredisplay.o
 release/main.o
 release/chessqtgui.o

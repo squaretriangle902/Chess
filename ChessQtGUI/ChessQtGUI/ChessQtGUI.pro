@@ -29,6 +29,7 @@ SOURCES += \
     ../../Chess/Piece.cpp \
     ../../Chess/Position.cpp \
     ../../Chess/Queen.cpp \
+    ../../Chess/GCD.cpp \
     ../../Chess/Rook.cpp \
     chessboardsquaredisplay.cpp \
     main.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     ../../Chess/Pieces.h \
     ../../Chess/Position.h \
     ../../Chess/Queen.h \
+    ../../Chess/GCD.h \
     ../../Chess/Rook.h \
     chessboardsquaredisplay.h \
     chessqtgui.h \

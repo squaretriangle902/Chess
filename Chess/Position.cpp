@@ -1,6 +1,7 @@
 #pragma once
 #include "Position.h"
 
+
 Position::Position(int vertical, int horizontal)
 {
 	this->vertical = vertical;
@@ -60,9 +61,9 @@ Position::Position()
 
 void Position::Reduce()
 {
-	int gcd = GCD(this->vertical, this->horizontal);
-	this->vertical = this->vertical / gcd;
-	this->horizontal = this->horizontal / gcd;
+    int gcd = GCD(this->vertical, this->horizontal);
+    this->vertical = this->vertical / gcd;
+    this->horizontal = this->horizontal / gcd;
 }
 
 bool operator==(Position position1, Position position2)
@@ -74,6 +75,12 @@ bool operator==(Position position1, Position position2)
 bool operator!=(Position position1, Position position2)
 {
 	return !(position1 == position2);
+}
+
+bool operator<(Position position1, Position position2)
+{
+    return position1.vertical < position2.vertical ||
+            (position1.vertical == position2.vertical && position1.horizontal < position2.horizontal);
 }
 
 Position operator+(Position position1, Position position2)

@@ -9,7 +9,9 @@ debug/Pawn.o
 debug/Piece.o
 debug/Position.o
 debug/Queen.o
+debug/GCD.o
 debug/Rook.o
+debug/ChessBoardDisplay.o
 debug/chessboardsquaredisplay.o
 debug/main.o
 debug/chessqtgui.o
