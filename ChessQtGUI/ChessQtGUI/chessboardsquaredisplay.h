@@ -14,8 +14,9 @@ public:
     void Select();
     void Unselect();
 
+     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+
 protected:   
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
     bool selected;
     Position position;

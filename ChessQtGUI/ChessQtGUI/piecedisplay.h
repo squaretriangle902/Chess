@@ -3,6 +3,7 @@
 
 #include <QPainter>
 #include <QGraphicsItem>
+#include <QDebug>
 #include "..\..\Chess\PieceType.h"
 #include "..\..\Chess\Color.h"
 

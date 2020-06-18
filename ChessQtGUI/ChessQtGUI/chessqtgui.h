@@ -9,6 +9,7 @@
 #include "piecedisplay.h"
 #include "../../Chess/Pieces.h"
 #include "../../Chess/ChessBoard.h"
+#include <QEvent>
 
 
 QT_BEGIN_NAMESPACE
@@ -24,12 +25,13 @@ public:
     ~ChessQtGUI();
     void MakeChessBoardDisplay(int chessBoardSize, int displaySize);
     void ShowChessBoard();
-    void ShowPieces();
+    void ShowPieces(int displaySize);
 
 private:
     Ui::ChessQtGUI *ui;
     QGraphicsScene *scene;
     ChessBoard* chessBoard;
+    void SelectPiece(Position position);
     map <Position, ChessBoardSquareDisplay*> chessBoardDisplay;
 
 };

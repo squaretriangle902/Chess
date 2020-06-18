@@ -20,7 +20,7 @@ ChessBoardSquareDisplay::ChessBoardSquareDisplay(Position position, int size)
 QRectF ChessBoardSquareDisplay::boundingRect() const
 {
     return QRectF(size * this->position.vertical,
-                  size * 8 - size * this->position.horizontal,
+                  size * 7 - size * this->position.horizontal,
                   size,
                   size);
 }

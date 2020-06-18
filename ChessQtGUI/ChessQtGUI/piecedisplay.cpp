@@ -13,13 +13,15 @@ PieceDisplay::PieceDisplay(int vertical, int horizontal, int size, Color color, 
 
 QRectF PieceDisplay::boundingRect() const
 {
-    return QRectF(vertical * size, 8 * size -  horizontal * size, size, size);
+    return QRectF(vertical * size, 7 * size -  horizontal * size, size, size);
 }
 
 void PieceDisplay::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF rectangle = boundingRect();
-    painter->drawImage(rectangle, PieceImage());
+    QImage pieceImage = PieceImage();
+    pieceImage = pieceImage.scaledToWidth(size, Qt::SmoothTransformation);
+    painter->drawImage(rectangle, pieceImage);
 }
 
 void PieceDisplay::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -27,11 +29,14 @@ void PieceDisplay::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     update();
     QGraphicsItem::mouseReleaseEvent(event);
     this->setPos(0,0);
+    this->setZValue(0);
+
 }
 
 void PieceDisplay::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
+    this->setZValue(1);
     //this->chessBoard->PieceIsSelected(vertical, horizontal, chessBoard, scene);
     QGraphicsItem::mouseReleaseEvent(event);
 }

@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -24,7 +23,6 @@ class Ui_ChessQtGUI
 {
 public:
     QWidget *centralwidget;
-    QHBoxLayout *horizontalLayout;
     QGraphicsView *graphicsView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -33,21 +31,28 @@ public:
     {
         if (ChessQtGUI->objectName().isEmpty())
             ChessQtGUI->setObjectName(QString::fromUtf8("ChessQtGUI"));
-        ChessQtGUI->resize(600, 600);
+        ChessQtGUI->resize(660, 700);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(ChessQtGUI->sizePolicy().hasHeightForWidth());
+        ChessQtGUI->setSizePolicy(sizePolicy);
+        ChessQtGUI->setMinimumSize(QSize(660, 700));
+        ChessQtGUI->setMaximumSize(QSize(660, 700));
         centralwidget = new QWidget(ChessQtGUI);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        horizontalLayout = new QHBoxLayout(centralwidget);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setEnabled(true);
-
-        horizontalLayout->addWidget(graphicsView);
-
+        graphicsView->setGeometry(QRect(10, 10, 640, 640));
+        graphicsView->setFrameShape(QFrame::StyledPanel);
+        graphicsView->setLineWidth(5);
+        graphicsView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        graphicsView->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         ChessQtGUI->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ChessQtGUI);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 600, 21));
+        menubar->setGeometry(QRect(0, 0, 660, 21));
         ChessQtGUI->setMenuBar(menubar);
         statusbar = new QStatusBar(ChessQtGUI);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
