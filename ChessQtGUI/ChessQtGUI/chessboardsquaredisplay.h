@@ -2,6 +2,7 @@
 #define CHESSBOARDSQUAREDISPLAY_H
 #include <QPainter>
 #include <QGraphicsItem>
+#include <QGraphicsSceneMouseEvent>
 #include "../../Chess/Position.h"
 
 class ChessBoardSquareDisplay : public QGraphicsItem
@@ -11,14 +12,13 @@ public:
     ChessBoardSquareDisplay(Position position, int size);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
-    void Select();
-    void Unselect();
+    void IsAvailable(bool flag);
 
-     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
-protected:   
-
-    bool selected;
+protected:
+    bool isAvailable;
+    bool isSelected;
     Position position;
     int size;
 };

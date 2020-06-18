@@ -65,7 +65,7 @@ void ChessQtGUI::SelectPiece(Position position)
     vector<Position> possibleMovesVector = piecePtr->GetPossibleMoves(position);
     for (int i = 0; i < possibleMovesVector.size(); i++)
     {
-        chessBoardDisplay.at(possibleMovesVector.at(i))->Select();
+        chessBoardDisplay.at(possibleMovesVector.at(i))->IsAvailable(true);
     }
 }
 

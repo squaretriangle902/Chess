@@ -14,7 +14,9 @@ namespace Chess
 		leftDown = 5,
 		left = 6,
 		leftUp = 7,
+		noDirection = 8,
 	};
 
 	Direction& operator++(Direction& direction, int number);
+	Direction operator-(Direction& direction);
 }

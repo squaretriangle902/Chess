@@ -18,7 +18,8 @@ public:
 		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), blackBishop);
-		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4)));
+		Chess::Direction pinDirection;
+		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4), pinDirection));
 	}
 
 	TEST_METHOD(PinTestCase_2)
@@ -30,7 +31,8 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(3, 3), blackKing);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), blackBishop);
-		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4)));
+		Chess::Direction pinDirection;
+		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4), pinDirection));
 	}
 
 	TEST_METHOD(PinTestCase_3)
@@ -42,7 +44,8 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(2, 1), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), blackBishop);
-		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4)));
+		Chess::Direction pinDirection;
+		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4), pinDirection));
 	}
 
 	TEST_METHOD(PinTestCase_4)
@@ -55,7 +58,8 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(3, 3), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), blackBishop);
-		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4)));
+		Chess::Direction pinDirection;
+		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4), pinDirection));
 	}
 
 	TEST_METHOD(PinTestCase_5)
@@ -68,7 +72,8 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(2, 2), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), blackBishop);
-		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4)));
+		Chess::Direction pinDirection;
+		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4), pinDirection));
 	}
 
 	TEST_METHOD(PinTestCase_6)
@@ -80,7 +85,8 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(1, 1), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(5, 7), blackBishop);
-		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4)));
+		Chess::Direction pinDirection;
+		Assert::IsFalse(whiteBishop->IsPinned(Position(4, 4), pinDirection));
 	}
 
 	TEST_METHOD(PinTestCase_7)
@@ -92,7 +98,21 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(1, 1), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), blackBishop);
-		Assert::IsTrue(whiteBishop->IsPinned(Position(4, 4)));
+		Chess::Direction pinDirection;
+		Assert::IsTrue(whiteBishop->IsPinned(Position(4, 4), pinDirection));
+	}
+
+	TEST_METHOD(PinTestCase_8)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard();
+		King* whiteKing = new King(white, chessBoardPtr);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(3, 5), whiteKing);
+		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
+		chessBoardPtr->SetPiecePtr(Position(5, 3), blackBishop);
+		Chess::Direction pinDirection;
+		Assert::IsTrue(whiteBishop->IsPinned(Position(4, 4), pinDirection));
 	}
 
 	TEST_METHOD(WhitePawnGetColorTest)

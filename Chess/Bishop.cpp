@@ -10,6 +10,7 @@ Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) :
 vector<Position> Bishop::GetPossibleMoves(Position startingPosition)
 {
 	vector<Chess::Direction> BlockedDirectionsVector;
+	BlockAllExceptPinDirection(BlockedDirectionsVector, startingPosition);
 	vector<Position> possibleMovesVector;
 	for (int i = 1; i < chessBoardPtr->GetSize(); i++)
 	{

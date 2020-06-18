@@ -14,5 +14,7 @@ protected:
 		Chess::Direction direction);
 	bool IsDirectionFree(Chess::Direction direction, 
 		vector<Chess::Direction> blockedDirectionsVector);
+	void BlockAllExceptPinDirection(vector<Chess::Direction>& blockedDirectionsVector,
+		Position position);
 };
 

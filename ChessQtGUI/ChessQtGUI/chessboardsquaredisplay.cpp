@@ -7,14 +7,15 @@ ChessBoardSquareDisplay::ChessBoardSquareDisplay(int vertical, int horizontal, i
     this->position.vertical = vertical;
     this->position.horizontal = horizontal;
     this->size = size;
-    selected = false;
+    isAvailable = false;
+    isSelected = false;
 }
 
 ChessBoardSquareDisplay::ChessBoardSquareDisplay(Position position, int size)
 {
     this->position = position;
     this->size = size;
-    selected = false;
+    isAvailable = false;
 }
 
 QRectF ChessBoardSquareDisplay::boundingRect() const
@@ -34,25 +35,27 @@ void ChessBoardSquareDisplay::paint(QPainter *painter, const QStyleOptionGraphic
         brush.setColor(QColor(110,0,0));
     }
     painter->fillRect(rectangle,brush);
-    if(selected)
+    if(isAvailable)
     {
         painter->fillRect(rectangle, QBrush(QColor(0, 255, 0, 128)));
     }
+    if(isSelected)
+    {
+        painter->fillRect(rectangle, QBrush(QColor(255, 255, 0, 128)));
+    }
 }
 
-void ChessBoardSquareDisplay::Select()
+void ChessBoardSquareDisplay::IsAvailable(bool flag)
 {
-    this->selected = true;
-}
-
-void ChessBoardSquareDisplay::Unselect()
-{
-    this->selected = false;
+    this->isAvailable = flag;
 }
 
 void ChessBoardSquareDisplay::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    this->selected = !this->selected;
-    update();
+    if(event->button() == Qt::RightButton)
+    {
+        this->isSelected = !this->isSelected;
+        update();
+    }
     QGraphicsItem::mousePressEvent(event);
 }

@@ -29,29 +29,22 @@ bool Piece::IsMoveValid(Position position)
 
 }
 
-bool Piece::IsPinned(Position piecePosition)
+bool Piece::IsPinned(Position piecePosition, Chess::Direction& direction)
 {
 	Position* kingPositionPtr = this->chessBoardPtr->GetKingPosition(this->color);
 	if (kingPositionPtr == NULL)
 	{
 		return false;
 	}
-	Chess::Direction fromPieceToKingDirection;
-	TryGetDirectionFromPieceToKing(fromPieceToKingDirection,
-		piecePosition,
-		*kingPositionPtr) &&
-		IsDirectionFromPieceToKingClear(fromPieceToKingDirection,
-			piecePosition,
-			*kingPositionPtr) &&
-		IsPinningPiece(fromPieceToKingDirection, 
-			piecePosition, 
-			PinningPieceType(fromPieceToKingDirection));
+	TryGetDirectionFromPieceToKing(direction, piecePosition, *kingPositionPtr) &&
+		IsDirectionFromPieceToKingClear(direction, piecePosition, *kingPositionPtr) &&
+		IsPinningPiece(direction, piecePosition, PinningPieceType(direction));
 
 }
 
 bool Piece::TryGetDirection(Chess::Direction& direction, Position position)
 {
-	for (Chess::Direction i = Chess::up; i < Chess::leftUp; i++)
+	for (Chess::Direction i = Chess::up; i <= Chess::leftUp; i++)
 	{
 		if (position == Position(i))
 		{

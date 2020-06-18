@@ -93,4 +93,35 @@ public:
 		possibleMovesVector.push_back(Position(4, 4));
 		Assert::IsTrue(CompareVector(possibleMovesVector, blackBishop->GetPossibleMoves(Position(2, 6))));
 	}
+
+	TEST_METHOD(BishopGetPossibleMovesTest5)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		King* whiteKing = new King(white, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 2), whiteBishop);
+		chessBoardPtr->SetPiecePtr(Position(5, 5), blackBishop);
+		std::vector<Position> expectedPossibleMovesVector;
+		expectedPossibleMovesVector.push_back(Position(1, 1));
+		expectedPossibleMovesVector.push_back(Position(3, 3));
+		expectedPossibleMovesVector.push_back(Position(4, 4));
+		expectedPossibleMovesVector.push_back(Position(5, 5));
+		Assert::IsTrue(CompareVector(expectedPossibleMovesVector, whiteBishop->GetPossibleMoves(Position(2, 2))));
+	}
+
+	TEST_METHOD(BishopGetPossibleMovesTest6)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
+		Rook* blackRook = new Rook(black, chessBoardPtr);
+		King* whiteKing = new King(white, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(0, 3), whiteKing);
+		chessBoardPtr->SetPiecePtr(Position(2, 3), whiteBishop);
+		chessBoardPtr->SetPiecePtr(Position(5, 3), blackRook);
+		std::vector<Position> expectedPossibleMovesVector(0);
+		Assert::IsTrue(CompareVector(expectedPossibleMovesVector, whiteBishop->GetPossibleMoves(Position(2, 3))));
+	}
+
 };

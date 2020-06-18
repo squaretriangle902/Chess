@@ -38,3 +38,20 @@ bool LongRangePiece::IsDirectionFree(Chess::Direction direction,
 	}
 	return true;
 }
+
+void LongRangePiece::BlockAllExceptPinDirection(vector<Chess::Direction>& blockedDirectionsVector,
+	Position position)
+{
+	Chess::Direction pinDirection;
+	if (!this->IsPinned(position, pinDirection))
+	{
+		return;
+	}
+	for (Chess::Direction i = Chess::up; i <= Chess::leftUp; i++)
+	{
+		if (i != pinDirection && i != -pinDirection)
+		{
+			blockedDirectionsVector.push_back(i);
+		}
+	}
+}

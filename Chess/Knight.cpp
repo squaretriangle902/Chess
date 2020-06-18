@@ -18,7 +18,12 @@ void Knight::IsMovePossible(Position startPosition, Position offset,
 
 vector<Position> Knight::GetPossibleMoves(Position position)
 {
-	vector<Position> possibleMovesVector;
+	vector<Position> possibleMovesVector(0);
+	Chess::Direction direction;
+	if (this->IsPinned(position, direction))
+	{
+		return possibleMovesVector;
+	}
 	IsMovePossible(position, Position(1, 2), possibleMovesVector);
 	IsMovePossible(position, Position(2, 1), possibleMovesVector);
 	IsMovePossible(position, Position(2, -1), possibleMovesVector);

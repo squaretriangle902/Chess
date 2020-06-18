@@ -578,6 +578,8 @@ release/moc_chessqtgui.cpp: ../ChessQtGUI/chessqtgui.h \
 		C:/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
 		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
 		../../Chess/Position.h \
 		../../Chess/Direction.h \
 		../../Chess/GCD.h \
@@ -826,6 +828,8 @@ release/chessboardsquaredisplay.o: ../ChessQtGUI/chessboardsquaredisplay.cpp ../
 		C:/Qt/5.14.2/mingw73_64/include/QtCore/qlocale.h \
 		C:/Qt/5.14.2/mingw73_64/include/QtCore/qset.h \
 		C:/Qt/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
 		../../Chess/Position.h \
 		../../Chess/Direction.h \
 		../../Chess/GCD.h \
@@ -1176,6 +1180,8 @@ release/main.o: ../ChessQtGUI/main.cpp ../ChessQtGUI/chessqtgui.h \
 		C:/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
 		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
 		../../Chess/Position.h \
 		../../Chess/Direction.h \
 		../../Chess/GCD.h \
@@ -1541,6 +1547,8 @@ release/chessqtgui.o: ../ChessQtGUI/chessqtgui.cpp ../ChessQtGUI/chessqtgui.h \
 		C:/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
 		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
 		../../Chess/Position.h \
 		../../Chess/Direction.h \
 		../../Chess/GCD.h \

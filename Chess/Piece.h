@@ -18,7 +18,7 @@ public:
 	virtual vector<Position> GetPossibleMoves(Position) = 0;
 	bool IsMoveValid(Position position);
 	void SetChessBoardPtr(ChessBoard* chessBoardPtr);
-	bool IsPinned(Position position);
+	bool IsPinned(Position position, Chess::Direction& direction);
 
 protected:
 	bool TryGetDirection(Chess::Direction& direction, Position position);
