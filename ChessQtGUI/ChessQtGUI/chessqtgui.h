@@ -28,6 +28,8 @@ private:
     ChessBoard* chessBoard;
     QGraphicsScene* scene;
     QGraphicsItemGroup* squareMarkerGroup;
+    void AddPiece(Position position, Piece* piecePtr);
+    void AddPiece(int vertical, int horizontal, Piece* piecePtr);
     Position QPointFToPosition(const QPointF& qPointF);
     QPointF PositionToQPointF(const Position& position, bool isOffset);
     int SquareSize();

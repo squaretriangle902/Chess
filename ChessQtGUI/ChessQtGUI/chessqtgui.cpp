@@ -16,7 +16,6 @@ ChessQtGUI::ChessQtGUI(QWidget *parent)
     chessBoard = new ChessBoard(8, white);
 
     Queen* whiteQueen = new Queen(white, chessBoard);
-    chessBoard->SetPiecePtr(Position(0,0), whiteQueen);
 
     this->resize(windowSize,windowSize + 20);
     this->setFixedSize(windowSize,windowSize + 20);
@@ -39,16 +38,8 @@ ChessQtGUI::ChessQtGUI(QWidget *parent)
     chessBoardImage = chessBoardImage.scaledToWidth(ui->graphicsView->width(),Qt::SmoothTransformation);
     scene->addPixmap(QPixmap::fromImage(chessBoardImage));
 
-    PieceDisplay* pieceDisplay = new PieceDisplay(graphicsViewSize / chessBoard->GetSize());
-    pieceDisplay->setPos(graphicsViewSize / (2 * chessBoard->GetSize()),
-                         graphicsViewSize / (2 * chessBoard->GetSize()));
-
-    scene->addItem(pieceDisplay);
-
-    connect(pieceDisplay, SIGNAL(PieceClicked(const QPointF&)), this, SLOT(SelectPiece(const QPointF&)));
-    connect(pieceDisplay, SIGNAL(PieceReleased(const QPointF&)), this, SLOT(TryMovePiece(const QPointF&)));
-
-    squareMarkerGroup->addToGroup(new QGraphicsRectItem(0,0,50,50));
+    Position position = Position(1,1);
+    AddPiece(position, whiteQueen);
 }
 
 
@@ -100,6 +91,32 @@ void ChessQtGUI::TryMovePiece(const QPointF& position)
 ChessQtGUI::~ChessQtGUI()
 {
     delete ui;
+}
+
+void ChessQtGUI::AddPiece(Position position, Piece *piecePtr)
+{
+    int graphicsViewSize = ui->graphicsView->width();
+    chessBoard->SetPiecePtr(position, piecePtr);
+    PieceDisplay* pieceDisplay = new PieceDisplay(graphicsViewSize / chessBoard->GetSize());
+    pieceDisplay->setPos(PositionToQPointF(position, true));
+    scene->addItem(pieceDisplay);
+    connect(pieceDisplay, SIGNAL(PieceClicked(const QPointF&)), this, SLOT(SelectPiece(const QPointF&)));
+    connect(pieceDisplay, SIGNAL(PieceReleased(const QPointF&)), this, SLOT(TryMovePiece(const QPointF&)));
+
+}
+
+void ChessQtGUI::AddPiece(int vertical, int horizontal, Piece *piecePtr)
+{
+    int graphicsViewSize = ui->graphicsView->width();
+    Position position = Position(vertical, horizontal);
+    chessBoard->SetPiecePtr(position, piecePtr);
+    PieceDisplay* pieceDisplay = new PieceDisplay(graphicsViewSize / chessBoard->GetSize());
+    pieceDisplay->setPos(PositionToQPointF(position, true));
+    scene->addItem(pieceDisplay);
+    connect(pieceDisplay, SIGNAL(PieceClicked(const QPointF&)), this, SLOT(SelectPiece(const QPointF&)));
+    connect(pieceDisplay, SIGNAL(PieceReleased(const QPointF&)), this, SLOT(TryMovePiece(const QPointF&)));
+
+
 }
 
 int ChessQtGUI::SquareSize()
