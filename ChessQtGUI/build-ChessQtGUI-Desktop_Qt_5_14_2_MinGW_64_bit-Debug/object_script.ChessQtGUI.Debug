@@ -11,9 +11,9 @@ debug/Position.o
 debug/Queen.o
 debug/GCD.o
 debug/Rook.o
-debug/chessboardsquaredisplay.o
+debug/PieceDisplay.o
 debug/main.o
 debug/chessqtgui.o
-debug/piecedisplay.o
 debug/qrc_resources.o
+debug/moc_PieceDisplay.o
 debug/moc_chessqtgui.o

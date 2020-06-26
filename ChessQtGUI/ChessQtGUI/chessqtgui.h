@@ -4,12 +4,11 @@
 #include <QMainWindow>
 #include <QtCore>
 #include <QtGui>
-#include <map>
-#include "chessboardsquaredisplay.h"
-#include "piecedisplay.h"
+#include <QGraphicsScene>
 #include "../../Chess/Pieces.h"
 #include "../../Chess/ChessBoard.h"
-#include <QEvent>
+#include "PieceDisplay.h"
+#include <vector>
 
 
 QT_BEGIN_NAMESPACE
@@ -23,16 +22,20 @@ class ChessQtGUI : public QMainWindow
 public:
     ChessQtGUI(QWidget *parent = nullptr);
     ~ChessQtGUI();
-    void MakeChessBoardDisplay(int chessBoardSize, int displaySize);
-    void ShowChessBoard();
-    void ShowPieces(int displaySize);
 
 private:
     Ui::ChessQtGUI *ui;
-    QGraphicsScene *scene;
     ChessBoard* chessBoard;
-    void SelectPiece(Position position);
-    map <Position, ChessBoardSquareDisplay*> chessBoardDisplay;
+    QGraphicsScene* scene;
+    QGraphicsItemGroup* squareMarkerGroup;
+    Position QPointFToPosition(const QPointF& qPointF);
+    QPointF PositionToQPointF(const Position& position, bool isOffset);
+    int SquareSize();
+
+public slots:
+    void SelectPiece(const QPointF& position);
+    void ReturnPiece(const QPointF& position);
+    void TryMovePiece(const QPointF& position);
 
 };
 #endif // CHESSQTGUI_H

@@ -38,10 +38,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>640</width>
-      <height>640</height>
+      <x>9</x>
+      <y>9</y>
+      <width>97</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -55,6 +55,19 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>100</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>

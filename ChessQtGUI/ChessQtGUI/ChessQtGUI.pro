@@ -31,10 +31,9 @@ SOURCES += \
     ../../Chess/Queen.cpp \
     ../../Chess/GCD.cpp \
     ../../Chess/Rook.cpp \
-    chessboardsquaredisplay.cpp \
+    PieceDisplay.cpp \
     main.cpp \
-    chessqtgui.cpp \
-    piecedisplay.cpp
+    chessqtgui.cpp
 
 HEADERS += \
     ../../Chess/Bishop.h \
@@ -52,9 +51,8 @@ HEADERS += \
     ../../Chess/Queen.h \
     ../../Chess/GCD.h \
     ../../Chess/Rook.h \
-    chessboardsquaredisplay.h \
-    chessqtgui.h \
-    piecedisplay.h
+    PieceDisplay.h \
+    chessqtgui.h
 
 FORMS += \
     chessqtgui.ui

@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -24,6 +25,7 @@ class Ui_ChessQtGUI
 public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
+    QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -44,11 +46,14 @@ public:
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setEnabled(true);
-        graphicsView->setGeometry(QRect(10, 10, 640, 640));
+        graphicsView->setGeometry(QRect(9, 9, 97, 71));
         graphicsView->setFrameShape(QFrame::StyledPanel);
         graphicsView->setLineWidth(5);
         graphicsView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         graphicsView->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(540, 100, 47, 13));
         ChessQtGUI->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ChessQtGUI);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -66,6 +71,7 @@ public:
     void retranslateUi(QMainWindow *ChessQtGUI)
     {
         ChessQtGUI->setWindowTitle(QCoreApplication::translate("ChessQtGUI", "ChessQtGUI", nullptr));
+        label->setText(QCoreApplication::translate("ChessQtGUI", "TextLabel", nullptr));
     } // retranslateUi
 
 };

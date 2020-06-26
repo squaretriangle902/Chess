@@ -11,9 +11,9 @@ release/Position.o
 release/Queen.o
 release/GCD.o
 release/Rook.o
-release/chessboardsquaredisplay.o
+release/PieceDisplay.o
 release/main.o
 release/chessqtgui.o
-release/piecedisplay.o
 release/qrc_resources.o
+release/moc_PieceDisplay.o
 release/moc_chessqtgui.o
