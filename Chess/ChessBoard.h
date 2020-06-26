@@ -17,6 +17,7 @@ public:
 	void SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr);
 	bool InBorders(Position position);
 	Position* GetKingPosition(Color color);
+	bool TryMove(Position startPosition, Position endPosition);
 
 private:
 	Piece*** chessBoard;

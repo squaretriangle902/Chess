@@ -5,6 +5,8 @@
 #include <QtCore>
 #include <QtGui>
 #include <QGraphicsScene>
+#include <QGraphicsItem>
+#include <QGraphicsItemGroup>
 #include "../../Chess/Pieces.h"
 #include "../../Chess/ChessBoard.h"
 #include "PieceDisplay.h"
@@ -28,15 +30,18 @@ private:
     ChessBoard* chessBoard;
     QGraphicsScene* scene;
     QGraphicsItemGroup* squareMarkerGroup;
+    Position currentPiecePosition;
     void AddPiece(Position position, Piece* piecePtr);
     void AddPiece(int vertical, int horizontal, Piece* piecePtr);
     Position QPointFToPosition(const QPointF& qPointF);
     QPointF PositionToQPointF(const Position& position, bool isOffset);
+    QPointF NearestSquareCenter(const QPointF& qPointF);
     int SquareSize();
+    void DeleteAllMarkers();
+    void SelectAllAvailableSquares(vector<Position> possibleMovesVector);
 
 public slots:
     void SelectPiece(const QPointF& position);
-    void ReturnPiece(const QPointF& position);
     void TryMovePiece(const QPointF& position);
 
 };

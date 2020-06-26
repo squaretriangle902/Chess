@@ -6,12 +6,15 @@
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
+#include <SquareMarker.h>
+#include "../../Chess/PieceType.h"
+#include "../../Chess/Color.h"
 
 class PieceDisplay : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
-    explicit PieceDisplay(int size, QObject *parent = nullptr);
+    explicit PieceDisplay(int size, PieceType type, Color color, QObject *parent = nullptr);
 
 protected:
     QRectF boundingRect() const override;
@@ -19,11 +22,12 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-
+    QImage PieceImage(PieceType type);
+    PieceType type;
+    Color color;
     int size;
 
 signals:
-    void eventPosition(const QPointF&);
     void PieceClicked(const QPointF&);
     void PieceReleased(const QPointF&);
 

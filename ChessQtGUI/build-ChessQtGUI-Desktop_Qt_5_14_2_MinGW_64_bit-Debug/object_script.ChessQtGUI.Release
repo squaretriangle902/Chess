@@ -12,6 +12,7 @@ release/Queen.o
 release/GCD.o
 release/Rook.o
 release/PieceDisplay.o
+release/SquareMarker.o
 release/main.o
 release/chessqtgui.o
 release/qrc_resources.o

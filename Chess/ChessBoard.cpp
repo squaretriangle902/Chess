@@ -35,7 +35,6 @@ Piece* ChessBoard::GetPiecePtr(int vertical, int horizontal)
 void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 {
 	chessBoard[position.vertical][position.horizontal] = newPiecePtr;
-	newPiecePtr->SetChessBoardPtr(this);
 	if (newPiecePtr == NULL || newPiecePtr->GetType() != king)
 	{
 		return;
@@ -56,7 +55,6 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 void ChessBoard::SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr)
 {
 	chessBoard[vertical][horizontal] = newPiecePtr;
-	newPiecePtr->SetChessBoardPtr(this);
 	if (newPiecePtr == NULL || newPiecePtr->GetType() != king)
 	{
 		return;
@@ -95,43 +93,20 @@ Position* ChessBoard::GetKingPosition(Color color)
 	}
 }
 
-//bool ChessBoard::TryMove(Position startPosition, Position endPoisiton)
-//{
-//	Piece* startPiecePtr = this->GetPiecePtr(startPosition);
-//	Piece* endPiecePtr = this->GetPiecePtr(endPoisiton);
-//	King* kingPtr;
-//	Position* kingPosition;
-//	switch (this->turn)
-//	{
-//	case black:
-//		kingPtr = new King(black, this);
-//		kingPosition = blackKingPosition;
-//		break;
-//	case white:
-//		kingPtr = new King(white, this);
-//		kingPosition = whiteKingPosition;
-//		break;
-//	default:
-//		break;
-//	}
-//	if (startPiecePtr == NULL)
-//	{
-//		return false;
-//	}
-//	if (startPiecePtr->GetColor() == this->turn &&
-//		IncludedInVector(endPoisiton, startPiecePtr->GetPossibleMoves(startPosition)))
-//	{
-//		this->SetPiecePtr(startPosition, NULL);
-//		this->SetPiecePtr(endPoisiton, startPiecePtr);
-//	}
-//	if (kingPtr->IsCheck(*kingPosition))
-//	{
-//		this->SetPiecePtr(startPosition, startPiecePtr);
-//		this->SetPiecePtr(endPoisiton, endPiecePtr);
-//		return false;
-//	}
-//	return true;
-//}
+bool ChessBoard::TryMove(Position startPosition, Position endPosition)
+{
+	Piece* startPiecePtr = this->GetPiecePtr(startPosition);
+	Piece* endPiecePtr = this->GetPiecePtr(endPosition);
+	vector<Position> possibleMovesVector = 
+		startPiecePtr->GetPossibleMoves(startPosition);
+	if (IncludedInVector(endPosition, possibleMovesVector))
+	{
+		this->SetPiecePtr(endPosition, startPiecePtr);
+		this->SetPiecePtr(startPosition, NULL);
+		return true;
+	}
+	return false;
+}
 
 bool ChessBoard::IncludedInVector(Position position, vector<Position> vector)
 {

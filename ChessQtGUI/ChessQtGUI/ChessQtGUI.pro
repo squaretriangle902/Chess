@@ -32,6 +32,7 @@ SOURCES += \
     ../../Chess/GCD.cpp \
     ../../Chess/Rook.cpp \
     PieceDisplay.cpp \
+    SquareMarker.cpp \
     main.cpp \
     chessqtgui.cpp
 
@@ -52,6 +53,7 @@ HEADERS += \
     ../../Chess/GCD.h \
     ../../Chess/Rook.h \
     PieceDisplay.h \
+    SquareMarker.h \
     chessqtgui.h
 
 FORMS += \

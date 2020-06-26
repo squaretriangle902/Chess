@@ -12,6 +12,7 @@ debug/Queen.o
 debug/GCD.o
 debug/Rook.o
 debug/PieceDisplay.o
+debug/SquareMarker.o
 debug/main.o
 debug/chessqtgui.o
 debug/qrc_resources.o
