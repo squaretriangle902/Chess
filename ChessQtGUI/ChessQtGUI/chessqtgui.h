@@ -9,6 +9,7 @@
 #include <QGraphicsItemGroup>
 #include "../../Chess/Pieces.h"
 #include "../../Chess/ChessBoard.h"
+#include "../../Chess/LongRangePiece.h"
 #include "PieceDisplay.h"
 #include <vector>
 
@@ -27,22 +28,22 @@ public:
 
 private:
     Ui::ChessQtGUI *ui;
-    ChessBoard* chessBoard;
+    ChessBoard* chessBoardPtr;
     QGraphicsScene* scene;
     QGraphicsItemGroup* squareMarkerGroup;
     Position currentPiecePosition;
     void AddPiece(Position position, Piece* piecePtr);
     void AddPiece(int vertical, int horizontal, Piece* piecePtr);
-    Position QPointFToPosition(const QPointF& qPointF);
-    QPointF PositionToQPointF(const Position& position, bool isOffset);
-    QPointF NearestSquareCenter(const QPointF& qPointF);
+    Position QPointFToPosition(QPointF qPointF);
+    QPointF PositionToQPointF(Position position, bool isOffset);
+    QPointF NearestSquareCenter(QPointF qPointF);
     int SquareSize();
     void DeleteAllMarkers();
     void SelectAllAvailableSquares(vector<Position> possibleMovesVector);
 
 public slots:
-    void SelectPiece(const QPointF& position);
-    void TryMovePiece(const QPointF& position);
+    void SelectPiece(QPointF position);
+    void TryMovePiece(QPointF position);
 
 };
 #endif // CHESSQTGUI_H

@@ -28,8 +28,8 @@ protected:
     int size;
 
 signals:
-    void PieceClicked(const QPointF&);
-    void PieceReleased(const QPointF&);
+    void PieceClicked(QPointF);
+    void PieceReleased(QPointF);
 
 };
 

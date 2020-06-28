@@ -24,17 +24,17 @@ int ChessBoard::GetSize()
 
 Piece* ChessBoard::GetPiecePtr(Position position)
 {
-	return chessBoard[position.vertical][position.horizontal];
+    return this->chessBoard[position.vertical][position.horizontal];
 }
 
 Piece* ChessBoard::GetPiecePtr(int vertical, int horizontal)
 {
-	return chessBoard[vertical][horizontal];
+    return this->chessBoard[vertical][horizontal];
 }
 
 void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 {
-	chessBoard[position.vertical][position.horizontal] = newPiecePtr;
+    this->chessBoard[position.vertical][position.horizontal] = newPiecePtr;
 	if (newPiecePtr == NULL || newPiecePtr->GetType() != king)
 	{
 		return;
@@ -42,10 +42,10 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 	switch (newPiecePtr->GetColor())
 	{
 	case white:
-		whiteKingPosition = &position;
+		whiteKingPosition = new Position(position.vertical, position.horizontal);
 		break;
 	case black:
-		blackKingPosition = &position;
+		blackKingPosition = new Position(position.vertical, position.horizontal);
 		break;
 	default:
 		break;
@@ -54,7 +54,7 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 
 void ChessBoard::SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr)
 {
-	chessBoard[vertical][horizontal] = newPiecePtr;
+    this->chessBoard[vertical][horizontal] = newPiecePtr;
 	if (newPiecePtr == NULL || newPiecePtr->GetType() != king)
 	{
 		return;
@@ -85,10 +85,10 @@ Position* ChessBoard::GetKingPosition(Color color)
 	switch (color)
 	{
 	case black:
-		return this->blackKingPosition;
+		return blackKingPosition;
 		break;
 	case white:
-		return this->whiteKingPosition;
+		return whiteKingPosition;
 		break;
 	}
 }
@@ -103,9 +103,26 @@ bool ChessBoard::TryMove(Position startPosition, Position endPosition)
 	{
 		this->SetPiecePtr(endPosition, startPiecePtr);
 		this->SetPiecePtr(startPosition, NULL);
+//		if (startPiecePtr->GetType() == king)
+//		{
+//			switch (startPiecePtr->GetColor())
+//			{
+//			case white:
+//				this->whiteKingPosition = &endPosition;
+//				break;
+//			case black:
+//				this->blackKingPosition = &endPosition;
+//				break;
+//			}
+//		}
 		return true;
 	}
 	return false;
+}
+
+Piece*** ChessBoard::GetChessBoard()
+{
+	return nullptr;
 }
 
 bool ChessBoard::IncludedInVector(Position position, vector<Position> vector)
@@ -122,8 +139,8 @@ bool ChessBoard::IncludedInVector(Position position, vector<Position> vector)
 
 Piece*** ChessBoard::CreateChessBoard(int size)
 {
-	Piece*** chessBoard = new Piece** [size];
-	for (int i = 0; i < size; i++)
+    Piece*** chessBoard = new Piece** [size];
+	for (int i = 0; i < size; ++i)
 	{
 		chessBoard[i] = new Piece* [size];
 	}

@@ -12,7 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QLabel>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -24,8 +24,8 @@ class Ui_ChessQtGUI
 {
 public:
     QWidget *centralwidget;
+    QGridLayout *gridLayout;
     QGraphicsView *graphicsView;
-    QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,17 +43,18 @@ public:
         ChessQtGUI->setMaximumSize(QSize(660, 700));
         centralwidget = new QWidget(ChessQtGUI);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        gridLayout = new QGridLayout(centralwidget);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setEnabled(true);
-        graphicsView->setGeometry(QRect(9, 9, 97, 71));
         graphicsView->setFrameShape(QFrame::StyledPanel);
         graphicsView->setLineWidth(5);
         graphicsView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         graphicsView->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-        label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(540, 100, 47, 13));
+
+        gridLayout->addWidget(graphicsView, 0, 0, 1, 1);
+
         ChessQtGUI->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ChessQtGUI);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -71,7 +72,6 @@ public:
     void retranslateUi(QMainWindow *ChessQtGUI)
     {
         ChessQtGUI->setWindowTitle(QCoreApplication::translate("ChessQtGUI", "ChessQtGUI", nullptr));
-        label->setText(QCoreApplication::translate("ChessQtGUI", "TextLabel", nullptr));
     } // retranslateUi
 
 };

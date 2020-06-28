@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Piece.h"
+#include "Position.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ public:
 	bool InBorders(Position position);
 	Position* GetKingPosition(Color color);
 	bool TryMove(Position startPosition, Position endPosition);
+	Piece*** GetChessBoard();
 
 private:
 	Piece*** chessBoard;

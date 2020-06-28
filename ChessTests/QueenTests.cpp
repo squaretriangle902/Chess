@@ -42,4 +42,25 @@ public:
 			Position(6, 0) };
 		Assert::IsTrue(CompareVector(expectedMovesVector, whiteQueen->GetPossibleMoves(Position(1, 5))));
 	}
+
+	TEST_METHOD(QueenGetPossibleMovesTest2)
+	{
+		ChessBoard* chessBoardPtr = new ChessBoard(8);
+		chessBoardPtr->GetPiecePtr(1, 1);
+		Queen* whiteQueen = new Queen(white, chessBoardPtr);
+		Queen* blackQueen = new Queen(black, chessBoardPtr);
+		King* whiteKing = new King(white, chessBoardPtr);
+		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteKing);
+		chessBoardPtr->SetPiecePtr(Position(0, 1), whiteQueen);
+		chessBoardPtr->SetPiecePtr(Position(0, 7), blackQueen);
+		std::vector<Position> expectedMovesVector{ Position(0, 2),
+		 Position(0, 3), 
+		 Position(0, 4), 
+		 Position(0, 5), 
+		 Position(0, 6), 
+		 Position(0, 7), };
+		Assert::IsTrue(CompareVector(expectedMovesVector, whiteQueen->GetPossibleMoves(Position(0, 1))));
+	}
+
+
 };
