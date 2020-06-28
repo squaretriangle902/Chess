@@ -53,12 +53,13 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(0, 1), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(0, 7), blackQueen);
-		std::vector<Position> expectedMovesVector{ Position(0, 2),
+		std::vector<Position> expectedMovesVector{
+		 Position(0, 2), 
 		 Position(0, 3), 
 		 Position(0, 4), 
 		 Position(0, 5), 
-		 Position(0, 6), 
-		 Position(0, 7), };
+		 Position(0, 6),
+		 Position(0, 7) };
 		Assert::IsTrue(CompareVector(expectedMovesVector, whiteQueen->GetPossibleMoves(Position(0, 1))));
 	}
 

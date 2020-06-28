@@ -107,5 +107,5 @@ void operator-=(Position& position1, Position position2)
 
 Position operator*(int coefficient, Position position)
 {
-	return Position(coefficient * position.horizontal, coefficient * position.vertical);
+	return Position(coefficient * position.vertical, coefficient * position.horizontal);
 }
