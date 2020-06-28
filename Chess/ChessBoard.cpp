@@ -24,11 +24,19 @@ int ChessBoard::GetSize()
 
 Piece* ChessBoard::GetPiecePtr(Position position)
 {
+    if(!this->InBorders(position))
+    {
+        return NULL;
+    }
     return this->chessBoard[position.vertical][position.horizontal];
 }
 
 Piece* ChessBoard::GetPiecePtr(int vertical, int horizontal)
 {
+    if(!this->InBorders(Position(vertical, horizontal)))
+    {
+        return NULL;
+    }
     return this->chessBoard[vertical][horizontal];
 }
 
@@ -93,7 +101,7 @@ Position* ChessBoard::GetKingPosition(Color color)
 	}
 }
 
-bool ChessBoard::TryMove(Position startPosition, Position endPosition)
+bool ChessBoard::TryMove(Position startPosition, Position endPosition, bool& isTaking)
 {
 	Piece* startPiecePtr = this->GetPiecePtr(startPosition);
 	Piece* endPiecePtr = this->GetPiecePtr(endPosition);
@@ -103,20 +111,10 @@ bool ChessBoard::TryMove(Position startPosition, Position endPosition)
 	{
 		this->SetPiecePtr(endPosition, startPiecePtr);
 		this->SetPiecePtr(startPosition, NULL);
-//		if (startPiecePtr->GetType() == king)
-//		{
-//			switch (startPiecePtr->GetColor())
-//			{
-//			case white:
-//				this->whiteKingPosition = &endPosition;
-//				break;
-//			case black:
-//				this->blackKingPosition = &endPosition;
-//				break;
-//			}
-//		}
+        isTaking = endPiecePtr != NULL;
 		return true;
 	}
+    isTaking = false;
 	return false;
 }
 
