@@ -5,5 +5,4 @@ class Queen : public LongRangePiece
 {
 public:
 	Queen(Color color, ChessBoard* chessBoardPtr);
-	vector<Position> GetPossibleMoves(Position startingPosition);
 };

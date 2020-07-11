@@ -4,33 +4,12 @@ Queen::Queen(Color color, ChessBoard* chessBoardPtr) :
 	LongRangePiece(color, chessBoardPtr)
 {
 	this->type = queen;
-}
-
-vector<Position> Queen::GetPossibleMoves(Position startingPosition)
-{
-	vector<Chess::Direction> BlockedDirectionsVector;
-	BlockAllExceptPinDirection(BlockedDirectionsVector, startingPosition);
-	vector<Position> possibleMovesVector;
-
-	for (int i = 1; i < chessBoardPtr->GetSize(); i++)
-	{
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::up);
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::rightUp);
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::right);
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::rightDown);
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::down);
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::leftDown);
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::left);
-		CheckPositionOnDirection(startingPosition, i, BlockedDirectionsVector,
-			possibleMovesVector, Chess::leftUp);
-	}
-
-	return possibleMovesVector;
+	this->moveDirectionsVector = vector<Chess::Direction>{ Chess::up,
+		Chess::leftUp,
+	    Chess::left,
+	    Chess::leftDown,
+	    Chess::down,
+	    Chess::rightDown,
+	    Chess::right,
+	    Chess::rightUp };
 }

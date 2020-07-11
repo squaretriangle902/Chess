@@ -5,5 +5,4 @@ class Bishop : public LongRangePiece
 {
 public:
 	Bishop(Color color, ChessBoard* chessBoardPtr);
-	vector<Position> GetPossibleMoves(Position startingPosition);
 };

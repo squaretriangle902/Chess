@@ -1,12 +1,13 @@
 #pragma once
 #include "Knight.h"
 
-Knight::Knight(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
+Knight::Knight(Color color, ChessBoard* chessBoardPtr) : 
+	SubsidiaryPiece(color, chessBoardPtr)
 {
 	this->type = knight;
 }
 
-void Knight::IsMovePossible(Position startPosition, Position offset, 
+void Knight::IsMovePossible(Position startPosition, Position offset,
 	std::vector<Position>& possibleMovesVector)
 {
 	Position movePosition = startPosition + offset;
@@ -16,11 +17,11 @@ void Knight::IsMovePossible(Position startPosition, Position offset,
 	}
 }
 
-vector<Position> Knight::GetPossibleMoves(Position position)
+vector<Position> Knight::GetPossibleMoves(Position position, 
+	Chess::Direction* pinDirectionPtr)
 {
 	vector<Position> possibleMovesVector(0);
-	Chess::Direction direction;
-	if (this->IsPinned(position, direction))
+	if (pinDirectionPtr == NULL)
 	{
 		return possibleMovesVector;
 	}

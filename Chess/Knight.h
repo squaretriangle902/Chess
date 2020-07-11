@@ -1,11 +1,12 @@
 #pragma once
-#include "Piece.h"
+#include "SubsidiaryPiece.h"
 
-class Knight : public Piece
+class Knight : public SubsidiaryPiece
 {
 public:
 	Knight(Color color, ChessBoard* chessBoardPtr);
-	vector<Position> GetPossibleMoves(Position position);
 private:
+	vector<Position> GetPossibleMoves(Position position,
+		Chess::Direction* pinDirection);
 	void IsMovePossible(Position position, Position offset, vector<Position>& possibleMovesVector);
 };
