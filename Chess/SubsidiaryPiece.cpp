@@ -35,7 +35,7 @@ bool SubsidiaryPiece::TryGetDirectionFromPieceToKing(Chess::Direction& direction
 {
 	Position difference = kingPosition - piecePosition;
 	difference.Reduce();
-	return TryGetDirection(direction, difference);
+	return PositionToDirection(direction, difference);
 }
 
 bool SubsidiaryPiece::IsDirectionFromPieceToKingClear(Chess::Direction direction,

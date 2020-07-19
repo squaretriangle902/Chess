@@ -28,7 +28,7 @@ bool CompareVector(vector<Position> vector1, vector<Position> vector2)
 	return true;
 }
 
-bool TryGetDirection(Chess::Direction& direction, Position position)
+bool PositionToDirection(Chess::Direction& direction, Position position)
 {
 	for (Chess::Direction i = Chess::up; i <= Chess::leftUp; i++)
 	{
