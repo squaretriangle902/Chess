@@ -28,17 +28,23 @@ bool CompareVector(vector<Position> vector1, vector<Position> vector2)
 	return true;
 }
 
-bool PositionToDirection(Chess::Direction& direction, Position position)
+Chess::Direction GetDirection(Position position)
 {
 	for (Chess::Direction i = Chess::up; i <= Chess::leftUp; i++)
 	{
 		if (position == Position(i))
 		{
-			direction = i;
-			return true;
+			return i;
 		}
 	}
-	return false;
+	return Chess::noDirection;
+}
+
+Chess::Direction GetDirection(Position firstPosition, Position secondPosition)
+{
+	Position difference = secondPosition - firstPosition;
+	difference.Reduce();
+	return GetDirection(difference);
 }
 
 vector<Position> Intersection(vector<Position> firstVector, 

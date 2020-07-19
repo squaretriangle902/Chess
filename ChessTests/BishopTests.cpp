@@ -5,6 +5,7 @@
 #include "ChessBoard.h"
 #include "Pieces.h"
 
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 TEST_CLASS(BishopTests)
