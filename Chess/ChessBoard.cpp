@@ -232,6 +232,24 @@ vector<Position> ChessBoard::GetCheckingPiecesPosition(Color kingColor)
 	return this->GetCheckingPiecesPosition(kingPosition, kingColor);
 }
 
+bool ChessBoard::GetDefendingMoves(Color kingColor, vector<Position>& defendingMoves)
+{
+	Position* kingPositionPtr = this->GetKingPosition(kingColor);
+	if (kingPositionPtr == nullptr)
+	{
+		return false;
+	}
+	Position kingPosition = *kingPositionPtr;
+	vector<Position> checkingPiecesPosition = this->GetCheckingPiecesPosition(kingPosition,
+		kingColor);
+	if (checkingPiecesPosition.size() != 1)
+	{
+		return false;
+	}
+	defendingMoves = this->GetDefendingMoves(kingColor, kingPosition, 
+		checkingPiecesPosition);
+}
+
 void ChessBoard::IsCheckOnDirection(Position kingPosition, Color kingColor,
 	Chess::Direction direction, PieceType expectingType, 
 	vector<Position>& checkingPiecesPosition)
@@ -250,6 +268,7 @@ void ChessBoard::IsCheckOnDirection(Position kingPosition, Color kingColor,
 		{
 			checkingPiecesPosition.push_back(currentPosition);
 		}
+		return;
 	}
 	return;
 }
@@ -264,16 +283,10 @@ vector<Position> ChessBoard::GetCheckingPiecesPosition(Position kingPosition,
 	return checkingPiecesPosition;
 }
 
-vector<Position> ChessBoard::GetDefendingMoves(Color kingColor,
+vector<Position> ChessBoard::GetDefendingMoves(Color kingColor, Position kingPosition,
 	vector<Position> checkingPiecesPositions)
 {
 	vector<Position> defendingMoves;
-	Position* kingPositionPtr = this->GetKingPosition(kingColor);
-	Position kingPosition = *kingPositionPtr;
-	if (checkingPiecesPositions.size() != 1)
-	{
-		return defendingMoves;
-	}
 	Position checkingPiecePosition = checkingPiecesPositions.at(0);
 	Chess::Direction checkDirection = GetDirection(kingPosition, checkingPiecePosition);
 	defendingMoves.push_back(checkingPiecePosition);

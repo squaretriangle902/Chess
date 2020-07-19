@@ -10,8 +10,12 @@ vector<Position> SubsidiaryPiece::GetPossibleMoves(Position position)
 {
 	Chess::Direction pinDirection = this->chessBoardPtr->PinDirection(position);
 	vector<Position> defendingMoves;
+	bool isCheck = this->chessBoardPtr->GetDefendingMoves(this->color, defendingMoves);
 	vector<Position> possibleMovesVector = this->GetPossibleMoves(position, pinDirection);
-	//possibleMovesVector = Intersection(possibleMovesVector, defendingMoves);
+	if (isCheck)
+	{
+		possibleMovesVector = Intersection(possibleMovesVector, defendingMoves);
+	}
 	return possibleMovesVector;
 }
 
