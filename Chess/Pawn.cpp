@@ -38,16 +38,19 @@ vector<Position> Pawn::GetPossibleMoves(Position position, Chess::Direction pinD
 		CheckMove(position, pinDirection, moveDirection, longMoveDistance, possibleMovesVector);
 	}
 	CheckTaking(position, pinDirection, firstTakeDirection, possibleMovesVector);
+	CheckTaking(position, pinDirection, secondTakeDirection, possibleMovesVector);
 	return possibleMovesVector;
 }
 
 void Pawn::CheckMove(Position startPosition, Chess::Direction pinDirection,
 	Chess::Direction moveDirection, int distance, std::vector<Position>& possibleMovesVector)
 {
-	Position movePosition = startPosition + Position(moveDirection);
+	Position movePosition = startPosition + distance * Position(moveDirection);
 	if (this->chessBoardPtr->InBorders(movePosition) &&
 		this->chessBoardPtr->GetPiecePtr(movePosition) == NULL &&
-		(moveDirection == pinDirection || moveDirection == -pinDirection))
+		(moveDirection == pinDirection || 
+		moveDirection == -pinDirection || 
+		pinDirection == Chess::noDirection))
 	{
 		possibleMovesVector.push_back(movePosition);
 	}
