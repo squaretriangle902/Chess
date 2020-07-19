@@ -159,7 +159,7 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(1, 1), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(5, 5), blackQueen);
 		std::vector<Position> actualDefendingMoves;
-		bool isCheck = chessBoardPtr->GetDefendingMoves(white, actualDefendingMoves);
+		bool isCheck = chessBoardPtr->IsCheck(white, actualDefendingMoves);
 		std::vector<Position> expectedDefendingMoves{ Position(2, 2), Position(3, 3),
 		Position(4, 4) , Position(5, 5) };
 		Assert::IsTrue(CompareVector(expectedDefendingMoves, actualDefendingMoves));

@@ -10,7 +10,7 @@ vector<Position> SubsidiaryPiece::GetPossibleMoves(Position position)
 {
 	Chess::Direction pinDirection = this->chessBoardPtr->PinDirection(position);
 	vector<Position> defendingMoves;
-	bool isCheck = this->chessBoardPtr->GetDefendingMoves(this->color, defendingMoves);
+	bool isCheck = this->chessBoardPtr->IsCheck(this->color, defendingMoves);
 	vector<Position> possibleMovesVector = this->GetPossibleMoves(position, pinDirection);
 	if (isCheck)
 	{

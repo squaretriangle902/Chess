@@ -16,6 +16,6 @@ int main()
 	expectedPossibleMovesVector.push_back(Position(4, 4));
 	expectedPossibleMovesVector.push_back(Position(5, 5));
 	vector<Position> defendingMoves;
-	bool test = chessBoardPtr->GetDefendingMoves(white, defendingMoves);
+	bool test = chessBoardPtr->IsCheck(white, defendingMoves);
 
 }

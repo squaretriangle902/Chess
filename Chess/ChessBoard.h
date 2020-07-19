@@ -22,7 +22,8 @@ public:
     bool TryMove(Position startPosition, Position endPosition, bool& isTaking);
 	Piece*** GetChessBoard();
 	Chess::Direction PinDirection(Position piecePosition);
-	bool GetDefendingMoves(Color kingColor, vector<Position>& defendingMoves);
+	bool IsCheck(Color kingColor, vector<Position>& defendingMoves);
+	bool IsPositionUnderAttack(Position position, Color kingColor);
 
 private:
 	Piece*** chessBoard;
@@ -42,7 +43,7 @@ private:
 
 	vector<Position> GetCheckingPiecesPosition(Color kingColor);
 	vector<Position> GetCheckingPiecesPosition(Position kingPosition, Color kingColor);
-	vector<Position> GetDefendingMoves(Color kingColor, Position kingPosition, vector<Position> checkingPiecesPositions);
+	vector<Position> IsCheck(Color kingColor, Position kingPosition, vector<Position> checkingPiecesPositions);
 
 	void IsPawnCheck(Position kingPosition, Color kingColor,
 		Chess::Direction firstCheckDirection, Chess::Direction secondCheckDirection, 
