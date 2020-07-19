@@ -5,8 +5,8 @@ int main()
 {
 	ChessBoard* chessBoardPtr = new ChessBoard(8);
 	chessBoardPtr->GetPiecePtr(1, 1);
-	Queen* whiteQueen = new Queen(white, chessBoardPtr);
-	Queen* blackQueen = new Queen(black, chessBoardPtr);
+	Piece* whiteQueen = new Queen(white, chessBoardPtr);
+	Piece* blackQueen = new Queen(black, chessBoardPtr);
 	King* whiteKing = new King(white, chessBoardPtr);
 	chessBoardPtr->SetPiecePtr(Position(0, 0), whiteKing);
 	chessBoardPtr->SetPiecePtr(Position(0, 1), whiteQueen);

@@ -6,10 +6,13 @@ LongRangePiece::LongRangePiece(Color color, ChessBoard* chessBoardPtr) :
 }
 
 vector<Position> LongRangePiece::GetPossibleMoves(Position position, 
-	Chess::Direction* pinDirection)
+	Chess::Direction pinDirection)
 {
 	vector<Chess::Direction> blockedDirectionsVector;
-	BlockAllExceptPinDirection(blockedDirectionsVector, position);
+	if (pinDirection != Chess::noDirection)
+	{
+		BlockAllExceptPinDirection(blockedDirectionsVector, pinDirection);
+	}
 	vector<Position> possibleMovesVector;
 	for (int i = 1; i < chessBoardPtr->GetSize(); i++)
 	{
@@ -30,8 +33,7 @@ void LongRangePiece::CheckDirectionsOverDistance(Position startingPosition, int 
 	}
 }
 
-void LongRangePiece::CheckPositionInDirection(Position startPosition,
-	int distance, 
+void LongRangePiece::CheckPositionInDirection(Position startPosition, int distance, 
 	std::vector<Chess::Direction>& blockedDirectionsVector,
 	std::vector<Position>& possibleMovesVector, 
 	Chess::Direction direction)
@@ -66,13 +68,8 @@ bool LongRangePiece::IsDirectionFree(Chess::Direction direction,
 
 void LongRangePiece::BlockAllExceptPinDirection(
 	vector<Chess::Direction>& blockedDirectionsVector,
-	Position position)
+	Chess::Direction pinDirection)
 {
-	Chess::Direction pinDirection;
-	if (!this->IsPinned(position, pinDirection))
-	{
-		return;
-	}
 	for (Chess::Direction i = Chess::up; i <= Chess::leftUp; i++)
 	{
 		if (i != pinDirection && i != -pinDirection)

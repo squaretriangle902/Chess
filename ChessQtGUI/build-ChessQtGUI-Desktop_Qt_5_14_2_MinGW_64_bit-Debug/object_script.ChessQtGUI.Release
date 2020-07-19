@@ -1,6 +1,7 @@
 release/Bishop.o
 release/ChessBoard.o
 release/Color.o
+release/Common.o
 release/Direction.o
 release/King.o
 release/Knight.o
@@ -11,6 +12,8 @@ release/Position.o
 release/Queen.o
 release/GCD.o
 release/Rook.o
+release/Source.o
+release/SubsidiaryPiece.o
 release/PieceDisplay.o
 release/SquareMarker.o
 release/main.o

@@ -8,10 +8,11 @@ SubsidiaryPiece::SubsidiaryPiece(Color color, ChessBoard* chessBoardPtr) :
 
 vector<Position> SubsidiaryPiece::GetPossibleMoves(Position position)
 {
-	Chess::Direction* pinDirectionPtr;
+	Chess::Direction pinDirection = Chess::noDirection;
+	bool isPinned = this->IsPinned(position, pinDirection);
 	vector<Position> checkingPiecesPositions;
 	vector<Position> defendingMoves;
-	vector<Position> possibleMovesVector;
+	vector<Position> possibleMovesVector = this->GetPossibleMoves(position, pinDirection);
 	//possibleMovesVector = Intersection(possibleMovesVector, defendingMoves);
 	return possibleMovesVector;
 }

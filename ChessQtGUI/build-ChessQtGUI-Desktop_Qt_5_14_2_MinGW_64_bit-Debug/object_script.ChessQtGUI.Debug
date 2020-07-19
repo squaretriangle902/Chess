@@ -1,6 +1,7 @@
 debug/Bishop.o
 debug/ChessBoard.o
 debug/Color.o
+debug/Common.o
 debug/Direction.o
 debug/King.o
 debug/Knight.o
@@ -11,6 +12,8 @@ debug/Position.o
 debug/Queen.o
 debug/GCD.o
 debug/Rook.o
+debug/Source.o
+debug/SubsidiaryPiece.o
 debug/PieceDisplay.o
 debug/SquareMarker.o
 debug/main.o

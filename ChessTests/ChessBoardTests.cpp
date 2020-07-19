@@ -3,7 +3,7 @@
 #include "CppUnitTest.h"
 #include "ChessBoard.h"
 #include "Pieces.h"
-#include "VectorComparsion.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

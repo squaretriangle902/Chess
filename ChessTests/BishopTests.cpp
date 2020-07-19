@@ -4,7 +4,6 @@
 
 #include "ChessBoard.h"
 #include "Pieces.h"
-#include "VectorComparsion.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -15,8 +14,8 @@ public:
 	TEST_METHOD(BishopGetPossibleMovesTest1)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
-		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
-		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		Piece* whiteBishop = new Bishop(white, chessBoardPtr);
+		Piece* blackBishop = new Bishop(black, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(1, 1), whiteBishop);
@@ -37,8 +36,8 @@ public:
 	TEST_METHOD(BishopGetPossibleMovesTest2)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
-		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
-		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		Piece* whiteBishop = new Bishop(white, chessBoardPtr);
+		Piece* blackBishop = new Bishop(black, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(1, 1), whiteBishop);
@@ -56,8 +55,8 @@ public:
 	TEST_METHOD(BishopGetPossibleMovesTest3)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
-		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
-		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		Piece* whiteBishop = new Bishop(white, chessBoardPtr);
+		Piece* blackBishop = new Bishop(black, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(1, 1), whiteBishop);
@@ -76,8 +75,8 @@ public:
 	TEST_METHOD(BishopGetPossibleMovesTest4)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
-		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
-		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		Piece* whiteBishop = new Bishop(white, chessBoardPtr);
+		Piece* blackBishop = new Bishop(black, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(4, 4), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(7, 7), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(1, 1), whiteBishop);
@@ -97,8 +96,8 @@ public:
 	TEST_METHOD(BishopGetPossibleMovesTest5)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
-		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
-		Bishop* blackBishop = new Bishop(black, chessBoardPtr);
+		Piece* whiteBishop = new Bishop(white, chessBoardPtr);
+		Piece* blackBishop = new Bishop(black, chessBoardPtr);
 		King* whiteKing = new King(white, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(2, 2), whiteBishop);
@@ -114,9 +113,9 @@ public:
 	TEST_METHOD(BishopGetPossibleMovesTest6)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
-		Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
-		Rook* blackRook = new Rook(black, chessBoardPtr);
-		King* whiteKing = new King(white, chessBoardPtr);
+		Piece* whiteBishop = new Bishop(white, chessBoardPtr);
+		Piece* blackRook = new Rook(black, chessBoardPtr);
+		Piece* whiteKing = new King(white, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(0, 3), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(2, 3), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(5, 3), blackRook);

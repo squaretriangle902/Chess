@@ -9,7 +9,7 @@ public:
 	vector<Position> GetPossibleMoves(Position position);
 protected:
 	virtual vector<Position> GetPossibleMoves(Position position, 
-		Chess::Direction* pinDirection) = 0;
+		Chess::Direction pinDirection) = 0;
 	bool TryGetDirectionFromPieceToKing(Chess::Direction& direction,
 		Position piecePosition, Position kingPosition);
 	bool IsDirectionFromPieceToKingClear(Chess::Direction direction,

@@ -18,10 +18,10 @@ void Knight::IsMovePossible(Position startPosition, Position offset,
 }
 
 vector<Position> Knight::GetPossibleMoves(Position position, 
-	Chess::Direction* pinDirectionPtr)
+	Chess::Direction pinDirection)
 {
 	vector<Position> possibleMovesVector(0);
-	if (pinDirectionPtr == NULL)
+	if (pinDirection == Chess::noDirection)
 	{
 		return possibleMovesVector;
 	}

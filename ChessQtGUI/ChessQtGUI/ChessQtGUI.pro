@@ -21,6 +21,7 @@ SOURCES += \
     ../../Chess/Bishop.cpp \
     ../../Chess/ChessBoard.cpp \
     ../../Chess/Color.cpp \
+    ../../Chess/Common.cpp \
     ../../Chess/Direction.cpp \
     ../../Chess/King.cpp \
     ../../Chess/Knight.cpp \
@@ -31,6 +32,8 @@ SOURCES += \
     ../../Chess/Queen.cpp \
     ../../Chess/GCD.cpp \
     ../../Chess/Rook.cpp \
+    ../../Chess/Source.cpp \
+    ../../Chess/SubsidiaryPiece.cpp \
     PieceDisplay.cpp \
     SquareMarker.cpp \
     main.cpp \
@@ -40,6 +43,7 @@ HEADERS += \
     ../../Chess/Bishop.h \
     ../../Chess/ChessBoard.h \
     ../../Chess/Color.h \
+    ../../Chess/Common.h \
     ../../Chess/Direction.h \
     ../../Chess/King.h \
     ../../Chess/Knight.h \
@@ -52,6 +56,7 @@ HEADERS += \
     ../../Chess/Queen.h \
     ../../Chess/GCD.h \
     ../../Chess/Rook.h \
+    ../../Chess/SubsidiaryPiece.h \
     PieceDisplay.h \
     SquareMarker.h \
     chessqtgui.h
@@ -90,6 +95,9 @@ DISTFILES += \
     ../../Chess/x64/Debug/Chess.tlog/unsuccessfulbuild \
     ../../Chess/x64/Debug/Chess.vcxproj.FileListAbsolute.txt \
     ../../Chess/x64/Debug/ChessBoard.obj \
+    ../../Chess/x64/Debug/Common.obj \
+    ../../Chess/x64/Debug/Direction.obj \
+    ../../Chess/x64/Debug/GCD.obj \
     ../../Chess/x64/Debug/King.obj \
     ../../Chess/x64/Debug/Knight.obj \
     ../../Chess/x64/Debug/LongRangePiece.obj \
@@ -98,6 +106,8 @@ DISTFILES += \
     ../../Chess/x64/Debug/Position.obj \
     ../../Chess/x64/Debug/Queen.obj \
     ../../Chess/x64/Debug/Rook.obj \
+    ../../Chess/x64/Debug/Source.obj \
+    ../../Chess/x64/Debug/SubsidiaryPiece.obj \
     ../../Chess/x64/Debug/TypeChecker.obj \
     ../../Chess/x64/Debug/vc142.idb \
     ../../Chess/x64/Debug/vc142.pdb \

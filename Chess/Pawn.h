@@ -1,16 +1,19 @@
 #pragma once
-#include "Piece.h"
+#include "SubsidiaryPiece.h"
 
-class Pawn : public Piece
+class Pawn : public SubsidiaryPiece
 {
 public:
 	Pawn(Color color, ChessBoard* chessBoard);
-	vector<Position> GetPossibleMoves(Position position);
+	vector<Position> GetPossibleMoves(Position position, Chess::Direction pinDirection);
 private:
-	bool IsMovePossible(Position position, int horizontalOffset,
+	vector<Position> GetPossibleMoves(Position position, Chess::Direction pinDirection,
+		Chess::Direction moveDirection, Chess::Direction firstTakeDirection, 
+		Chess::Direction secondTakeDirection, int longMoveHorizontal);
+	void CheckMove(Position position, Chess::Direction pinDirection,
+		Chess::Direction moveDirection, int distance,
 		std::vector<Position>& possibleMovesVector);
-	void CheckLongMove(Position position, int horizontalOffset,
-		std::vector<Position>& possibleMovesVector, int necessaryHorizntal);
-	void CheckTaking(Position startPosition, Position offset, 
+	void CheckTaking(Position position, Chess::Direction pinDirection,
+		Chess::Direction takeDirection,
 		std::vector<Position>& possibleMovesVector);
 };

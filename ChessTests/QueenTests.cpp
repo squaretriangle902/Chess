@@ -4,7 +4,7 @@
 
 #include "ChessBoard.h"
 #include "Pieces.h"
-#include "VectorComparsion.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -15,8 +15,8 @@ public:
 	TEST_METHOD(QueenGetPossibleMovesTest1)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
-		Queen* whiteQueen = new Queen(white, chessBoardPtr);
-		Queen* blackQueen = new Queen(black, chessBoardPtr);
+		Piece* whiteQueen = new Queen(white, chessBoardPtr);
+		Piece* blackQueen = new Queen(black, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(1, 5), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(3, 7), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(5, 7), whiteQueen);
@@ -47,9 +47,9 @@ public:
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
 		chessBoardPtr->GetPiecePtr(1, 1);
-		Queen* whiteQueen = new Queen(white, chessBoardPtr);
-		Queen* blackQueen = new Queen(black, chessBoardPtr);
-		King* whiteKing = new King(white, chessBoardPtr);
+		Piece* whiteQueen = new Queen(white, chessBoardPtr);
+		Piece* blackQueen = new Queen(black, chessBoardPtr);
+		Piece* whiteKing = new King(white, chessBoardPtr);
 		chessBoardPtr->SetPiecePtr(Position(0, 0), whiteKing);
 		chessBoardPtr->SetPiecePtr(Position(0, 1), whiteQueen);
 		chessBoardPtr->SetPiecePtr(Position(0, 7), blackQueen);
