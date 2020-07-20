@@ -60,7 +60,11 @@ void Pawn::CheckTaking(Position startPosition, Chess::Direction pinDirection,
 	Chess::Direction takeDirection, std::vector<Position>& possibleMovesVector)
 {
 	Position takingPosition = startPosition + Position(takeDirection);
-	if (this->IsMoveValid(takingPosition) && this->chessBoardPtr->GetPiecePtr(takingPosition))
+	if (this->IsMoveValid(takingPosition) && 
+		this->chessBoardPtr->GetPiecePtr(takingPosition) &&
+		(takeDirection == pinDirection ||
+		takeDirection == -pinDirection ||
+		pinDirection == Chess::noDirection))
 	{
 		possibleMovesVector.push_back(takingPosition);
 	}

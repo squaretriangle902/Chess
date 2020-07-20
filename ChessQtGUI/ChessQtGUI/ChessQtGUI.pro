@@ -32,7 +32,6 @@ SOURCES += \
     ../../Chess/Queen.cpp \
     ../../Chess/GCD.cpp \
     ../../Chess/Rook.cpp \
-    ../../Chess/Source.cpp \
     ../../Chess/SubsidiaryPiece.cpp \
     PieceDisplay.cpp \
     SquareMarker.cpp \

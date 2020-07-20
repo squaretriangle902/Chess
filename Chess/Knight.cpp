@@ -21,7 +21,7 @@ vector<Position> Knight::GetPossibleMoves(Position position,
 	Chess::Direction pinDirection)
 {
 	vector<Position> possibleMovesVector(0);
-	if (pinDirection == Chess::noDirection)
+	if (pinDirection != Chess::noDirection)
 	{
 		return possibleMovesVector;
 	}

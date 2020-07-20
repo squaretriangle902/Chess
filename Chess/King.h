@@ -9,6 +9,7 @@ public:
 	King(Color color, ChessBoard* chessBoardPtr);
     vector<Position> GetPossibleMoves(Position position);
 private:
-	void CheckMove(Chess::Direction direction, vector<Position>& possibleMovesVector);
+	void CheckMove(Position position, Chess::Direction direction, 
+		vector<Position>& possibleMovesVector);
 };
 

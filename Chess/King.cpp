@@ -8,18 +8,20 @@ King::King(Color color, ChessBoard* chessBoardPtr) : Piece(color, chessBoardPtr)
 vector<Position> King::GetPossibleMoves(Position position)
 {
 	vector<Position> possibleMovesVector;
-	for (Chess::Direction direction = Chess::up; direction != Chess::noDirection; direction++)
+	for (Chess::Direction direction = Chess::up; 
+		direction != Chess::noDirection; direction++)
 	{
-		CheckMove(direction, possibleMovesVector);
+		CheckMove(position, direction, possibleMovesVector);
 	}
 	return possibleMovesVector;
 }
 
-void King::CheckMove(Chess::Direction direction, vector<Position>& possibleMovesVector)
+void King::CheckMove(Position kingPosition, Chess::Direction direction, 
+	vector<Position>& possibleMovesVector)
 {
-	Position position = Position(direction);
-	if (!this->chessBoardPtr->IsPositionUnderAttack(position, this->color))
+	Position movePosition = kingPosition + Position(direction);
+	if (!this->chessBoardPtr->IsPositionUnderAttack(kingPosition, this->color))
 	{
-		possibleMovesVector.push_back(position);
+		possibleMovesVector.push_back(kingPosition);
 	}
 }
