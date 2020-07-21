@@ -246,7 +246,7 @@ bool ChessBoard::IsCheck(Color kingColor, vector<Position>& defendingMoves)
 	{
 		return false;
 	}
-	defendingMoves = this->IsCheck(kingColor, kingPosition, 
+	defendingMoves = this->DefendingMoves(kingColor, kingPosition, 
 		checkingPiecesPosition);
 }
 
@@ -264,7 +264,8 @@ void ChessBoard::IsCheckOnDirection(Position kingPosition, Color kingColor,
 		currentPosition += Position(direction))
 	{
 		Piece* piecePtr = this->GetPiecePtr(currentPosition);
-		if (piecePtr == NULL || piecePtr->GetType() == king)
+		if (piecePtr == NULL || 
+			(piecePtr->GetColor() == kingColor && piecePtr->GetType() == king))
 		{
 			continue;
 		}
@@ -288,8 +289,8 @@ vector<Position> ChessBoard::GetCheckingPiecesPosition(Position kingPosition,
 	return checkingPiecesPosition;
 }
 
-vector<Position> ChessBoard::IsCheck(Color kingColor, Position kingPosition,
-	vector<Position> checkingPiecesPositions)
+vector<Position> ChessBoard::DefendingMoves(Color kingColor, Position kingPosition,
+	vector<Position>& checkingPiecesPositions)
 {
 	vector<Position> defendingMoves;
 	Position checkingPiecePosition = checkingPiecesPositions.at(0);

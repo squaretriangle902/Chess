@@ -20,8 +20,9 @@ void King::CheckMove(Position kingPosition, Chess::Direction direction,
 	vector<Position>& possibleMovesVector)
 {
 	Position movePosition = kingPosition + Position(direction);
-	if (!this->chessBoardPtr->IsPositionUnderAttack(kingPosition, this->color))
+	if (this->IsMoveValid(movePosition) && 
+		!this->chessBoardPtr->IsPositionUnderAttack(movePosition, this->color))
 	{
-		possibleMovesVector.push_back(kingPosition);
+		possibleMovesVector.push_back(movePosition);
 	}
 }

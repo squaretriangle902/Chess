@@ -53,7 +53,7 @@ vector<Position> Intersection(vector<Position> firstVector,
 	vector<Position> result;
 	for (int i = 0; i < firstVector.size(); i++)
 	{
-		if (!IncludedInVector(firstVector.at(i), secondVector))
+		if (IncludedInVector(firstVector.at(i), secondVector))
 		{
 			result.push_back(firstVector.at(i));
 		}

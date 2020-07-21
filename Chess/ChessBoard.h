@@ -43,7 +43,8 @@ private:
 
 	vector<Position> GetCheckingPiecesPosition(Color kingColor);
 	vector<Position> GetCheckingPiecesPosition(Position kingPosition, Color kingColor);
-	vector<Position> IsCheck(Color kingColor, Position kingPosition, vector<Position> checkingPiecesPositions);
+	vector<Position> DefendingMoves(Color kingColor, Position kingPosition, 
+		vector<Position>& checkingPiecesPositions);
 
 	void IsPawnCheck(Position kingPosition, Color kingColor,
 		Chess::Direction firstCheckDirection, Chess::Direction secondCheckDirection, 
