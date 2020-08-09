@@ -17,7 +17,7 @@ void Knight::IsMovePossible(Position startPosition, Position offset,
 	}
 }
 
-vector<Position> Knight::GetPossibleMoves(Position position, 
+vector<Position> Knight::GetPossibleMovesInternal(Position position, 
 	Chess::Direction pinDirection)
 {
 	vector<Position> possibleMovesVector(0);

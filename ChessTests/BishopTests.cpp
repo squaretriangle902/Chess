@@ -32,7 +32,7 @@ public:
 		possibleMovesVector.push_back(Position(2, 2));
 		possibleMovesVector.push_back(Position(2, 6));
 		possibleMovesVector.push_back(Position(1, 7));
-		Assert::IsTrue(CompareVector(possibleMovesVector, whiteBishop->GetPossibleMoves(Position(4, 4))));
+		Assert::IsTrue(CompareVector(possibleMovesVector, whiteBishop->GetPossibleMovesInternal(Position(4, 4))));
 	}
 	TEST_METHOD(BishopGetPossibleMovesTest2)
 	{
@@ -50,7 +50,7 @@ public:
 		possibleMovesVector.push_back(Position(0, 0));
 		possibleMovesVector.push_back(Position(0, 2));
 		possibleMovesVector.push_back(Position(3, 3));
-		Assert::IsTrue(CompareVector(possibleMovesVector, whiteBishop->GetPossibleMoves(Position(1, 1))));
+		Assert::IsTrue(CompareVector(possibleMovesVector, whiteBishop->GetPossibleMovesInternal(Position(1, 1))));
 	}
 
 	TEST_METHOD(BishopGetPossibleMovesTest3)
@@ -70,7 +70,7 @@ public:
 		possibleMovesVector.push_back(Position(5, 3));
 		possibleMovesVector.push_back(Position(4, 0));
 		possibleMovesVector.push_back(Position(4, 4));
-		Assert::IsTrue(CompareVector(possibleMovesVector, blackBishop->GetPossibleMoves(Position(6, 2))));
+		Assert::IsTrue(CompareVector(possibleMovesVector, blackBishop->GetPossibleMovesInternal(Position(6, 2))));
 	}
 
 	TEST_METHOD(BishopGetPossibleMovesTest4)
@@ -91,7 +91,7 @@ public:
 		possibleMovesVector.push_back(Position(1, 5));
 		possibleMovesVector.push_back(Position(0, 4));
 		possibleMovesVector.push_back(Position(4, 4));
-		Assert::IsTrue(CompareVector(possibleMovesVector, blackBishop->GetPossibleMoves(Position(2, 6))));
+		Assert::IsTrue(CompareVector(possibleMovesVector, blackBishop->GetPossibleMovesInternal(Position(2, 6))));
 	}
 
 	TEST_METHOD(BishopGetPossibleMovesTest5)
@@ -108,7 +108,7 @@ public:
 		expectedPossibleMovesVector.push_back(Position(3, 3));
 		expectedPossibleMovesVector.push_back(Position(4, 4));
 		expectedPossibleMovesVector.push_back(Position(5, 5));
-		Assert::IsTrue(CompareVector(expectedPossibleMovesVector, whiteBishop->GetPossibleMoves(Position(2, 2))));
+		Assert::IsTrue(CompareVector(expectedPossibleMovesVector, whiteBishop->GetPossibleMovesInternal(Position(2, 2))));
 	}
 
 	TEST_METHOD(BishopGetPossibleMovesTest6)
@@ -121,7 +121,7 @@ public:
 		chessBoardPtr->SetPiecePtr(Position(2, 3), whiteBishop);
 		chessBoardPtr->SetPiecePtr(Position(5, 3), blackRook);
 		std::vector<Position> expectedPossibleMovesVector(0);
-		Assert::IsTrue(CompareVector(expectedPossibleMovesVector, whiteBishop->GetPossibleMoves(Position(2, 3))));
+		Assert::IsTrue(CompareVector(expectedPossibleMovesVector, whiteBishop->GetPossibleMovesInternal(Position(2, 3))));
 	}
 
 };

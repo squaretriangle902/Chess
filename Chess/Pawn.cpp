@@ -7,17 +7,17 @@ Pawn::Pawn(Color color, ChessBoard* chessBoard) : SubsidiaryPiece(color, chessBo
 }
 
 
-vector<Position> Pawn::GetPossibleMoves(Position position, Chess::Direction pinDirection)
+vector<Position> Pawn::GetPossibleMovesInternal(Position position, Chess::Direction pinDirection)
 {
 	vector<Position> possibleMovesVector;
 	switch (this->color)
 	{
 	case white:
-		return GetPossibleMoves(position, pinDirection, 
+		return GetPossibleMovesInternal(position, pinDirection, 
 			Chess::up, Chess::leftUp, Chess::rightUp, 1);
 		break;
 	case black:
-		return GetPossibleMoves(position, pinDirection,
+		return GetPossibleMovesInternal(position, pinDirection,
 			Chess::down, Chess::leftDown, Chess::rightDown,
 			this->chessBoardPtr->GetSize() - 2);
 		break;
@@ -25,7 +25,7 @@ vector<Position> Pawn::GetPossibleMoves(Position position, Chess::Direction pinD
 	return possibleMovesVector;
 }
 
-vector<Position> Pawn::GetPossibleMoves(Position position, Chess::Direction pinDirection,
+vector<Position> Pawn::GetPossibleMovesInternal(Position position, Chess::Direction pinDirection,
 	Chess::Direction moveDirection, Chess::Direction firstTakeDirection, 
 	Chess::Direction secondTakeDirection, int longMoveHorizontal)
 {

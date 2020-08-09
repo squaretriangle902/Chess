@@ -33,3 +33,12 @@ void Piece::SetChessBoardPtr(ChessBoard* chessBoardPtr)
 {
 	this->chessBoardPtr = chessBoardPtr;
 }
+
+vector<Position> Piece::GetPossibleMoves(Position position)
+{
+	if (this->color == this->chessBoardPtr->GetTurn())
+	{
+		return this->GetPossibleMovesInternal(position);
+	}
+	return vector<Position>();
+}

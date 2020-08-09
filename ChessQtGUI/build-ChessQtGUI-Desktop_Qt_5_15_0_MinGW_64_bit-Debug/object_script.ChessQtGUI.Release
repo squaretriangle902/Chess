@@ -13,10 +13,12 @@ release/Queen.o
 release/GCD.o
 release/Rook.o
 release/SubsidiaryPiece.o
+release/InputPieceDialog.o
 release/PieceDisplay.o
 release/SquareMarker.o
 release/main.o
 release/chessqtgui.o
 release/qrc_resources.o
+release/moc_InputPieceDialog.o
 release/moc_PieceDisplay.o
 release/moc_chessqtgui.o

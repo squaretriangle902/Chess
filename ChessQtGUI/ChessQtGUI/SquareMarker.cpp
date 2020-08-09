@@ -8,10 +8,12 @@ SquareMarker::SquareMarker(int size, QPointF position)
 
 QRectF SquareMarker::boundingRect() const
 {
-    return QRectF(-size / 2, -size / 2, size, size);
+    return QRectF(-size / 4, -size / 4, size / 2, size / 2);
 }
 
 void SquareMarker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->fillRect(boundingRect(), QBrush(QColor(0,255,0,128)));
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QBrush(QColor(0,255,0,128)));
+    painter->drawEllipse(boundingRect());
 }

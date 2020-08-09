@@ -13,10 +13,12 @@ debug/Queen.o
 debug/GCD.o
 debug/Rook.o
 debug/SubsidiaryPiece.o
+debug/InputPieceDialog.o
 debug/PieceDisplay.o
 debug/SquareMarker.o
 debug/main.o
 debug/chessqtgui.o
 debug/qrc_resources.o
+debug/moc_InputPieceDialog.o
 debug/moc_PieceDisplay.o
 debug/moc_chessqtgui.o

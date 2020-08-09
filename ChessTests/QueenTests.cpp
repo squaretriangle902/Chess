@@ -40,7 +40,7 @@ public:
 			Position(5, 1),
 			Position(1, 1),
 			Position(6, 0) };
-		Assert::IsTrue(CompareVector(expectedMovesVector, whiteQueen->GetPossibleMoves(Position(1, 5))));
+		Assert::IsTrue(CompareVector(expectedMovesVector, whiteQueen->GetPossibleMovesInternal(Position(1, 5))));
 	}
 
 	TEST_METHOD(QueenGetPossibleMovesTest2)
@@ -60,7 +60,7 @@ public:
 		 Position(0, 5), 
 		 Position(0, 6),
 		 Position(0, 7) };
-		Assert::IsTrue(CompareVector(expectedMovesVector, whiteQueen->GetPossibleMoves(Position(0, 1))));
+		Assert::IsTrue(CompareVector(expectedMovesVector, whiteQueen->GetPossibleMovesInternal(Position(0, 1))));
 	}
 
 

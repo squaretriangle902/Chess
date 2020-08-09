@@ -13,13 +13,14 @@ class Piece
 {
 public:
 	Piece(Color color, ChessBoard* chessBoardPtr);
-	Color GetColor();
+    Color GetColor();
 	PieceType GetType();
-	virtual vector<Position> GetPossibleMoves(Position) = 0;
 	bool IsMoveValid(Position position);
 	void SetChessBoardPtr(ChessBoard* chessBoardPtr);
+	vector<Position> GetPossibleMoves(Position);
 
 protected:
+	virtual vector<Position> GetPossibleMovesInternal(Position) = 0;
 	PieceType type;
 	Color color;
 	ChessBoard* chessBoardPtr;

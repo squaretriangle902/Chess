@@ -33,6 +33,7 @@ SOURCES += \
     ../../Chess/GCD.cpp \
     ../../Chess/Rook.cpp \
     ../../Chess/SubsidiaryPiece.cpp \
+    InputPieceDialog.cpp \
     PieceDisplay.cpp \
     SquareMarker.cpp \
     main.cpp \
@@ -56,11 +57,13 @@ HEADERS += \
     ../../Chess/GCD.h \
     ../../Chess/Rook.h \
     ../../Chess/SubsidiaryPiece.h \
+    InputPieceDialog.h \
     PieceDisplay.h \
     SquareMarker.h \
     chessqtgui.h
 
 FORMS += \
+    InputPieceDialog.ui \
     chessqtgui.ui
 
 # Default rules for deployment.

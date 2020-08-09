@@ -7,7 +7,7 @@ class LongRangePiece : public SubsidiaryPiece
 public:
 	LongRangePiece(Color color, ChessBoard* chessBoardPtr);
 protected:
-	vector<Position> GetPossibleMoves(Position position, Chess::Direction pinDirection);
+	vector<Position> GetPossibleMovesInternal(Position position, Chess::Direction pinDirection);
 	void CheckDirectionsOverDistance(Position position, int distance,
 		std::vector<Chess::Direction>& blockedDirectionsVector,
 		std::vector<Position>& possibleMovesVector);

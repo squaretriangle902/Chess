@@ -14,14 +14,14 @@ public:
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
 		Pawn* whiteBishop = new Pawn(white, chessBoardPtr);
-		Assert::IsTrue(whiteBishop->GetColor() == white);
+		Assert::IsTrue(whiteBishop->GetTurn() == white);
 	}
 
 	TEST_METHOD(BlackPawnGetColorTest)
 	{
 		ChessBoard* chessBoardPtr = new ChessBoard(8);
 		Pawn* whiteBishop = new Pawn(black, chessBoardPtr);
-		Assert::IsTrue(whiteBishop->GetColor() == black);
+		Assert::IsTrue(whiteBishop->GetTurn() == black);
 	}
 
 	TEST_METHOD(IsMoveInBordersTest1)

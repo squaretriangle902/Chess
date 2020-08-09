@@ -6,8 +6,8 @@ class SubsidiaryPiece : public Piece
 {
 public: 
 	SubsidiaryPiece(Color color, ChessBoard* chessBoardPtr);
-	vector<Position> GetPossibleMoves(Position position);
 protected:
-	virtual vector<Position> GetPossibleMoves(Position position, 
+	vector<Position> GetPossibleMovesInternal(Position position);
+	virtual vector<Position> GetPossibleMovesInternal(Position position, 
 		Chess::Direction pinDirection) = 0;
 };

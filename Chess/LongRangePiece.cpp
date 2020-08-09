@@ -5,7 +5,7 @@ LongRangePiece::LongRangePiece(Color color, ChessBoard* chessBoardPtr) :
 {
 }
 
-vector<Position> LongRangePiece::GetPossibleMoves(Position position, 
+vector<Position> LongRangePiece::GetPossibleMovesInternal(Position position, 
 	Chess::Direction pinDirection)
 {
 	vector<Chess::Direction> blockedDirectionsVector;

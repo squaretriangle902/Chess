@@ -47,7 +47,7 @@ void ChessBoard::SetPiecePtr(Position position, Piece* newPiecePtr)
 	{
 		return;
 	}
-	switch (newPiecePtr->GetColor())
+    switch (newPiecePtr->GetColor())
 	{
 	case white:
 		whiteKingPosition = new Position(position.vertical, position.horizontal);
@@ -67,7 +67,7 @@ void ChessBoard::SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr)
 	{
 		return;
 	}
-	switch (newPiecePtr->GetColor())
+    switch (newPiecePtr->GetColor())
 	{
 	case white:
 		whiteKingPosition = new Position(vertical, horizontal);
@@ -102,20 +102,23 @@ Position* ChessBoard::GetKingPosition(Color color)
 	return nullptr;
 }
 
-bool ChessBoard::TryMove(Position startPosition, Position endPosition, bool& isTaking)
+bool ChessBoard::TryMove(Position startPosition, Position endPosition, bool& isTaking, bool& isPromotion)
 {
 	Piece* startPiecePtr = this->GetPiecePtr(startPosition);
 	Piece* endPiecePtr = this->GetPiecePtr(endPosition);
 	vector<Position> possibleMovesVector = 
-		startPiecePtr->GetPossibleMoves(startPosition);
+        startPiecePtr->GetPossibleMoves(startPosition);
 	if (IncludedInVector(endPosition, possibleMovesVector))
 	{
 		this->SetPiecePtr(endPosition, startPiecePtr);
 		this->SetPiecePtr(startPosition, NULL);
         isTaking = endPiecePtr != NULL;
+        isPromotion = this->IsPromotion(startPiecePtr, endPosition);
+        this->SwitchTurn();
 		return true;
 	}
     isTaking = false;
+    isPromotion = false;
 	return false;
 }
 
@@ -172,7 +175,7 @@ bool ChessBoard::IsPinningPiece(Chess::Direction direction, Position piecePositi
 		{
 			continue;
 		}
-		if (currentPiecePtr->GetColor() == this->GetPiecePtr(piecePosition)->GetColor())
+        if (currentPiecePtr->GetColor() == this->GetPiecePtr(piecePosition)->GetColor())
 		{
 			return false;
 		}
@@ -194,15 +197,37 @@ PieceType ChessBoard::PinningPieceType(Chess::Direction direction)
 	{
 		return rook;
 	}
-	return bishop;
+    return bishop;
+}
+
+bool ChessBoard::IsPromotion(Piece *piecePtr, Position position)
+{
+    return piecePtr->GetType() == pawn &&
+            ((piecePtr->GetColor() == white && position.horizontal == (this->GetSize() - 1)) ||
+            (piecePtr->GetColor() == black && position.horizontal == 0));
+
+}
+
+void ChessBoard::SwitchTurn()
+{
+    switch (this->turn)
+    {
+    case black:
+        this->turn = white;
+        break;
+    case white:
+        this->turn = black;
+        break;
+    }
+
 }
 
 Chess::Direction ChessBoard::PinDirection(Position piecePosition)
 {
 	Piece* piecePtr = this->GetPiecePtr(piecePosition);
-	Color pieceColor = this->GetPiecePtr(piecePosition)->GetColor();
+    Color pieceColor = this->GetPiecePtr(piecePosition)->GetColor();
 	Position* kingPositionPtr = 
-		this->GetKingPosition(this->GetPiecePtr(piecePosition)->GetColor());
+        this->GetKingPosition(this->GetPiecePtr(piecePosition)->GetColor());
 	if (kingPositionPtr == NULL)
 	{
 		return Chess::noDirection;
@@ -242,7 +267,7 @@ bool ChessBoard::IsCheck(Color kingColor, vector<Position>& defendingMoves)
 	Position kingPosition = *kingPositionPtr;
 	vector<Position> checkingPiecesPosition = this->GetCheckingPiecesPosition(kingPosition,
 		kingColor);
-	if (checkingPiecesPosition.size() != 1)
+    if (checkingPiecesPosition.size() == 0)
 	{
 		return false;
 	}
@@ -255,6 +280,11 @@ bool ChessBoard::IsPositionUnderAttack(Position position, Color kingColor)
 	return !this->GetCheckingPiecesPosition(position, kingColor).empty();
 }
 
+Color ChessBoard::GetTurn()
+{
+	return this->turn;
+}
+
 void ChessBoard::IsCheckOnDirection(Position kingPosition, Color kingColor,
 	Chess::Direction direction, PieceType expectingType, 
 	vector<Position>& checkingPiecesPosition)
@@ -265,11 +295,11 @@ void ChessBoard::IsCheckOnDirection(Position kingPosition, Color kingColor,
 	{
 		Piece* piecePtr = this->GetPiecePtr(currentPosition);
 		if (piecePtr == NULL || 
-			(piecePtr->GetColor() == kingColor && piecePtr->GetType() == king))
+            (piecePtr->GetColor() == kingColor && piecePtr->GetType() == king))
 		{
 			continue;
 		}
-		if (piecePtr->GetColor() != kingColor &&
+        if (piecePtr->GetColor() != kingColor &&
 			(piecePtr->GetType() == queen || piecePtr->GetType() == expectingType))
 		{
 			checkingPiecesPosition.push_back(currentPosition);
@@ -293,6 +323,10 @@ vector<Position> ChessBoard::DefendingMoves(Color kingColor, Position kingPositi
 	vector<Position>& checkingPiecesPositions)
 {
 	vector<Position> defendingMoves;
+    if(checkingPiecesPositions.size() > 1)
+    {
+        return vector<Position>();
+    }
 	Position checkingPiecePosition = checkingPiecesPositions.at(0);
 	Chess::Direction checkDirection = GetDirection(kingPosition, checkingPiecePosition);
 	defendingMoves.push_back(checkingPiecePosition);
@@ -330,7 +364,7 @@ void ChessBoard::IsCheckOnOffset(Position kingPosition, Color kingColor,
 	Position piecePositon = kingPosition + positionOffset;
 	Piece* piecePtr = this->GetPiecePtr(piecePositon);
 	if (piecePtr != NULL &&
-		piecePtr->GetColor() != kingColor &&
+        piecePtr->GetColor() != kingColor &&
 		piecePtr->GetType() == pieceType)
 	{
 		checkingPiecesPosition.push_back(piecePositon);

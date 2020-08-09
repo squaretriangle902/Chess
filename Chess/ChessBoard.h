@@ -19,11 +19,12 @@ public:
 	void SetPiecePtr(int vertical, int horizontal, Piece* newPiecePtr);
 	bool InBorders(Position position);
 	Position* GetKingPosition(Color color);
-    bool TryMove(Position startPosition, Position endPosition, bool& isTaking);
+    bool TryMove(Position startPosition, Position endPosition, bool& isTaking, bool& isPromotion);
 	Piece*** GetChessBoard();
 	Chess::Direction PinDirection(Position piecePosition);
 	bool IsCheck(Color kingColor, vector<Position>& defendingMoves);
 	bool IsPositionUnderAttack(Position position, Color kingColor);
+	Color GetTurn();
 
 private:
 	Piece*** chessBoard;
@@ -40,6 +41,9 @@ private:
 	bool IsPinningPiece(Chess::Direction direction, Position piecePosition,
 		PieceType pinningPieceType);
 	PieceType PinningPieceType(Chess::Direction direction);
+
+    bool IsPromotion(Piece* piecePtr, Position position);
+    void SwitchTurn();
 
 	vector<Position> GetCheckingPiecesPosition(Color kingColor);
 	vector<Position> GetCheckingPiecesPosition(Position kingPosition, Color kingColor);

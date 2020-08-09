@@ -6,12 +6,12 @@ SubsidiaryPiece::SubsidiaryPiece(Color color, ChessBoard* chessBoardPtr) :
 {
 }
 
-vector<Position> SubsidiaryPiece::GetPossibleMoves(Position position)
+vector<Position> SubsidiaryPiece::GetPossibleMovesInternal(Position position)
 {
 	Chess::Direction pinDirection = this->chessBoardPtr->PinDirection(position);
 	vector<Position> defendingMoves;
 	bool isCheck = this->chessBoardPtr->IsCheck(this->color, defendingMoves);
-	vector<Position> possibleMovesVector = this->GetPossibleMoves(position, pinDirection);
+	vector<Position> possibleMovesVector = this->GetPossibleMovesInternal(position, pinDirection);
 	if (isCheck)
 	{
 		possibleMovesVector = Intersection(possibleMovesVector, defendingMoves);
@@ -67,7 +67,7 @@ vector<Position> SubsidiaryPiece::GetPossibleMoves(Position position)
 //		{
 //			continue;
 //		}
-//		if (currentPiecePtr->GetColor() == this->color)
+//		if (currentPiecePtr->GetTurn() == this->color)
 //		{
 //			return false;
 //		}

@@ -11,6 +11,7 @@
 #include "../../Chess/ChessBoard.h"
 #include "../../Chess/LongRangePiece.h"
 #include "PieceDisplay.h"
+#include "InputPieceDialog.h"
 #include <vector>
 
 
@@ -40,10 +41,11 @@ private:
     int SquareSize();
     void DeleteAllMarkers();
     void SelectAllAvailableSquares(vector<Position> possibleMovesVector);
+    InputPieceDialog* inputPieceDialog;
+
 
 public slots:
     void SelectPiece(QPointF position);
     void TryMovePiece(QPointF position);
-
 };
 #endif // CHESSQTGUI_H
