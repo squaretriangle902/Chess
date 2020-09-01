@@ -32,6 +32,7 @@ private:
     ChessBoard* chessBoardPtr;
     QGraphicsScene* scene;
     QGraphicsItemGroup* squareMarkerGroup;
+    QGraphicsItemGroup* lastMoveMarkerGroup;
     Position currentPiecePosition;
     void AddPiece(Position position, Piece* piecePtr);
     void AddPiece(int vertical, int horizontal, Piece* piecePtr);
@@ -39,7 +40,7 @@ private:
     QPointF PositionToQPointF(Position position, bool isOffset);
     QPointF NearestSquareCenter(QPointF qPointF);
     int SquareSize();
-    void DeleteAllMarkers();
+    void DeleteAllMarkers(QGraphicsItemGroup* markerGroup);
     void SelectAllAvailableSquares(vector<Position> possibleMovesVector);
     InputPieceDialog* inputPieceDialog;
 

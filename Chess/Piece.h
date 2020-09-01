@@ -3,6 +3,7 @@
 #include "Color.h"
 #include "PieceType.h"
 #include "ChessBoard.h"
+#include "Game.h"
 #include <vector>
 
 using namespace std;

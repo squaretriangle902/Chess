@@ -38,7 +38,8 @@ vector<Position> Piece::GetPossibleMoves(Position position)
 {
 	if (this->color == this->chessBoardPtr->GetTurn())
 	{
-		return this->GetPossibleMovesInternal(position);
+        vector<Position> tmp = this->GetPossibleMovesInternal(position);
+        return tmp;
 	}
 	return vector<Position>();
 }

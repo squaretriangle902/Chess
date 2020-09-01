@@ -35,6 +35,8 @@ ChessQtGUI::ChessQtGUI(QWidget *parent)
 
     squareMarkerGroup = new QGraphicsItemGroup();
     scene->addItem(squareMarkerGroup);
+    lastMoveMarkerGroup = new QGraphicsItemGroup();
+    scene->addItem(lastMoveMarkerGroup);
 
     //Game classes declaration
 
@@ -98,9 +100,9 @@ ChessQtGUI::ChessQtGUI(QWidget *parent)
 //                AddPiece(5, 7, blackBishop);
 //                AddPiece(6, 7, blackKnight);
 //                AddPiece(7, 7, blackRook);
-
-            AddPiece(0, 6, whitePawn);
-            AddPiece(0, 1, blackPawn);
+            AddPiece(0, 0, whiteKing);
+            AddPiece(2, 3, whiteQueen);
+            AddPiece(0, 6, blackQueen);
 
 }
 
@@ -112,7 +114,7 @@ void ChessQtGUI::SelectAllAvailableSquares(vector<Position> possibleMovesVector)
     for (int i = 0; i < possibleMovesVector.size(); i++)
     {
         SquareMarker* squareMarker = new
-                SquareMarker(SquareSize(),
+                SquareMarker(SquareSize(), possibleMove,
                              PositionToQPointF(possibleMovesVector.at(i), true));
         squareMarkerGroup->addToGroup(squareMarker);
     }
@@ -140,11 +142,11 @@ QPointF ChessQtGUI::NearestSquareCenter(QPointF position)
     return QPointF(x - x % squareSize + offset, y - y % squareSize + offset);
 }
 
-void ChessQtGUI::DeleteAllMarkers()
+void ChessQtGUI::DeleteAllMarkers(QGraphicsItemGroup* markerGroup)
 {
     foreach(QGraphicsItem *item, scene->items(squareMarkerGroup->boundingRect()))
     {
-       if( item->group() == squareMarkerGroup )
+       if(item->group() == markerGroup)
        {
           delete item;
        }
@@ -154,17 +156,14 @@ void ChessQtGUI::DeleteAllMarkers()
 void ChessQtGUI::TryMovePiece(QPointF position)
 {
     QGraphicsItem* pieceDisplay = scene->itemAt(position, QTransform());
-    bool isTaking = false;
-    bool isPromotion = false;
+    bool isTaking = false, isPromotion = false;
     Position endChessPosition = QPointFToPosition(position);
-    bool tryMove = this->chessBoardPtr->TryMove(currentPiecePosition, endChessPosition,
-                                                isTaking, isPromotion);
+    bool tryMove = this->chessBoardPtr->TryMove(currentPiecePosition, endChessPosition, isTaking, isPromotion);
     if(isTaking)
     {
         pieceDisplay->setZValue(-1);
         scene->removeItem(scene->itemAt(position, QTransform()));
     }
-
     if(tryMove)
     {
         pieceDisplay->setPos(NearestSquareCenter(position));
@@ -173,7 +172,6 @@ void ChessQtGUI::TryMovePiece(QPointF position)
     {
         pieceDisplay->setPos(PositionToQPointF(currentPiecePosition, true));
     }
-
     if(isPromotion)
     {
         Color color = chessBoardPtr->GetPiecePtr(endChessPosition)->GetColor();
@@ -183,7 +181,7 @@ void ChessQtGUI::TryMovePiece(QPointF position)
         AddPiece(endChessPosition, inputPieceDialog->GetOutput());
     }
     pieceDisplay->setZValue(0);
-    DeleteAllMarkers();
+    DeleteAllMarkers(squareMarkerGroup);
 }
 
 ChessQtGUI::~ChessQtGUI()

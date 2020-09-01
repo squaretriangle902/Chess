@@ -129,6 +129,7 @@
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Direction.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GCD.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="LongRangePiece.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Direction.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GCD.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="LongRangePiece.h" />
