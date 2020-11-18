@@ -4,7 +4,7 @@
 class Pawn : public SubsidiaryPiece
 {
 public:
-	Pawn(Color color, ChessBoard* chessBoard);
+    Pawn(Color color = white, ChessBoard* chessBoard = nullptr, Game* game = nullptr);
 private:
 	vector<Position> GetPossibleMovesInternal(Position position, Chess::Direction pinDirection);
 	vector<Position> GetPossibleMovesInternal(Position position, Chess::Direction pinDirection,
@@ -16,4 +16,7 @@ private:
 	void CheckTaking(Position position, Chess::Direction pinDirection,
 		Chess::Direction takeDirection,
 		std::vector<Position>& possibleMovesVector);
+    void CheckEnPassant(Position position, Chess::Direction pinDirection,
+        Chess::Direction enPassant, Chess::Direction enemyPawnDirection,
+        std::vector<Position>& possibleMovesVector);
 };

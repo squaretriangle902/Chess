@@ -216,6 +216,13 @@ Makefile: ..\ChessQtGUI\ChessQtGUI.pro C:\Qt\5.15.0\msvc2019_64\mkspecs\win32-ms
 		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_vulkan_support_private.pri \
 		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webchannel.pri \
 		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webchannel_private.pri \
+		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webengine.pri \
+		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webengine_private.pri \
+		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginecore.pri \
+		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginecore_private.pri \
+		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri \
+		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets.pri \
+		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri \
 		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_websockets.pri \
 		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_websockets_private.pri \
 		C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webview.pri \
@@ -403,6 +410,13 @@ C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_uitools_private.pri:
 C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_vulkan_support_private.pri:
 C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webchannel.pri:
 C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webchannel_private.pri:
+C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webengine.pri:
+C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webengine_private.pri:
+C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginecore.pri:
+C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginecore_private.pri:
+C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri:
+C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets.pri:
+C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri:
 C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_websockets.pri:
 C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_websockets_private.pri:
 C:\Qt\5.15.0\msvc2019_64\mkspecs\modules\qt_lib_webview.pri:

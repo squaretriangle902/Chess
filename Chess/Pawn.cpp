@@ -1,11 +1,11 @@
 #pragma once
 #include "Pawn.h"
 
-Pawn::Pawn(Color color, ChessBoard* chessBoard) : SubsidiaryPiece(color, chessBoard)
+Pawn::Pawn(Color color, ChessBoard* chessBoard, Game* game) :
+    SubsidiaryPiece(color, chessBoard, game)
 {
-	this->type = pawn;
+    this->type = pawn;
 }
-
 
 vector<Position> Pawn::GetPossibleMovesInternal(Position position, Chess::Direction pinDirection)
 {
@@ -39,6 +39,8 @@ vector<Position> Pawn::GetPossibleMovesInternal(Position position, Chess::Direct
 	}
 	CheckTaking(position, pinDirection, firstTakeDirection, possibleMovesVector);
 	CheckTaking(position, pinDirection, secondTakeDirection, possibleMovesVector);
+    CheckEnPassant(position, pinDirection, firstTakeDirection, Chess::left, possibleMovesVector);
+    CheckEnPassant(position, pinDirection, secondTakeDirection, Chess::right, possibleMovesVector);
 	return possibleMovesVector;
 }
 
@@ -67,5 +69,25 @@ void Pawn::CheckTaking(Position startPosition, Chess::Direction pinDirection,
 		pinDirection == Chess::noDirection))
 	{
 		possibleMovesVector.push_back(takingPosition);
-	}
+    }
 }
+
+void Pawn::CheckEnPassant(Position position, Chess::Direction pinDirection, Chess::Direction enPassant,
+                          Chess::Direction enemyPawnDirection, std::vector<Position> &possibleMovesVector)
+{
+    Position takingPosition = position + Position(enPassant);
+    Position enemyPawnPosition = position + Position(enemyPawnDirection);
+    Piece* enemyPawnPtr = this->chessBoardPtr->GetPiecePtr(enemyPawnPosition);
+    Position* p = this->chessBoardPtr->GetEnPassantVulnerablePawnPosition();
+    if (this->IsMoveValid(takingPosition) &&
+        enemyPawnPtr != nullptr &&
+        this->chessBoardPtr->GetEnPassantVulnerablePawnPosition() != nullptr &&
+        enemyPawnPosition == *this->chessBoardPtr->GetEnPassantVulnerablePawnPosition() &&
+        (enPassant == pinDirection ||
+        enPassant == -pinDirection ||
+        pinDirection == Chess::noDirection))
+    {
+        possibleMovesVector.push_back(takingPosition);
+    }
+}
+

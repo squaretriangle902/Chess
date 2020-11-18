@@ -1,8 +1,8 @@
 #pragma once
 #include "Rook.h"
 
-Rook::Rook(Color color, ChessBoard* chessBoardPtr) : 
-	LongRangePiece(color, chessBoardPtr)
+Rook::Rook(Color color, ChessBoard* chessBoardPtr, Game* game) :
+    LongRangePiece(color, chessBoardPtr, game)
 {
 	this->type = rook;
 	this->moveDirectionsVector = vector<Chess::Direction>{ Chess::up,

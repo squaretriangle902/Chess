@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "../../Chess/ChessBoard.h"
+#include "../../Chess/Game.h"
 #include "../../Chess/Pieces.h"
 
 namespace Ui {
@@ -14,7 +15,7 @@ class InputPieceDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit InputPieceDialog(Color color = white, ChessBoard* chessBoardPtr = nullptr,
+    explicit InputPieceDialog(Color color = white, ChessBoard* chessBoardPtr = nullptr, Game* game = nullptr,
                               QWidget *parent = nullptr);
     Piece* GetOutput();
     void SetColor(Color color);
@@ -33,6 +34,7 @@ private slots:
 private:
     Color color;
     ChessBoard* chessBoardPtr;
+    Game* game;
     Piece* output;
     Ui::InputPieceDialog *ui;
 };

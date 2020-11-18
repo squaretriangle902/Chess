@@ -28,9 +28,11 @@ SOURCES += \
     ../../Chess/LongRangePiece.cpp \
     ../../Chess/Pawn.cpp \
     ../../Chess/Piece.cpp \
+    ../../Chess/Pieces.cpp \
     ../../Chess/Position.cpp \
     ../../Chess/Queen.cpp \
     ../../Chess/GCD.cpp \
+    ../../Chess/Game.cpp \
     ../../Chess/Rook.cpp \
     ../../Chess/SubsidiaryPiece.cpp \
     InputPieceDialog.cpp \
@@ -57,6 +59,7 @@ HEADERS += \
     ../../Chess/GCD.h \
     ../../Chess/Rook.h \
     ../../Chess/SubsidiaryPiece.h \
+     ../../Chess/Game.h \
     InputPieceDialog.h \
     PieceDisplay.h \
     SquareMarker.h \

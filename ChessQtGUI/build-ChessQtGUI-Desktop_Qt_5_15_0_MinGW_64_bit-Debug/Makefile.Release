@@ -60,9 +60,11 @@ SOURCES       = ..\..\Chess\Bishop.cpp \
 		..\..\Chess\LongRangePiece.cpp \
 		..\..\Chess\Pawn.cpp \
 		..\..\Chess\Piece.cpp \
+		..\..\Chess\Pieces.cpp \
 		..\..\Chess\Position.cpp \
 		..\..\Chess\Queen.cpp \
 		..\..\Chess\GCD.cpp \
+		..\..\Chess\Game.cpp \
 		..\..\Chess\Rook.cpp \
 		..\..\Chess\SubsidiaryPiece.cpp \
 		..\ChessQtGUI\InputPieceDialog.cpp \
@@ -83,9 +85,11 @@ OBJECTS       = release/Bishop.o \
 		release/LongRangePiece.o \
 		release/Pawn.o \
 		release/Piece.o \
+		release/Pieces.o \
 		release/Position.o \
 		release/Queen.o \
 		release/GCD.o \
+		release/Game.o \
 		release/Rook.o \
 		release/SubsidiaryPiece.o \
 		release/InputPieceDialog.o \
@@ -178,6 +182,7 @@ DIST          = ../../Chess/Chess.vcxproj \
 		..\..\Chess\GCD.h \
 		..\..\Chess\Rook.h \
 		..\..\Chess\SubsidiaryPiece.h \
+		..\..\Chess\Game.h \
 		..\ChessQtGUI\InputPieceDialog.h \
 		..\ChessQtGUI\PieceDisplay.h \
 		..\ChessQtGUI\SquareMarker.h \
@@ -191,9 +196,11 @@ DIST          = ../../Chess/Chess.vcxproj \
 		..\..\Chess\LongRangePiece.cpp \
 		..\..\Chess\Pawn.cpp \
 		..\..\Chess\Piece.cpp \
+		..\..\Chess\Pieces.cpp \
 		..\..\Chess\Position.cpp \
 		..\..\Chess\Queen.cpp \
 		..\..\Chess\GCD.cpp \
+		..\..\Chess\Game.cpp \
 		..\..\Chess\Rook.cpp \
 		..\..\Chess\SubsidiaryPiece.cpp \
 		..\ChessQtGUI\InputPieceDialog.cpp \
@@ -220,10 +227,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) ChessQtGUI.zip $(SOURCES) $(DIST) ..\ChessQtGUI\ChessQtGUI.pro C:\Qt\5.15.0\mingw81_64\mkspecs\features\spec_pre.prf C:\Qt\5.15.0\mingw81_64\mkspecs\qdevice.pri C:\Qt\5.15.0\mingw81_64\mkspecs\features\device_config.prf C:\Qt\5.15.0\mingw81_64\mkspecs\common\sanitize.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\gcc-base.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\g++-base.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\angle.conf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\5.15.0\mingw81_64\mkspecs\common\windows-vulkan.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\g++-win32.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\windows-desktop.conf C:\Qt\5.15.0\mingw81_64\mkspecs\qconfig.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioningquick.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_repparser.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_repparser_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\features\qt_functions.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qt_config.prf C:\Qt\5.15.0\mingw81_64\mkspecs\win32-g++\qmake.conf C:\Qt\5.15.0\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.15.0\mingw81_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\toolchain.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\default_pre.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\resolve_config.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\default_post.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\build_pass.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qml_debug.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\precompile_header.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\warn_on.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qt.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\resources_functions.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\resources.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\moc.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\opengl.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\uic.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qmake_use.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\file_copies.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\windows.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\testcase_targets.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\exceptions.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\yacc.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\lex.prf ..\ChessQtGUI\ChessQtGUI.pro ..\ChessQtGUI\resources.qrc C:\Qt\5.15.0\mingw81_64\lib\Qt5Widgets.prl C:\Qt\5.15.0\mingw81_64\lib\Qt5Gui.prl C:\Qt\5.15.0\mingw81_64\lib\Qt5Core.prl C:\Qt\5.15.0\mingw81_64\lib\qtmain.prl   ..\ChessQtGUI\resources.qrc C:\Qt\5.15.0\mingw81_64\mkspecs\features\data\dummy.cpp ..\..\Chess\Bishop.h ..\..\Chess\ChessBoard.h ..\..\Chess\Color.h ..\..\Chess\Common.h ..\..\Chess\Direction.h ..\..\Chess\King.h ..\..\Chess\Knight.h ..\..\Chess\LongRangePiece.h ..\..\Chess\Pawn.h ..\..\Chess\Piece.h ..\..\Chess\PieceType.h ..\..\Chess\Pieces.h ..\..\Chess\Position.h ..\..\Chess\Queen.h ..\..\Chess\GCD.h ..\..\Chess\Rook.h ..\..\Chess\SubsidiaryPiece.h ..\ChessQtGUI\InputPieceDialog.h ..\ChessQtGUI\PieceDisplay.h ..\ChessQtGUI\SquareMarker.h ..\ChessQtGUI\chessqtgui.h  ..\..\Chess\Bishop.cpp ..\..\Chess\ChessBoard.cpp ..\..\Chess\Color.cpp ..\..\Chess\Common.cpp ..\..\Chess\Direction.cpp ..\..\Chess\King.cpp ..\..\Chess\Knight.cpp ..\..\Chess\LongRangePiece.cpp ..\..\Chess\Pawn.cpp ..\..\Chess\Piece.cpp ..\..\Chess\Position.cpp ..\..\Chess\Queen.cpp ..\..\Chess\GCD.cpp ..\..\Chess\Rook.cpp ..\..\Chess\SubsidiaryPiece.cpp ..\ChessQtGUI\InputPieceDialog.cpp ..\ChessQtGUI\PieceDisplay.cpp ..\ChessQtGUI\SquareMarker.cpp ..\ChessQtGUI\main.cpp ..\ChessQtGUI\chessqtgui.cpp ..\ChessQtGUI\InputPieceDialog.ui ..\ChessQtGUI\chessqtgui.ui    
+	$(ZIP) ChessQtGUI.zip $(SOURCES) $(DIST) ..\ChessQtGUI\ChessQtGUI.pro C:\Qt\5.15.0\mingw81_64\mkspecs\features\spec_pre.prf C:\Qt\5.15.0\mingw81_64\mkspecs\qdevice.pri C:\Qt\5.15.0\mingw81_64\mkspecs\features\device_config.prf C:\Qt\5.15.0\mingw81_64\mkspecs\common\sanitize.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\gcc-base.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\g++-base.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\angle.conf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\5.15.0\mingw81_64\mkspecs\common\windows-vulkan.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\g++-win32.conf C:\Qt\5.15.0\mingw81_64\mkspecs\common\windows-desktop.conf C:\Qt\5.15.0\mingw81_64\mkspecs\qconfig.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioningquick.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_repparser.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_repparser_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.15.0\mingw81_64\mkspecs\features\qt_functions.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qt_config.prf C:\Qt\5.15.0\mingw81_64\mkspecs\win32-g++\qmake.conf C:\Qt\5.15.0\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.15.0\mingw81_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\toolchain.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\default_pre.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\resolve_config.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\default_post.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\build_pass.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qml_debug.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\precompile_header.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\warn_on.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qt.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\resources_functions.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\resources.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\moc.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\opengl.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\uic.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\qmake_use.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\file_copies.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\win32\windows.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\testcase_targets.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\exceptions.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\yacc.prf C:\Qt\5.15.0\mingw81_64\mkspecs\features\lex.prf ..\ChessQtGUI\ChessQtGUI.pro ..\ChessQtGUI\resources.qrc C:\Qt\5.15.0\mingw81_64\lib\Qt5Widgets.prl C:\Qt\5.15.0\mingw81_64\lib\Qt5Gui.prl C:\Qt\5.15.0\mingw81_64\lib\Qt5Core.prl C:\Qt\5.15.0\mingw81_64\lib\qtmain.prl   ..\ChessQtGUI\resources.qrc C:\Qt\5.15.0\mingw81_64\mkspecs\features\data\dummy.cpp ..\..\Chess\Bishop.h ..\..\Chess\ChessBoard.h ..\..\Chess\Color.h ..\..\Chess\Common.h ..\..\Chess\Direction.h ..\..\Chess\King.h ..\..\Chess\Knight.h ..\..\Chess\LongRangePiece.h ..\..\Chess\Pawn.h ..\..\Chess\Piece.h ..\..\Chess\PieceType.h ..\..\Chess\Pieces.h ..\..\Chess\Position.h ..\..\Chess\Queen.h ..\..\Chess\GCD.h ..\..\Chess\Rook.h ..\..\Chess\SubsidiaryPiece.h ..\..\Chess\Game.h ..\ChessQtGUI\InputPieceDialog.h ..\ChessQtGUI\PieceDisplay.h ..\ChessQtGUI\SquareMarker.h ..\ChessQtGUI\chessqtgui.h  ..\..\Chess\Bishop.cpp ..\..\Chess\ChessBoard.cpp ..\..\Chess\Color.cpp ..\..\Chess\Common.cpp ..\..\Chess\Direction.cpp ..\..\Chess\King.cpp ..\..\Chess\Knight.cpp ..\..\Chess\LongRangePiece.cpp ..\..\Chess\Pawn.cpp ..\..\Chess\Piece.cpp ..\..\Chess\Pieces.cpp ..\..\Chess\Position.cpp ..\..\Chess\Queen.cpp ..\..\Chess\GCD.cpp ..\..\Chess\Game.cpp ..\..\Chess\Rook.cpp ..\..\Chess\SubsidiaryPiece.cpp ..\ChessQtGUI\InputPieceDialog.cpp ..\ChessQtGUI\PieceDisplay.cpp ..\ChessQtGUI\SquareMarker.cpp ..\ChessQtGUI\main.cpp ..\ChessQtGUI\chessqtgui.cpp ..\ChessQtGUI\InputPieceDialog.ui ..\ChessQtGUI\chessqtgui.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\Bishop.o release\ChessBoard.o release\Color.o release\Common.o release\Direction.o release\King.o release\Knight.o release\LongRangePiece.o release\Pawn.o release\Piece.o release\Position.o release\Queen.o release\GCD.o release\Rook.o release\SubsidiaryPiece.o release\InputPieceDialog.o release\PieceDisplay.o release\SquareMarker.o release\main.o release\chessqtgui.o release\qrc_resources.o release\moc_InputPieceDialog.o release\moc_PieceDisplay.o release\moc_chessqtgui.o
+	-$(DEL_FILE) release\Bishop.o release\ChessBoard.o release\Color.o release\Common.o release\Direction.o release\King.o release\Knight.o release\LongRangePiece.o release\Pawn.o release\Piece.o release\Pieces.o release\Position.o release\Queen.o release\GCD.o release\Game.o release\Rook.o release\SubsidiaryPiece.o release\InputPieceDialog.o release\PieceDisplay.o release\SquareMarker.o release\main.o release\chessqtgui.o release\qrc_resources.o release\moc_InputPieceDialog.o release\moc_PieceDisplay.o release\moc_chessqtgui.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -384,6 +391,7 @@ release/moc_InputPieceDialog.cpp: ../ChessQtGUI/InputPieceDialog.h \
 		../../Chess/GCD.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
+		../../Chess/Game.h \
 		../../Chess/Pieces.h \
 		../../Chess/Pawn.h \
 		../../Chess/SubsidiaryPiece.h \
@@ -854,9 +862,6 @@ release/moc_chessqtgui.cpp: ../ChessQtGUI/chessqtgui.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGraphicsItemGroup \
-		../../Chess/Pieces.h \
-		../../Chess/Pawn.h \
-		../../Chess/SubsidiaryPiece.h \
 		../../Chess/Piece.h \
 		../../Chess/Position.h \
 		../../Chess/Direction.h \
@@ -864,6 +869,10 @@ release/moc_chessqtgui.cpp: ../ChessQtGUI/chessqtgui.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
+		../../Chess/Pieces.h \
+		../../Chess/Pawn.h \
+		../../Chess/SubsidiaryPiece.h \
 		../../Chess/Common.h \
 		../../Chess/Knight.h \
 		../../Chess/Bishop.h \
@@ -921,6 +930,7 @@ release/Bishop.o: ../../Chess/Bishop.cpp ../../Chess/Bishop.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Bishop.o ..\..\Chess\Bishop.cpp
 
@@ -931,6 +941,7 @@ release/ChessBoard.o: ../../Chess/ChessBoard.cpp ../../Chess/ChessBoard.h \
 		../../Chess/GCD.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
+		../../Chess/Game.h \
 		../../Chess/King.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\ChessBoard.o ..\..\Chess\ChessBoard.cpp
@@ -955,6 +966,7 @@ release/King.o: ../../Chess/King.cpp ../../Chess/King.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\King.o ..\..\Chess\King.cpp
 
@@ -967,6 +979,7 @@ release/Knight.o: ../../Chess/Knight.cpp ../../Chess/Knight.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Knight.o ..\..\Chess\Knight.cpp
 
@@ -979,6 +992,7 @@ release/LongRangePiece.o: ../../Chess/LongRangePiece.cpp ../../Chess/LongRangePi
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\LongRangePiece.o ..\..\Chess\LongRangePiece.cpp
 
@@ -991,6 +1005,7 @@ release/Pawn.o: ../../Chess/Pawn.cpp ../../Chess/Pawn.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Pawn.o ..\..\Chess\Pawn.cpp
 
@@ -1000,8 +1015,29 @@ release/Piece.o: ../../Chess/Piece.cpp ../../Chess/Piece.h \
 		../../Chess/GCD.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
-		../../Chess/ChessBoard.h
+		../../Chess/ChessBoard.h \
+		../../Chess/Game.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Piece.o ..\..\Chess\Piece.cpp
+
+release/Pieces.o: ../../Chess/Pieces.cpp ../../Chess/Pieces.h \
+		../../Chess/Piece.h \
+		../../Chess/Position.h \
+		../../Chess/Direction.h \
+		../../Chess/GCD.h \
+		../../Chess/Color.h \
+		../../Chess/PieceType.h \
+		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
+		../../Chess/Pawn.h \
+		../../Chess/SubsidiaryPiece.h \
+		../../Chess/Common.h \
+		../../Chess/Knight.h \
+		../../Chess/Bishop.h \
+		../../Chess/LongRangePiece.h \
+		../../Chess/Rook.h \
+		../../Chess/Queen.h \
+		../../Chess/King.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Pieces.o ..\..\Chess\Pieces.cpp
 
 release/Position.o: ../../Chess/Position.cpp ../../Chess/Position.h \
 		../../Chess/Direction.h \
@@ -1018,11 +1054,22 @@ release/Queen.o: ../../Chess/Queen.cpp ../../Chess/Queen.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Queen.o ..\..\Chess\Queen.cpp
 
 release/GCD.o: ../../Chess/GCD.cpp ../../Chess/GCD.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\GCD.o ..\..\Chess\GCD.cpp
+
+release/Game.o: ../../Chess/Game.cpp ../../Chess/Game.h \
+		../../Chess/Piece.h \
+		../../Chess/Position.h \
+		../../Chess/Direction.h \
+		../../Chess/GCD.h \
+		../../Chess/Color.h \
+		../../Chess/PieceType.h \
+		../../Chess/ChessBoard.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Game.o ..\..\Chess\Game.cpp
 
 release/Rook.o: ../../Chess/Rook.cpp ../../Chess/Rook.h \
 		../../Chess/LongRangePiece.h \
@@ -1034,6 +1081,7 @@ release/Rook.o: ../../Chess/Rook.cpp ../../Chess/Rook.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Rook.o ..\..\Chess\Rook.cpp
 
@@ -1045,6 +1093,7 @@ release/SubsidiaryPiece.o: ../../Chess/SubsidiaryPiece.cpp ../../Chess/Subsidiar
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
 		../../Chess/Common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\SubsidiaryPiece.o ..\..\Chess\SubsidiaryPiece.cpp
 
@@ -1160,6 +1209,7 @@ release/InputPieceDialog.o: ../ChessQtGUI/InputPieceDialog.cpp ../ChessQtGUI/Inp
 		../../Chess/GCD.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
+		../../Chess/Game.h \
 		../../Chess/Pieces.h \
 		../../Chess/Pawn.h \
 		../../Chess/SubsidiaryPiece.h \
@@ -1744,9 +1794,6 @@ release/main.o: ../ChessQtGUI/main.cpp ../ChessQtGUI/chessqtgui.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGraphicsItemGroup \
-		../../Chess/Pieces.h \
-		../../Chess/Pawn.h \
-		../../Chess/SubsidiaryPiece.h \
 		../../Chess/Piece.h \
 		../../Chess/Position.h \
 		../../Chess/Direction.h \
@@ -1754,6 +1801,10 @@ release/main.o: ../ChessQtGUI/main.cpp ../ChessQtGUI/chessqtgui.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
+		../../Chess/Pieces.h \
+		../../Chess/Pawn.h \
+		../../Chess/SubsidiaryPiece.h \
 		../../Chess/Common.h \
 		../../Chess/Knight.h \
 		../../Chess/Bishop.h \
@@ -2122,9 +2173,6 @@ release/chessqtgui.o: ../ChessQtGUI/chessqtgui.cpp ../ChessQtGUI/chessqtgui.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGraphicsItemGroup \
-		../../Chess/Pieces.h \
-		../../Chess/Pawn.h \
-		../../Chess/SubsidiaryPiece.h \
 		../../Chess/Piece.h \
 		../../Chess/Position.h \
 		../../Chess/Direction.h \
@@ -2132,6 +2180,10 @@ release/chessqtgui.o: ../ChessQtGUI/chessqtgui.cpp ../ChessQtGUI/chessqtgui.h \
 		../../Chess/Color.h \
 		../../Chess/PieceType.h \
 		../../Chess/ChessBoard.h \
+		../../Chess/Game.h \
+		../../Chess/Pieces.h \
+		../../Chess/Pawn.h \
+		../../Chess/SubsidiaryPiece.h \
 		../../Chess/Common.h \
 		../../Chess/Knight.h \
 		../../Chess/Bishop.h \
@@ -2171,7 +2223,9 @@ release/chessqtgui.o: ../ChessQtGUI/chessqtgui.cpp ../ChessQtGUI/chessqtgui.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QStatusBar \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstatusbar.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QWidget \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/QColor
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/QColor \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QMessageBox \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\chessqtgui.o ..\ChessQtGUI\chessqtgui.cpp
 
 release/qrc_resources.o: release/qrc_resources.cpp 

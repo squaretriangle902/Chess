@@ -1,8 +1,8 @@
 #pragma once
 #include "SubsidiaryPiece.h"
 
-SubsidiaryPiece::SubsidiaryPiece(Color color, ChessBoard* chessBoardPtr) : 
-	Piece(color, chessBoardPtr)
+SubsidiaryPiece::SubsidiaryPiece(Color color, ChessBoard* chessBoardPtr, Game* game) :
+    Piece(color, chessBoardPtr, game)
 {
 }
 

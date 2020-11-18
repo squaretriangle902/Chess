@@ -8,9 +8,11 @@ release/Knight.o
 release/LongRangePiece.o
 release/Pawn.o
 release/Piece.o
+release/Pieces.o
 release/Position.o
 release/Queen.o
 release/GCD.o
+release/Game.o
 release/Rook.o
 release/SubsidiaryPiece.o
 release/InputPieceDialog.o

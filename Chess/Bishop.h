@@ -4,5 +4,5 @@
 class Bishop : public LongRangePiece
 {
 public:
-	Bishop(Color color, ChessBoard* chessBoardPtr);
+    Bishop(Color color, ChessBoard* chessBoardPtr, Game* game = nullptr);
 };

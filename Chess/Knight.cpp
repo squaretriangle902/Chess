@@ -1,8 +1,8 @@
 #pragma once
 #include "Knight.h"
 
-Knight::Knight(Color color, ChessBoard* chessBoardPtr) : 
-	SubsidiaryPiece(color, chessBoardPtr)
+Knight::Knight(Color color, ChessBoard* chessBoardPtr, Game* game) :
+    SubsidiaryPiece(color, chessBoardPtr, game)
 {
 	this->type = knight;
 }

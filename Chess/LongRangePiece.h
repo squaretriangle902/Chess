@@ -5,7 +5,7 @@
 class LongRangePiece : public SubsidiaryPiece
 {
 public:
-	LongRangePiece(Color color, ChessBoard* chessBoardPtr);
+    LongRangePiece(Color color, ChessBoard* chessBoardPtr, Game* game);
 protected:
 	vector<Position> GetPossibleMovesInternal(Position position, Chess::Direction pinDirection);
 	void CheckDirectionsOverDistance(Position position, int distance,

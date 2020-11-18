@@ -40,7 +40,8 @@ public:
         QFont font;
         font.setPointSize(36);
         knightButton->setFont(font);
-        knightButton->setIconSize(QSize(56, 56));
+        knightButton->setStyleSheet(QString::fromUtf8("qproperty-icon: url(:/Images/WhitePieces/Rook.png)"));
+        knightButton->setIconSize(QSize(70, 70));
 
         horizontalLayout->addWidget(knightButton);
 
@@ -48,7 +49,8 @@ public:
         bishopButton->setObjectName(QString::fromUtf8("bishopButton"));
         bishopButton->setMinimumSize(QSize(75, 75));
         bishopButton->setFont(font);
-        bishopButton->setIconSize(QSize(56, 56));
+        bishopButton->setStyleSheet(QString::fromUtf8("qproperty-icon: url(:/Images/WhitePieces/Bishop.png)"));
+        bishopButton->setIconSize(QSize(70, 70));
 
         horizontalLayout->addWidget(bishopButton);
 
@@ -56,7 +58,8 @@ public:
         rookButton->setObjectName(QString::fromUtf8("rookButton"));
         rookButton->setMinimumSize(QSize(75, 75));
         rookButton->setFont(font);
-        rookButton->setIconSize(QSize(56, 56));
+        rookButton->setStyleSheet(QString::fromUtf8("qproperty-icon: url(:/Images/WhitePieces/Rook.png)"));
+        rookButton->setIconSize(QSize(70, 70));
 
         horizontalLayout->addWidget(rookButton);
 
@@ -64,7 +67,8 @@ public:
         queenButton->setObjectName(QString::fromUtf8("queenButton"));
         queenButton->setMinimumSize(QSize(75, 75));
         queenButton->setFont(font);
-        queenButton->setIconSize(QSize(56, 56));
+        queenButton->setStyleSheet(QString::fromUtf8("qproperty-icon: url(:/Images/WhitePieces/Queen.png)"));
+        queenButton->setIconSize(QSize(70, 70));
 
         horizontalLayout->addWidget(queenButton);
 

@@ -5,7 +5,7 @@
 class SubsidiaryPiece : public Piece
 {
 public: 
-	SubsidiaryPiece(Color color, ChessBoard* chessBoardPtr);
+    SubsidiaryPiece(Color color = white, ChessBoard* chessBoardPtr = nullptr, Game* game = nullptr);
 protected:
 	vector<Position> GetPossibleMovesInternal(Position position);
 	virtual vector<Position> GetPossibleMovesInternal(Position position, 

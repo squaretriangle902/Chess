@@ -8,9 +8,11 @@ debug/Knight.o
 debug/LongRangePiece.o
 debug/Pawn.o
 debug/Piece.o
+debug/Pieces.o
 debug/Position.o
 debug/Queen.o
 debug/GCD.o
+debug/Game.o
 debug/Rook.o
 debug/SubsidiaryPiece.o
 debug/InputPieceDialog.o

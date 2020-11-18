@@ -2,18 +2,19 @@
 #include "ChessBoard.h"
 #include "King.h"
 
-ChessBoard::ChessBoard(int size, Color turn)
+ChessBoard::ChessBoard(int size, Game* game)
 {
 	this->chessBoard = CreateChessBoard(size);
 	this->size = size;
-	this->turn = turn;
-	this->blackKingPosition = NULL;
-	this->whiteKingPosition = NULL;
+    this->blackKingPosition = nullptr;
+    this->whiteKingPosition = nullptr;
+    this->game = game;
 	FillWithNull(this->chessBoard, this->size);/* this method cleans chess board
 											   because default constructor must
 											   return clean chess board. But I need
 											   another same method which is not class
 											   member*/
+    this->enPassantVulnerablePawnPosition = nullptr;
 
 }
 
@@ -102,7 +103,9 @@ Position* ChessBoard::GetKingPosition(Color color)
 	return nullptr;
 }
 
-bool ChessBoard::TryMove(Position startPosition, Position endPosition, bool& isTaking, bool& isPromotion)
+bool ChessBoard::TryMove(Position startPosition, Position endPosition, bool& isTaking, bool& isPromotion,
+                         Position& castlingRook, Chess::Direction& castlingDirection,
+                         bool& enPassant, Position& enPassantPosition)
 {
 	Piece* startPiecePtr = this->GetPiecePtr(startPosition);
 	Piece* endPiecePtr = this->GetPiecePtr(endPosition);
@@ -110,11 +113,15 @@ bool ChessBoard::TryMove(Position startPosition, Position endPosition, bool& isT
         startPiecePtr->GetPossibleMoves(startPosition);
 	if (IncludedInVector(endPosition, possibleMovesVector))
 	{
-		this->SetPiecePtr(endPosition, startPiecePtr);
-		this->SetPiecePtr(startPosition, NULL);
+        MovePiece(startPosition, endPosition);
         isTaking = endPiecePtr != NULL;
         isPromotion = this->IsPromotion(startPiecePtr, endPosition);
-        this->SwitchTurn();
+        castlingDirection = CastlingDirection(startPiecePtr, startPosition, endPosition);
+        castlingRook = TryCastling(endPosition, castlingDirection);
+        enPassant = TryEnPassant(startPiecePtr, startPosition, endPosition, enPassantPosition);
+        enPassantVulnerablePawnPosition = PawnTwoSquareMove(startPiecePtr, startPosition, endPosition);
+        this->game->SwitchTurn();
+        startPiecePtr->SetMoved(true);
 		return true;
 	}
     isTaking = false;
@@ -124,7 +131,7 @@ bool ChessBoard::TryMove(Position startPosition, Position endPosition, bool& isT
 
 Piece*** ChessBoard::GetChessBoard()
 {
-	return nullptr;
+    return this->chessBoard;
 }
 
 Piece*** ChessBoard::CreateChessBoard(int size)
@@ -145,7 +152,14 @@ void ChessBoard::FillWithNull(Piece***& chessBoard, int size)
 		{
 			chessBoard[i][j] = NULL;
 		}
-	}
+    }
+}
+
+void ChessBoard::MovePiece(Position startPosition, Position endPosition)
+{
+    Piece* startPiecePtr = GetPiecePtr(startPosition);
+    this->SetPiecePtr(endPosition, startPiecePtr);
+    this->SetPiecePtr(startPosition, NULL);
 }
 
 bool ChessBoard::IsDirectionFromPieceToKingClear(Chess::Direction direction, 
@@ -208,19 +222,65 @@ bool ChessBoard::IsPromotion(Piece *piecePtr, Position position)
 
 }
 
-void ChessBoard::SwitchTurn()
+Position* ChessBoard::PawnTwoSquareMove(Piece *piecePtr, Position startPosition, Position endPosition)
 {
-    switch (this->turn)
-    {
-    case black:
-        this->turn = white;
-        break;
-    case white:
-        this->turn = black;
-        break;
-    }
-
+    Position* result = new Position(endPosition.vertical, endPosition.horizontal);
+    return piecePtr != nullptr && piecePtr->GetType() == pawn &&
+            abs(startPosition.horizontal  - endPosition.horizontal) == 2
+            ? result
+            : this->enPassantVulnerablePawnPosition;
 }
+
+bool ChessBoard::EnPassant(Piece *piecePtr, Position startPosition, Position endPosition)
+{
+    return piecePtr != nullptr && piecePtr->GetType() == pawn &&
+            enPassantVulnerablePawnPosition != nullptr &&
+            startPosition.horizontal == enPassantVulnerablePawnPosition->horizontal &&
+            endPosition.vertical == enPassantVulnerablePawnPosition->vertical;
+}
+
+bool ChessBoard::TryEnPassant(Piece *piecePtr, Position startPosition, Position endPosition,
+                              Position& enPassantPosition)
+{
+    bool result = EnPassant(piecePtr, startPosition, endPosition);
+    if (result)
+    {
+        enPassantPosition = *this->enPassantVulnerablePawnPosition;
+        this->SetPiecePtr(enPassantPosition, nullptr);
+    }
+    this->enPassantVulnerablePawnPosition = nullptr;
+    return result;
+}
+
+Chess::Direction ChessBoard::CastlingDirection(Piece *piecePtr, Position startPosition, Position endPosition)
+{
+   return piecePtr != nullptr &&
+          piecePtr->GetType() == king &&
+          abs(startPosition.vertical - endPosition.vertical) == 2
+           ? GetDirection(startPosition, endPosition) : Chess::noDirection;
+}
+
+Position ChessBoard::FindRook(Position kingPosition, Chess::Direction castlingDirection)
+{
+    Position i = kingPosition + castlingDirection;
+    while(this->GetPiecePtr(i) == nullptr)
+    {
+        i += castlingDirection;
+    }
+    return i;
+}
+
+Position ChessBoard::TryCastling(Position kingPosition, Chess::Direction castlingDirection)
+{
+    if (castlingDirection == Chess::noDirection)
+    {
+        return Position(0,0);
+    }
+    Position rookPosition = FindRook(kingPosition, castlingDirection);
+    MovePiece(rookPosition, kingPosition - Position(castlingDirection));
+    return rookPosition;
+}
+
 
 Chess::Direction ChessBoard::PinDirection(Position piecePosition)
 {
@@ -273,16 +333,22 @@ bool ChessBoard::IsCheck(Color kingColor, vector<Position>& defendingMoves)
 	}
 	defendingMoves = this->DefendingMoves(kingColor, kingPosition, 
 		checkingPiecesPosition);
+    return true;
 }
 
 bool ChessBoard::IsPositionUnderAttack(Position position, Color kingColor)
 {
-	return !this->GetCheckingPiecesPosition(position, kingColor).empty();
+    return !this->GetCheckingPiecesPosition(position, kingColor).empty();
 }
 
-Color ChessBoard::GetTurn()
+Position *ChessBoard::GetEnPassantVulnerablePawnPosition()
 {
-	return this->turn;
+    return this->enPassantVulnerablePawnPosition;
+}
+
+void ChessBoard::SetEnPassantVulnerablePawnPosition(Position *positionPtr)
+{
+    this->enPassantVulnerablePawnPosition = positionPtr;
 }
 
 void ChessBoard::IsCheckOnDirection(Position kingPosition, Color kingColor,
@@ -313,6 +379,7 @@ vector<Position> ChessBoard::GetCheckingPiecesPosition(Position kingPosition,
 	Color kingColor)
 {
 	vector<Position> checkingPiecesPosition;
+    IsKingCheck(kingPosition, kingColor, checkingPiecesPosition);
 	IsPawnCheck(kingPosition, kingColor, checkingPiecesPosition);
 	IsKnightCheck(kingPosition, kingColor, checkingPiecesPosition);
 	IsLongRangeCheck(kingPosition, kingColor, checkingPiecesPosition);
@@ -340,7 +407,16 @@ vector<Position> ChessBoard::DefendingMoves(Color kingColor, Position kingPositi
 	{
 		defendingMoves.push_back(currentPosition);
 	}
-	return defendingMoves;
+    return defendingMoves;
+}
+
+void ChessBoard::IsKingCheck(Position kingPosition, Color kingColor, vector<Position> &checkingPiecesPosition)
+{
+    for(Chess::Direction i = Chess::up; i != Chess::noDirection; i++)
+    {
+        IsCheckOnOffset(kingPosition, kingColor, Position(i), king,
+            checkingPiecesPosition);
+    }
 }
 
 void ChessBoard::IsLongRangeCheck(Position kingPosition, Color kingColor,

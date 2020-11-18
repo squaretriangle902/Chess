@@ -1,11 +1,13 @@
 #pragma once
 #include "Piece.h"
 
-Piece::Piece(Color color, ChessBoard* chessBoardPtr = NULL)
+Piece::Piece(Color color, ChessBoard* chessBoardPtr = nullptr, Game* game = nullptr)
 {
 	this->color = color;
 	this->chessBoardPtr = chessBoardPtr;
 	this->type = noType;
+    this->game = game;
+    this->moved = false;
 }
 
 Color Piece::GetColor()
@@ -36,10 +38,20 @@ void Piece::SetChessBoardPtr(ChessBoard* chessBoardPtr)
 
 vector<Position> Piece::GetPossibleMoves(Position position)
 {
-	if (this->color == this->chessBoardPtr->GetTurn())
+    if (this->color == this->game->GetTurn())
 	{
         vector<Position> tmp = this->GetPossibleMovesInternal(position);
         return tmp;
 	}
-	return vector<Position>();
+    return vector<Position>();
+}
+
+void Piece::SetMoved(bool moved)
+{
+    this->moved = moved;
+}
+
+bool Piece::GetMoved()
+{
+    return this->moved;
 }

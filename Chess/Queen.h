@@ -4,5 +4,5 @@
 class Queen : public LongRangePiece
 {
 public:
-	Queen(Color color, ChessBoard* chessBoardPtr);
+    Queen(Color color, ChessBoard* chessBoardPtr, Game* game = nullptr);
 };

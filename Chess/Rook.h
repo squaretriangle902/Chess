@@ -4,5 +4,5 @@
 class Rook : public LongRangePiece
 {
 public:
-	Rook(Color color, ChessBoard* chessBoardPtr);
+    Rook(Color color, ChessBoard* chessBoardPtr, Game* game = nullptr);
 };

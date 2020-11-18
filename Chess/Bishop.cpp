@@ -1,8 +1,8 @@
 #pragma once
 #include "Bishop.h"
 
-Bishop::Bishop(Color color, ChessBoard* chessBoardPtr) :
-	LongRangePiece(color, chessBoardPtr)
+Bishop::Bishop(Color color, ChessBoard* chessBoardPtr, Game* game) :
+    LongRangePiece(color, chessBoardPtr, game)
 {
 	this->type = bishop;
 	this->moveDirectionsVector = vector<Chess::Direction>{

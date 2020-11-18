@@ -2,6 +2,7 @@
 #include "ui_chessqtgui.h"
 #include <QGridLayout>
 #include <QColor>
+#include <QMessageBox>
 
 ChessQtGUI::ChessQtGUI(QWidget *parent)
     : QMainWindow(parent)
@@ -37,72 +38,59 @@ ChessQtGUI::ChessQtGUI(QWidget *parent)
     scene->addItem(squareMarkerGroup);
     lastMoveMarkerGroup = new QGraphicsItemGroup();
     scene->addItem(lastMoveMarkerGroup);
+    checkMarker = nullptr;
+    scene->addItem(checkMarker);
 
     //Game classes declaration
 
-    this->chessBoardPtr = new ChessBoard(8);
-    this->inputPieceDialog = new InputPieceDialog(white, chessBoardPtr);
+    int chessBoardSize = 8;
+
+    this->game = new Game(white, chessBoardSize);
+    this->chessBoardPtr = new ChessBoard(chessBoardSize, game);
+    this->game->SetChessBoardPtr(chessBoardPtr);
+    this->inputPieceDialog = new InputPieceDialog(white, chessBoardPtr, game);
     inputPieceDialog->show();
     inputPieceDialog->close();
 
-        //Pieces poniters declaration
-            //White pieces poniters
-            Pawn*   whitePawn   = new Pawn(white, chessBoardPtr);
-            Knight* whiteKnight = new Knight(white, chessBoardPtr);
-            Bishop* whiteBishop = new Bishop(white, chessBoardPtr);
-            Rook*   whiteRook   = new Rook(white, chessBoardPtr);
-            Queen*  whiteQueen  = new Queen(white, chessBoardPtr);
-            King*   whiteKing   = new King(white, chessBoardPtr);
-            //Black pieces poniters
-            Pawn*   blackPawn   = new Pawn(black, chessBoardPtr);
-            Knight* blackKnight = new Knight(black, chessBoardPtr);
-            Bishop* blackBishop = new Bishop(black, chessBoardPtr);
-            Rook*   blackRook   = new Rook(black, chessBoardPtr);
-            Queen*  blackQueen  = new Queen(black, chessBoardPtr);
-            King*   blackKing   = new King(black, chessBoardPtr);
-
-//        //Adding pieces
-//            //Adding white pieces
-//                //Pawns
-//                AddPiece(0, 1, whitePawn);
-//                AddPiece(1, 1, whitePawn);
-//                AddPiece(2, 1, whitePawn);
-//                AddPiece(3, 1, whitePawn);
-//                AddPiece(4, 1, whitePawn);
-//                AddPiece(5, 1, whitePawn);
-//                AddPiece(6, 1, whitePawn);
-//                AddPiece(7, 1, whitePawn);
-//                //Pieces
-//                AddPiece(0, 0, whiteRook);
-//                AddPiece(1, 0, whiteKnight);
-//                AddPiece(2, 0, whiteBishop);
-//                AddPiece(3, 0, whiteQueen);
-//                AddPiece(4, 0, whiteKing);
-//                AddPiece(5, 0, whiteBishop);
-//                AddPiece(6, 0, whiteKnight);
-//                AddPiece(7, 0, whiteRook);
-//            //Adding black pieces
-//                //Pawns
-//                AddPiece(0, 6, blackPawn);
-//                AddPiece(1, 6, blackPawn);
-//                AddPiece(2, 6, blackPawn);
-//                AddPiece(3, 6, blackPawn);
-//                AddPiece(4, 6, blackPawn);
-//                AddPiece(5, 6, blackPawn);
-//                AddPiece(6, 6, blackPawn);
-//                AddPiece(7, 6, blackPawn);
-//                //Pieces
-//                AddPiece(0, 7, blackRook);
-//                AddPiece(1, 7, blackKnight);
-//                AddPiece(2, 7, blackBishop);
-//                AddPiece(3, 7, blackQueen);
-//                AddPiece(4, 7, blackKing);
-//                AddPiece(5, 7, blackBishop);
-//                AddPiece(6, 7, blackKnight);
-//                AddPiece(7, 7, blackRook);
-            AddPiece(0, 0, whiteKing);
-            AddPiece(2, 3, whiteQueen);
-            AddPiece(0, 6, blackQueen);
+    //Adding pieces
+        //Adding white pieces
+            //Pawns
+            AddPiece(0, 1, pawn, white);
+            AddPiece(1, 1, pawn, white);
+            AddPiece(2, 1, pawn, white);
+            AddPiece(3, 1, pawn, white);
+            AddPiece(4, 1, pawn, white);
+            AddPiece(5, 1, pawn, white);
+            AddPiece(6, 1, pawn, white);
+            AddPiece(7, 1, pawn, white);
+            //Pieces
+            AddPiece(0, 0, rook, white);
+            AddPiece(1, 0, knight, white);
+            AddPiece(2, 0, bishop, white);
+            AddPiece(3, 0, queen, white);
+            AddPiece(4, 0, king, white);
+            AddPiece(5, 0, bishop, white);
+            AddPiece(6, 0, knight, white);
+            AddPiece(7, 0, rook, white);
+        //Adding black pieces
+            //Pawns
+            AddPiece(0, 6, pawn, black);
+            AddPiece(1, 6, pawn, black);
+            AddPiece(2, 6, pawn, black);
+            AddPiece(3, 6, pawn, black);
+            AddPiece(4, 6, pawn, black);
+            AddPiece(5, 6, pawn, black);
+            AddPiece(6, 6, pawn, black);
+            AddPiece(7, 6, pawn, black);
+            //Pieces
+            AddPiece(0, 7, rook, black);
+            AddPiece(1, 7, knight, black);
+            AddPiece(2, 7, bishop, black);
+            AddPiece(3, 7, queen, black);
+            AddPiece(4, 7, king, black);
+            AddPiece(5, 7, bishop, black);
+            AddPiece(6, 7, knight, black);
+            AddPiece(7, 7, rook, black);
 
 }
 
@@ -120,6 +108,18 @@ void ChessQtGUI::SelectAllAvailableSquares(vector<Position> possibleMovesVector)
     }
 }
 
+Position ChessQtGUI::FindRookDisplay(Position kingPosition, Chess::Direction castlingDirection)
+{
+    Position i = kingPosition + castlingDirection;
+    QGraphicsItem* pieceDisplay = nullptr;
+    while(pieceDisplay == nullptr)
+    {
+        pieceDisplay = scene->itemAt(PositionToQPointF(i, true), QTransform());
+        i += castlingDirection;
+    }
+    return i;
+}
+
 void  ChessQtGUI::SelectPiece(QPointF position)
 {
     QGraphicsItem* pieceDisplay = scene->itemAt(position, QTransform());
@@ -128,7 +128,6 @@ void  ChessQtGUI::SelectPiece(QPointF position)
     Piece* piecePtr = this->chessBoardPtr->GetPiecePtr(currentPiecePosition);
     if(piecePtr != NULL)
     {
-        vector<Position> tmp = piecePtr->GetPossibleMoves(currentPiecePosition);
         SelectAllAvailableSquares(piecePtr->GetPossibleMoves(currentPiecePosition));
     }
 }
@@ -153,40 +152,116 @@ void ChessQtGUI::DeleteAllMarkers(QGraphicsItemGroup* markerGroup)
     }
 }
 
-void ChessQtGUI::TryMovePiece(QPointF position)
+void ChessQtGUI::Taking(QGraphicsItem* pieceDisplay, QPointF position)
 {
-    QGraphicsItem* pieceDisplay = scene->itemAt(position, QTransform());
-    bool isTaking = false, isPromotion = false;
-    Position endChessPosition = QPointFToPosition(position);
-    bool tryMove = this->chessBoardPtr->TryMove(currentPiecePosition, endChessPosition, isTaking, isPromotion);
-    if(isTaking)
-    {
-        pieceDisplay->setZValue(-1);
-        scene->removeItem(scene->itemAt(position, QTransform()));
-    }
-    if(tryMove)
-    {
-        pieceDisplay->setPos(NearestSquareCenter(position));
-    }
-    else
+    pieceDisplay->setZValue(-1);
+    scene->removeItem(scene->itemAt(position, QTransform()));
+}
+
+void ChessQtGUI::ReturnPieceDisplay(QGraphicsItem* pieceDisplay)
+{
     {
         pieceDisplay->setPos(PositionToQPointF(currentPiecePosition, true));
     }
-    if(isPromotion)
+}
+
+void ChessQtGUI::Promotion(Color color, QPointF position, Position endChessPosition)
+{
+    inputPieceDialog->SetColor(color);
+    inputPieceDialog->exec();
+    scene->removeItem(scene->itemAt(position, QTransform()));
+    AddPiece(endChessPosition, inputPieceDialog->GetOutput());
+}
+
+void ChessQtGUI::Castling(Position rookDisplayPosition, Position endChessPosition,
+                           Chess::Direction castlingDirection)
+{
+    QGraphicsItem* rookDisplay =
+            scene->itemAt(PositionToQPointF(rookDisplayPosition, true), QTransform());
+    Position rookNewPosition = endChessPosition - Position(castlingDirection);
+    rookDisplay->setPos(PositionToQPointF(rookNewPosition, true));
+}
+
+void ChessQtGUI::GameResultMessage(GameResult gameResult)
+{
+    switch (gameResult)
     {
-        Color color = chessBoardPtr->GetPiecePtr(endChessPosition)->GetColor();
-        inputPieceDialog->SetColor(color);
-        inputPieceDialog->exec();
-        scene->removeItem(scene->itemAt(position, QTransform()));
-        AddPiece(endChessPosition, inputPieceDialog->GetOutput());
+    case whiteWon:
+        QMessageBox::question(this, "White won by checkmate", "Retry?", QMessageBox::Yes | QMessageBox::No);
+        break;
+    case blackWon:
+        QMessageBox::question(this, "Black won by checkmate", "Retry?", QMessageBox::Yes | QMessageBox::No);
+        break;
+    case stalemate:
+        QMessageBox::question(this, "Stalemate", "Retry?", QMessageBox::Yes | QMessageBox::No);
+        break;
     }
-    pieceDisplay->setZValue(0);
+}
+
+void ChessQtGUI::CheckMarker(Color kingColor)
+{
+    Position* kingPositionPtr = this->chessBoardPtr->GetKingPosition(kingColor);
+    if(kingPositionPtr != nullptr && this->chessBoardPtr->IsPositionUnderAttack(*kingPositionPtr, kingColor))
+    {
+        checkMarker = new SquareMarker(SquareSize(), check, PositionToQPointF(*kingPositionPtr, true));
+        checkMarker->setZValue(0);
+        scene->addItem(checkMarker);
+    }
+}
+
+void ChessQtGUI::TryMovePiece(QPointF position)
+{
+    QGraphicsItem* pieceDisplay = scene->itemAt(position, QTransform());
+    bool isTaking = false, isPromotion = false, isEnPassant = false;
+    Chess::Direction castlingDirection = Chess::noDirection;
+    Position rookDisplayPosition, enPassantPosition;
+    Position endChessPosition = QPointFToPosition(position);
+    bool tryMove = this->chessBoardPtr->TryMove(currentPiecePosition, endChessPosition, isTaking, isPromotion,
+                                                rookDisplayPosition, castlingDirection, isEnPassant,
+                                                enPassantPosition);
+    GameResult gameResult;
+    if(tryMove)
+    {
+        scene->removeItem(checkMarker);
+        Color color = chessBoardPtr->GetPiecePtr(endChessPosition)->GetColor();
+        if(isTaking)
+        {
+            Taking(pieceDisplay, position);
+        }
+        if(isPromotion)
+        {
+            Promotion(color, position, endChessPosition);
+        }
+        if(castlingDirection != Chess::noDirection)
+        {
+            Castling(rookDisplayPosition, endChessPosition, castlingDirection);
+        }
+        if(isEnPassant)
+        {
+            scene->removeItem(scene->itemAt(PositionToQPointF(enPassantPosition, true), QTransform()));
+        }
+        pieceDisplay->setPos(NearestSquareCenter(position));
+        CheckMarker(NextColor(color));
+        gameResult = this->game->GetGameResult();
+    }
+    else
+    {
+        ReturnPieceDisplay(pieceDisplay);
+        gameResult = none;
+    }
+    pieceDisplay->setZValue(0.5);
     DeleteAllMarkers(squareMarkerGroup);
+    GameResultMessage(gameResult);
 }
 
 ChessQtGUI::~ChessQtGUI()
 {
     delete ui;
+}
+
+void ChessQtGUI::AddPiece(Position position, PieceType type, Color color)
+{
+    AddPiece(position, CreatePiece(type, color, chessBoardPtr, game));
 }
 
 void ChessQtGUI::AddPiece(Position position, Piece *piecePtr)
@@ -196,16 +271,17 @@ void ChessQtGUI::AddPiece(Position position, Piece *piecePtr)
                                                   piecePtr->GetType(), piecePtr->GetColor());
     pieceDisplay->setPos(PositionToQPointF(position, true));
     scene->addItem(pieceDisplay);
+    pieceDisplay->setZValue(0.5);
     connect(pieceDisplay, SIGNAL(PieceClicked(QPointF)), this, SLOT(SelectPiece(QPointF)));
     connect(pieceDisplay, SIGNAL(PieceReleased(QPointF)), this, SLOT(TryMovePiece(QPointF)));
 }
 
-void ChessQtGUI::AddPiece(int vertical, int horizontal, Piece *piecePtr)
+void ChessQtGUI::AddPiece(int vertical, int horizontal, PieceType type, Color color)
 {
-
     Position position = Position(vertical, horizontal);
-    AddPiece(position, piecePtr);
+    AddPiece(position, type, color);
 }
+
 
 int ChessQtGUI::SquareSize()
 {

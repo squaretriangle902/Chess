@@ -1,7 +1,7 @@
 #include "LongRangePiece.h"
 
-LongRangePiece::LongRangePiece(Color color, ChessBoard* chessBoardPtr) : 
-	SubsidiaryPiece(color, chessBoardPtr)
+LongRangePiece::LongRangePiece(Color color, ChessBoard* chessBoardPtr, Game* game) :
+    SubsidiaryPiece(color, chessBoardPtr, game)
 {
 }
 
